@@ -1,5 +1,15 @@
 #root {
   margin: 0 auto;
+  --bg-primary: hsl(235 12% 19%);
+  --bg-secondary: hsl(235 16% 15%);
+  --bg-purple:  hsl(242 48% 58%);
+  --text-purple: hsl(242 48% 58%);
+  --border-dark: hsl(236 11% 27%);
+
+  --sidebar-width-mobile: 100px;
+  --sidebar-width-tablet: 200px;
+  --sidebar-width-desktop: 300px;
+
 }
 
 /* bypass animation on first load */
@@ -14,35 +24,65 @@ body.preload *{
   flex-direction: column;
   min-height: 100vh;
 }
-@media screen and (min-width: 480px) {
-  .main {
-    flex-direction: column;
-    min-height: 100vh;
-  }  
-}
 
 /* HEADER */
-.app__header {
+.header {
   display: flex;
   flex-direction: row;
-  border: 1px solid grey;
+  background-color: var(--bg-primary);
+}
+.header__app-brand {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  padding: 1rem;
+  width: var(--sidebar-width-mobile);
+  border-right: 1px solid var(--border-dark);
+}
+@media screen and (min-width: 768px) {
+  .header__app-brand {
+    width: var(--sidebar-width-tablet);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .header__app-brand {
+    width: var(--sidebar-width-desktop);
+  }
+}
+
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+  padding: 1rem;
+}
+.header__board-title {
+  flex: auto;
+  /* padding: 1rem; */
+  white-space: nowrap;
 }
 
 /* SIDEBAR */
 .sidebar {
   display: flex;
   flex-direction: column;
-  flex: auto;
+  flex-shrink: 0;
   justify-content: space-between;
-  padding: 2rem;
-  /* max-width: 400px; */
-  border: 1px solid grey;
+  padding: 1rem;
+  width: var(--sidebar-width-mobile);
+  border-right: 1px solid var(--border-dark);
   z-index: 99;
+  background-color: var(--bg-primary);
 }
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 768px) {
   .sidebar {
-    max-width: 400px;
-  }  
+    width: var(--sidebar-width-tablet);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .sidebar {
+    width: var(--sidebar-width-desktop);
+  }
 }
 
 /* sidebar slider animation */
@@ -80,19 +120,45 @@ body.preload *{
   display: flex;
   flex-direction: row;
   flex: auto;
-  border: 1px solid grey;
+  background-color: var(--bg-secondary);
 }
 
 /* board slider animation */
 @keyframes boardThin {
   0% {
-    margin-left: -400px;
+    margin-left: calc(-1 * var(--sidebar-width-mobile));
   }
 
   to {
       margin-left: 0px;
   }
 }
+@media screen and (min-width: 768px) {
+  @keyframes boardThin {
+    0% {
+      margin-left: calc(-1 * var(--sidebar-width-tablet));
+    }
+  
+    to {
+        margin-left: 0px;
+    }
+  }
+}
+@media screen and (min-width: 1024px) {
+  @keyframes boardThin {
+    0% {
+      margin-left: calc(-1 * var(--sidebar-width-desktop));
+    }
+  
+    to {
+        margin-left: 0px;
+    }
+  }
+}
+
+
+
+
 
 .animate-boardThin {
   animation: boardThin 1s cubic-bezier(.16,1,.3,1) both;
@@ -104,10 +170,31 @@ body.preload *{
   }
 
   to {
-      margin-left: -400px;
+      margin-left: calc(-1 * var(--sidebar-width-mobile));
   }
 }
-
+@media screen and (min-width: 768px) {
+  @keyframes boardWide {
+    0% {
+        margin-left: 0px;
+    }
+  
+    to {
+        margin-left: calc(-1 * var(--sidebar-width-tablet));
+    }
+  }
+}
+@media screen and (min-width: 1024px) {
+  @keyframes boardWide {
+    0% {
+        margin-left: 0px;
+    }
+  
+    to {
+        margin-left: calc(-1 * var(--sidebar-width-desktop));
+    }
+  }
+}
 .animate-boardWide {
   animation: boardWide 1s cubic-bezier(.16,1,.3,1) both;
 }
@@ -116,7 +203,6 @@ body.preload *{
   display: flex;
   flex-direction: row;
   flex: auto;
-  border: 1px solid grey;
   position: relative;
   gap: 1rem;
   padding: 1rem;
@@ -135,6 +221,7 @@ button.show-sidebar {
 }
 button.hide-sidebar {
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 
 /* button animation */

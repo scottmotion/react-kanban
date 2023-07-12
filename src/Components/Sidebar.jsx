@@ -9,7 +9,7 @@ export default function Sidebar(props) {
 
   return (
     <section className={className}>
-      <div>Sidebar</div>
+      <div className="sidebar__heading">All Boards</div>
       <button className="button hide-sidebar" onClick={props.hideSidebar}>Hide Sidebar</button>
     </section>
   )
