@@ -1,0 +1,167 @@
+#root {
+  margin: 0 auto;
+}
+
+/* bypass animation on first load */
+body.preload *{
+  animation-duration: 0s !important;
+  -webkit-animation-duration: 0s !important;
+  transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+@media screen and (min-width: 480px) {
+  .main {
+    flex-direction: column;
+    min-height: 100vh;
+  }  
+}
+
+/* HEADER */
+.app__header {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+}
+
+/* SIDEBAR */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  justify-content: space-between;
+  padding: 2rem;
+  /* max-width: 400px; */
+  border: 1px solid grey;
+  z-index: 99;
+}
+@media screen and (min-width: 480px) {
+  .sidebar {
+    max-width: 400px;
+  }  
+}
+
+/* sidebar slider animation */
+@keyframes sidebarClose {
+  0% {
+      transform: translateX(0)
+  }
+
+  to {
+      transform: translateX(-100%)
+  }
+}
+
+.animate-sidebarClose {
+  animation: sidebarClose 1s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes sidebarOpen {
+  0% {
+      transform: translateX(-100%)
+  }
+
+  to {
+      transform: translateX(0)
+  }
+}
+
+.animate-sidebarOpen {
+  animation: sidebarOpen 1s cubic-bezier(.16,1,.3,1) both;
+}
+
+
+/* BOARD */
+.board-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+  border: 1px solid grey;
+}
+
+/* board slider animation */
+@keyframes boardThin {
+  0% {
+    margin-left: -400px;
+  }
+
+  to {
+      margin-left: 0px;
+  }
+}
+
+.animate-boardThin {
+  animation: boardThin 1s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes boardWide {
+  0% {
+      margin-left: 0px;
+  }
+
+  to {
+      margin-left: -400px;
+  }
+}
+
+.animate-boardWide {
+  animation: boardWide 1s cubic-bezier(.16,1,.3,1) both;
+}
+
+.board__columns {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+  border: 1px solid grey;
+  position: relative;
+  gap: 1rem;
+  padding: 1rem;
+}
+.board__column-single {
+  border: 1px solid grey;
+  padding: 1rem;
+}
+
+
+button.show-sidebar {
+  cursor: pointer;
+  position: absolute;
+  bottom: 2rem;
+  opacity: 1;
+}
+button.hide-sidebar {
+  cursor: pointer;
+}
+
+/* button animation */
+@keyframes buttonShow {
+  0% {
+      opacity: 0;
+  }
+
+  to {
+      opacity: 1;
+  }
+}
+
+.animate-buttonShow {
+  animation: buttonShow 1s cubic-bezier(.16,1,.3,1) .5s both;
+}
+
+@keyframes buttonHide {
+  0% {
+      opacity: 1;
+  }
+
+  to {
+      opacity: 0;
+  }
+}
+
+.animate-buttonHide {
+  animation: buttonHide .5s cubic-bezier(.16,1,.3,1) both;
+}
