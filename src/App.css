@@ -172,10 +172,6 @@ body.preload *{
   }
 }
 
-
-
-
-
 .animate-boardThin {
   animation: boardThin 1s cubic-bezier(.16,1,.3,1) both;
 }
@@ -252,7 +248,7 @@ button.hide-sidebar {
 }
 
 .animate-buttonShow {
-  animation: buttonShow 1s cubic-bezier(.16,1,.3,1) .5s both;
+  animation: buttonShow 1.5s cubic-bezier(.16,1,.3,1) .25s both;
 }
 
 @keyframes buttonHide {
