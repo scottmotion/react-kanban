@@ -4,13 +4,11 @@ export default function BoardColumns(props) {
 
   return (
     <>
-    <div className={className}>
-      <div className="board__column-single">Board Columns</div>
-      <div className="board__column-single">Board Columns</div>
-      <div className="board__column-single">Board Columns</div>
-    </div>
-
+      <section className={className}>
+        <div className="board__column-single">Board Columns</div>
+        <div className="board__column-single">Board Columns</div>
+        <div className="board__column-single">Board Columns</div>
+      </section>
     </>
-    
   )
 }

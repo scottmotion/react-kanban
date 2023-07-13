@@ -12,20 +12,23 @@
 
 #root {
   margin: 0 auto;
-}
-
-/* bypass animation on first load */
-body.preload *{
-  animation-duration: 0s !important;
-  -webkit-animation-duration: 0s !important;
-  transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
-}
-
-.main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
+/* bypass animation on first load */
+/* body.preload *{
+  animation-duration: 0s !important;
+  -webkit-animation-duration: 0s !important;
+  transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
+} */
+
+/* .main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+} */
 
 /* HEADER */
 .header {
@@ -83,7 +86,7 @@ body.preload *{
 
 /* SIDEBAR */
 .sidebar {
-  display: flex;
+  display: none;
   flex-direction: column;
   flex-shrink: 0;
   justify-content: space-between;
@@ -95,6 +98,7 @@ body.preload *{
 }
 @media screen and (min-width: 768px) {
   .sidebar {
+    display: flex;
     width: var(--sidebar-width-tablet);
   }
 }
@@ -145,7 +149,7 @@ body.preload *{
 /* board slider animation */
 @keyframes boardThin {
   0% {
-    margin-left: calc(-1 * var(--sidebar-width-mobile));
+    margin-left: 0px;
   }
 
   to {
@@ -185,7 +189,7 @@ body.preload *{
   }
 
   to {
-      margin-left: calc(-1 * var(--sidebar-width-mobile));
+      margin-left: 0px;
   }
 }
 @media screen and (min-width: 768px) {
@@ -216,11 +220,16 @@ body.preload *{
 
 .board__columns {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex: auto;
   position: relative;
   gap: 1rem;
   padding: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .board__columns {
+    flex-direction: row;
+  }
 }
 .board__column-single {
   border: 1px solid grey;
@@ -231,10 +240,16 @@ body.preload *{
 
 
 button.show-sidebar {
+  display: none;
   cursor: pointer;
   position: absolute;
   bottom: 2rem;
   opacity: 1;
+}
+@media screen and (min-width: 768px) {
+  button.show-sidebar {
+    display: block;
+  }
 }
 button.hide-sidebar {
   cursor: pointer;

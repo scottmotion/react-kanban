@@ -8,9 +8,9 @@ export default function Sidebar(props) {
   }
 
   return (
-    <section className={className}>
+    <nav className={className}>
       <div className="sidebar__heading">All Boards</div>
       <button className="button hide-sidebar" onClick={props.hideSidebar}>Hide Sidebar</button>
-    </section>
+    </nav>
   )
 }

@@ -19,7 +19,7 @@ export default function BoardWrapper(props) {
   
   return (
     <>
-      <section className={className}>{props.children}</section>
+      <main className={className}>{props.children}</main>
       <button className={buttonClassName} onClick={props.showSidebar} disabled={buttonDisabled}>Show Sidebar</button>
     </>
   )

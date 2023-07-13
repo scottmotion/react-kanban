@@ -24,13 +24,15 @@ function App() {
 
 
   return (
-    <PageLayout>
+    // <PageLayout>
+    <>
       <AppHeader />
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar}>
         <Sidebar sidebarVisible={sidebarVisible} hideSidebar={hideSidebar} />
         <BoardColumns sidebarVisible={sidebarVisible}/>
       </BoardWrapper>
-    </PageLayout>
+    </>
+    // </PageLayout>
   )
 }
 
