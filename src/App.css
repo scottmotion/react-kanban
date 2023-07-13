@@ -52,14 +52,14 @@ body.preload *{
 }
 
 .header__app-logo {
-  content: url(/public/assets/logo-mobile.svg);
+  content: url(/assets/logo-mobile.svg);
   width: 24px;
   height: 25px;
   margin-left: 2rem;
 }
 @media screen and (min-width: 768px) {
   .header__app-logo {
-    content: url(/public/assets/logo-light.svg);
+    content: url(/assets/logo-light.svg);
     width: 153px;
     height: 26px;
   }
@@ -69,12 +69,13 @@ body.preload *{
   display: flex;
   flex-direction: row;
   flex: auto;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem;
 }
 .header__board-title {
-  flex: auto;
   font-size: 1.125rem;
+  margin: 0;
   white-space: nowrap;
 }
 
@@ -222,6 +223,8 @@ body.preload *{
 .board__column-single {
   border: 1px solid grey;
   padding: 1rem;
+  min-width: 12rem;
+  /* height: 2000px; */
 }
 
 
