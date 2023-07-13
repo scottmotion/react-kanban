@@ -1,7 +1,6 @@
 import { useState } from "react"
 
 import './App.css'
-import PageLayout from './Components/PageLayout'
 import Sidebar from './Components/Sidebar'
 import BoardWrapper from './Components/BoardWrapper'
 import AppHeader from './Components/AppHeader'
@@ -24,7 +23,6 @@ function App() {
 
 
   return (
-    // <PageLayout>
     <>
       <AppHeader />
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar}>
@@ -32,7 +30,6 @@ function App() {
         <BoardColumns sidebarVisible={sidebarVisible}/>
       </BoardWrapper>
     </>
-    // </PageLayout>
   )
 }
 
