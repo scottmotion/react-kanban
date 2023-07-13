@@ -21,13 +21,12 @@ function App() {
     setSidebarVisible(true)
   }
 
-
   return (
     <>
       <AppHeader />
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar}>
         <Sidebar sidebarVisible={sidebarVisible} hideSidebar={hideSidebar} />
-        <BoardColumns sidebarVisible={sidebarVisible}/>
+        <BoardColumns />
       </BoardWrapper>
     </>
   )
