@@ -305,6 +305,7 @@
   min-height: 5rem;
   min-width: 17.5rem;
   background-color: var(--bg-primary);
+  border-radius: .5rem;
 }
 
 
