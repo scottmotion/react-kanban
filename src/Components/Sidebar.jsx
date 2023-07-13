@@ -1,6 +1,6 @@
 export default function Sidebar(props) {
 
-  let className = 'section sidebar'
+  let className = 'nav section sidebar'
   if (props.sidebarVisible) {
     className += ' animate-sidebarOpen'
   } else {
