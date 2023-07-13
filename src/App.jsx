@@ -2,6 +2,7 @@ import { useState } from "react"
 
 import './App.css'
 import Sidebar from './Components/Sidebar'
+import SidebarButton from "./Components/SidebarButton"
 import BoardWrapper from './Components/BoardWrapper'
 import AppHeader from './Components/AppHeader'
 import BoardColumns from './Components/BoardColumns'
@@ -25,7 +26,11 @@ function App() {
     <>
       <AppHeader />
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar}>
-        <Sidebar sidebarVisible={sidebarVisible} hideSidebar={hideSidebar} />
+        <Sidebar sidebarVisible={sidebarVisible} hideSidebar={hideSidebar}>
+          <SidebarButton active="true"/>
+          <SidebarButton />
+          <SidebarButton />
+        </Sidebar>
         <BoardColumns />
       </BoardWrapper>
     </>

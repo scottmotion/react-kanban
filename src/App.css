@@ -20,6 +20,10 @@
   --sidebar-width-mobile: 100px;
   --sidebar-width-tablet: 200px;
   --sidebar-width-desktop: 300px;
+
+  /* typography */
+  --fw-400: 400;
+  --fw-700: 700;
 }
 
 /* app root element */
@@ -100,8 +104,15 @@
 }
 .header__board-title {
   font-size: 1.125rem;
+  font-weight: var(--fw-700);
   margin: 0;
   white-space: nowrap;
+}
+.header__button-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* SIDEBAR */
@@ -110,7 +121,7 @@
   flex-direction: column;
   flex-shrink: 0;
   justify-content: space-between;
-  padding: 1.5rem 1.5rem 1.5rem 0rem;
+  padding: 0rem 1.5rem 1.5rem 0rem;
   width: var(--sidebar-width-mobile);
   border-right: 1px solid var(--border-dark);
   z-index: 99;
@@ -128,6 +139,24 @@
   }
 }
 
+.sidebar__nav-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__heading {
+  font-size: .75rem;
+  font-weight: var(--fw-700);
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  color: var(--text-mediumGrey);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.75rem 0rem 0.75rem 2rem;
+}
+
+
 /* sidebar slider animation */
 @keyframes sidebarClose {
   0% {transform: translateX(0)}
@@ -143,10 +172,6 @@
 }
 .animate-sidebarOpen {
   animation: sidebarOpen 1s cubic-bezier(.16,1,.3,1) both;
-}
-
-.sidebar__heading {
-  color: var(--text-mediumGrey);
 }
 
 /* BOARD */
@@ -244,6 +269,10 @@
   align-items: center;
   color: var(--text-mediumGrey);
   margin-bottom: 1rem;
+
+  font-size: .75rem;
+  font-weight: var(--fw-700);
+  letter-spacing: .1rem;
 }
 
 .board__column-single {
@@ -273,6 +302,7 @@
   margin-top: 1.5rem;
   justify-content: center;
   height: 100%;
+  min-height: 5rem;
   min-width: 17.5rem;
   border-radius: 0.5rem;
   background-image: linear-gradient(180deg,rgba(43,44,55,.25),rgba(43,44,55,.125));
@@ -284,6 +314,9 @@
   font-size: 1.5rem;
   font-weight: 700;
 }
+.button--new-column:hover {
+  color: var(--text-purple);
+}
 
 /* TASKS */
 .task-card {
@@ -293,10 +326,14 @@
   background-color: var(--bg-primary);
   border-radius: .5rem;
 }
+.task-card:hover .task-card__title {
+  color: var(--text-purple);
+}
 .task-card__title {
-  font-weight: 700;
+  font-weight: var(--fw-700);
 }
 .task-card__subtasks {
+  font-size: .75rem;
   color: var(--text-mediumGrey);
 }
 
@@ -340,25 +377,21 @@
 }
 
 /* sidebar hide button */
-.button--hide-sidebar {
+.sidebar-button.sidebar-button--hide-sidebar {
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-weight: var(--fw-400);
   cursor: pointer;
   background-color: transparent;
   color: var(--text-mediumGrey);
   border: none;
-  padding: 0.75rem 0rem 0.75rem 2.5rem;
+  padding: 0.75rem 0rem 0.75rem 2rem;
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
 }
-.button--hide-sidebar:hover {
-  background-color: var(--bg-white);
-  color: var(--text-purple);
-}
 
 .button__icon--hide {
-  /* color: var(--text-mediumGrey); */
   margin-right: .75rem;
 }
 
@@ -368,4 +401,73 @@
 }
 .animate-buttonHide {
   animation: buttonHide .5s cubic-bezier(.16,1,.3,1) both;
+}
+
+/* sidebar buttons */
+.sidebar-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: var(--fw-700);
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--text-mediumGrey);
+  border: none;
+  padding: 0.75rem 0rem 0.75rem 2rem;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+.sidebar-button:hover {
+  background-color: var(--bg-white);
+  color: var(--text-purple);
+}
+.sidebar-button.active {
+  background-color: var(--bg-purple);
+  color: var(--text-white);
+}
+.sidebar-button__icon {
+  margin-right: .75rem;
+}
+.sidebar-button.sidebar-button--new-board {
+  color: var(--text-purple);
+}
+
+/* header buttons */
+.header-button--new-task {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--bg-purple);
+  color: var(--text-white);
+  border: none;
+  padding: 0.75rem 2rem 0.75rem 2rem;
+  border-radius: 1.5rem;
+}
+.header-button--new-task:hover {
+  background-color: var(--bg-lightPurple);
+}
+@media screen and (min-width: 768px) {
+  .header-button--new-task {
+    content: initial;
+  }
+}
+
+.header-button--edit-board {
+  font-size: 1.7rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--text-mediumGrey);
+  border: none;
+  border-radius: 1.5rem;
+  vertical-align: middle;
+}
+.header-button--edit-board:hover {
+  color: var(--text-white);
+}
+.header-button__icon--edit {
+  border-radius: 100%;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-top;
 }
