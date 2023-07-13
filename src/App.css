@@ -1,5 +1,4 @@
-#root {
-  margin: 0 auto;
+:root {
   --bg-primary: hsl(235 12% 19%);
   --bg-secondary: hsl(235 16% 15%);
   --bg-purple:  hsl(242 48% 58%);
@@ -9,7 +8,10 @@
   --sidebar-width-mobile: 100px;
   --sidebar-width-tablet: 200px;
   --sidebar-width-desktop: 300px;
+}
 
+#root {
+  margin: 0 auto;
 }
 
 /* bypass animation on first load */
