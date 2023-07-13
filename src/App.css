@@ -7,10 +7,14 @@
   --bg-primary: hsl(235 12% 19%);
   --bg-secondary: hsl(235 16% 15%);
   --bg-purple:  hsl(242 48% 58%);
+  --bg-lightPurple: hsl(243 100% 82%);
+  --bg-white: hsl(0 0% 100%);
+
   --border-dark: hsl(236 11% 27%);
 
   --text-purple: hsl(242 48% 58%);
   --text-mediumGrey:  hsl(216 15% 60%);
+  --text-white: hsl(0 0% 100%);
 
   /* sidebar width */
   --sidebar-width-mobile: 100px;
@@ -106,7 +110,7 @@
   flex-direction: column;
   flex-shrink: 0;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1.5rem 1.5rem 1.5rem 0rem;
   width: var(--sidebar-width-mobile);
   border-right: 1px solid var(--border-dark);
   z-index: 99;
@@ -299,17 +303,32 @@
 /* SIDEBAR SLIDER BUTTONS */
 
 /* sidebar show button */
-button.show-sidebar {
+.button--show-sidebar {
   display: none;
   cursor: pointer;
   position: absolute;
   bottom: 2rem;
   opacity: 1;
+  color: var(--text-white);
+  background-color: var(--bg-purple);
+  border: none;
+  padding: .5rem 1.25rem;
+  border-top-right-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+  padding-left: 1.25rem;
+}
+.button--show-sidebar:hover {
+  background-color: var(--bg-lightPurple);
 }
 @media screen and (min-width: 768px) {
-  button.show-sidebar {
+  .button--show-sidebar {
     display: block;
   }
+}
+.button__icon--show {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
 }
 
 @keyframes buttonShow {
@@ -321,9 +340,26 @@ button.show-sidebar {
 }
 
 /* sidebar hide button */
-button.hide-sidebar {
+.button--hide-sidebar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   cursor: pointer;
-  margin-bottom: 1rem;
+  background-color: transparent;
+  color: var(--text-mediumGrey);
+  border: none;
+  padding: 0.75rem 0rem 0.75rem 2.5rem;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+.button--hide-sidebar:hover {
+  background-color: var(--bg-white);
+  color: var(--text-purple);
+}
+
+.button__icon--hide {
+  /* color: var(--text-mediumGrey); */
+  margin-right: .75rem;
 }
 
 @keyframes buttonHide {
