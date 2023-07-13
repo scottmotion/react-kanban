@@ -1,6 +1,6 @@
 export default function BoardWrapper(props) {
 
-  let className = 'section board-wrapper'
+  let className = 'main board-wrapper'
   if (props.sidebarVisible) {
     className += ' animate-boardThin'
   } else {

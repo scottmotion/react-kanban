@@ -5,9 +5,27 @@ export default function BoardColumns(props) {
   return (
     <>
       <section className={className}>
-        <div className="board__column-single">Board Columns</div>
-        <div className="board__column-single">Board Columns</div>
-        <div className="board__column-single">Board Columns</div>
+        <div className="board__column-single">Board Column 1
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+          <div className="task-card">Task Card</div>
+        </div>
+        <div className="board__column-single">Board Column 2</div>
+        <div className="board__column-single">Board Column 3</div>
+        <div className="board__column-single">Board Column 4</div>
       </section>
     </>
   )

@@ -29,6 +29,14 @@
   flex-direction: column;
   min-height: 100vh;
 } */
+.main {
+  height: initial;
+}
+@media screen and (min-width: 768px) {
+  .main {
+    height: 0;
+  }
+}
 
 /* HEADER */
 .header {
@@ -36,6 +44,12 @@
   flex-direction: row;
   align-items: stretch;
   background-color: var(--bg-primary);
+  height: 4rem;
+}
+@media screen and (min-width: 768px) {
+  .header {
+    height: 6rem;
+  }
 }
 .header__app-brand {
   display: flex;
@@ -232,11 +246,28 @@
   }
 }
 .board__column-single {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   border: 1px solid grey;
   padding: 1rem;
-  min-width: 12rem;
+  min-width: 17.5rem;
   /* height: 2000px; */
 }
+@media screen and (min-width: 768px) {
+  .board__column-single {
+    overflow-y: scroll;
+  }
+}
+
+
+.task-card {
+  border: 1px solid grey;
+  padding: 1rem;
+  min-height: 5rem;
+}
+
+
 
 
 button.show-sidebar {
