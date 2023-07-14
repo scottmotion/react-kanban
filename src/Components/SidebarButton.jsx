@@ -16,9 +16,9 @@ export default function SidebarButton(props) {
   
     return (
         <button className={className}>
-        {boardIcon}
-        <div className="sidebar-button__text">{boardTitle}</div>
-      </button>
+            {boardIcon}
+            <div className="sidebar-button__text">{boardTitle}</div>
+        </button>
     )
   }
   
