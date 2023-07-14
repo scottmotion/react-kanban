@@ -13,6 +13,14 @@ export default function Sidebar(props) {
     className += ' animate-sidebarClose'
   }
 
+  let darkMode = props.darkMode
+  let toggleIndicatorClass = "theme-switcher__toggle-indicator"
+  if (props.darkMode) {
+    toggleIndicatorClass += " dark-mode-on"
+  } else {
+    toggleIndicatorClass += " light-mode-on"
+  }
+
   return (
     <nav className={className}>
 
@@ -30,7 +38,7 @@ export default function Sidebar(props) {
         <div className="theme-switcher">
           <LightModeIcon className='theme-switcher__icon theme-switcher__icon--light'/>
           <button className="button theme-switcher__toggle" type="button" role="switch" onClick={props.toggleDarkMode}></button>
-          <span className="theme-switcher__toggle-indicator" data-state="checked" onClick={props.toggleDarkMode}></span>
+          <span className={toggleIndicatorClass} data-state="checked" onClick={props.toggleDarkMode}></span>
           <DarkModeIcon className='theme-switcher__icon theme-switcher__icon--dark'/>
         </div>
 

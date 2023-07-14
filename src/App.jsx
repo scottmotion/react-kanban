@@ -32,7 +32,7 @@ function App() {
     <>
       <AppHeader />
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar}>
-        <Sidebar sidebarVisible={sidebarVisible} hideSidebar={hideSidebar} toggleDarkMode={toggleDarkMode}>
+        <Sidebar sidebarVisible={sidebarVisible} hideSidebar={hideSidebar} darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
           <SidebarButton active="true"/>
           <SidebarButton />
           <SidebarButton />
