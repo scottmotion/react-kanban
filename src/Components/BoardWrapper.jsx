@@ -2,12 +2,19 @@ import { ReactComponent as ShowIcon } from "/src/assets/icons/icon-show.svg"
 
 export default function BoardWrapper(props) {
 
-  let className = 'main board-wrapper'
+  let mainClassName = 'main board-wrapper'
   if (props.sidebarVisible) {
-    className += ' animate-boardThin'
+    mainClassName += ' animate-boardThin'
   } else {
-    className += ' animate-boardWide'
+    mainClassName += ' animate-boardWide'
   }
+
+  if (props.darkMode) {
+    mainClassName += " dark-mode"
+  } else {
+    mainClassName += " light-mode"
+  }
+
 
   let buttonClassName = 'button button--show-sidebar'
   let buttonDisabled = ''
@@ -21,7 +28,7 @@ export default function BoardWrapper(props) {
   
   return (
     <>
-      <main className={className}>{props.children}</main>
+      <main className={mainClassName}>{props.children}</main>
       <button className={buttonClassName} onClick={props.showSidebar} disabled={buttonDisabled}>
         <ShowIcon className="button__icon--show" stroke="currentColor"/>
       </button>

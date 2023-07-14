@@ -1,10 +1,15 @@
 export default function BoardColumns(props) {
 
-  let className = 'board__column-section'
+  let sectionClassName = 'board__column-section'
+  if (props.darkMode) {
+    sectionClassName += " dark-mode"
+  } else {
+    sectionClassName += " light-mode"
+  }
 
   return (
     <>
-      <section className={className}>
+      <section className={sectionClassName}>
         <div className="board__column-single--wrapper">
           <div className="board__column-title"><span className="board__column-indicator"></span>Board Column 1</div>
           <div className="board__column-single">

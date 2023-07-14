@@ -6,23 +6,24 @@ import { ReactComponent as HideIcon } from "/src/assets/icons/icon-hide.svg"
 
 export default function Sidebar(props) {
 
-  let className = 'nav section sidebar'
+  let navClassName = 'nav section sidebar'
   if (props.sidebarVisible) {
-    className += ' animate-sidebarOpen'
+    navClassName += ' animate-sidebarOpen'
   } else {
-    className += ' animate-sidebarClose'
+    navClassName += ' animate-sidebarClose'
   }
 
-  let darkMode = props.darkMode
   let toggleIndicatorClass = "theme-switcher__toggle-indicator"
   if (props.darkMode) {
-    toggleIndicatorClass += " dark-mode-on"
+    toggleIndicatorClass += " dark-mode"
+    navClassName += "dark-mode"
   } else {
-    toggleIndicatorClass += " light-mode-on"
+    toggleIndicatorClass += " light-mode"
+    navClassName += " light-mode"
   }
 
   return (
-    <nav className={className}>
+    <nav className={navClassName}>
 
       <div className="sidebar__nav-wrapper">
         <div className="sidebar__heading">All Boards</div>

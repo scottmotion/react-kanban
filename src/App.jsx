@@ -30,14 +30,14 @@ function App() {
 
   return (
     <>
-      <AppHeader />
-      <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar}>
+      <AppHeader darkMode={darkMode}/>
+      <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
         <Sidebar sidebarVisible={sidebarVisible} hideSidebar={hideSidebar} darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
           <SidebarButton active="true"/>
           <SidebarButton />
           <SidebarButton />
         </Sidebar>
-        <BoardColumns />
+        <BoardColumns darkMode={darkMode}/>
       </BoardWrapper>
     </>
   )

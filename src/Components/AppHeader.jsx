@@ -1,10 +1,17 @@
 import { ReactComponent as PlusIcon } from "/src/assets/icons/icon-plus.svg"
 import { ReactComponent as VerticalEllipsisIcon } from "/src/assets/icons/icon-ellipsis-vertical.svg"
 
-export default function AppHeader() {
+export default function AppHeader(props) {
+
+  let headerClassName = "header"
+  if (props.darkMode) {
+    headerClassName += " dark-mode"
+  } else {
+    headerClassName += " light-mode"
+  }
 
   return (
-    <header className="header">
+    <header className={headerClassName}>
       <div className="header__app-brand"><img className="header__app-logo" /></div>
       <div className="header__nav">
         <h1 className="header__board-title">Board Title</h1>
