@@ -9,6 +9,7 @@
   --bg-purple:  hsl(242 48% 58%);
   --bg-lightPurple: hsl(243 100% 82%);
   --bg-white: hsl(0 0% 100%);
+  --bg-veryDarkGrey: hsl(235 16% 15%);
 
   --border-dark: hsl(236 11% 27%);
 
@@ -112,6 +113,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-left: 1rem;
   gap: 1rem;
 }
 
@@ -156,6 +158,51 @@
   padding: 0.75rem 0rem 0.75rem 2rem;
 }
 
+.sidebar__options-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.theme-switcher {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: var(--fw-400);
+  background-color: var(--bg-veryDarkGrey);
+  color: var(--text-mediumGrey);
+  border: none;
+  margin: 0rem 1rem 1rem 2rem;
+  padding: 0.75rem 2rem 0.75rem 2rem;
+  border-radius: .5rem;
+}
+.theme-switcher__toggle {
+  width: 40px;
+  height: 20px;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: var(--bg-purple);
+  cursor: pointer;
+}
+.theme-switcher__toggle-indicator {
+  width: 14px;
+  height: 14px;
+  background-color: var(--bg-white);
+  border-radius: 100%;
+  cursor: pointer;
+  transform: translateX(-27px);
+}
+
+.theme-switcher__icon {
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.theme-switcher__icon--light {
+  margin-right: .75rem;
+}
+.theme-switcher__icon--dark {
+  margin-left: .75rem;
+}
 
 /* sidebar slider animation */
 @keyframes sidebarClose {
@@ -426,7 +473,13 @@
   color: var(--text-white);
 }
 .sidebar-button__icon {
+  flex-shrink: 0;
   margin-right: .75rem;
+}
+.sidebar-button__text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .sidebar-button.sidebar-button--new-board {
   color: var(--text-purple);
@@ -441,7 +494,7 @@
   background-color: var(--bg-purple);
   color: var(--text-white);
   border: none;
-  padding: 0.75rem 2rem 0.75rem 2rem;
+  padding: 0.25rem 1rem 0.25rem 1rem;
   border-radius: 1.5rem;
 }
 .header-button--new-task:hover {
@@ -449,7 +502,7 @@
 }
 @media screen and (min-width: 768px) {
   .header-button--new-task {
-    content: initial;
+    padding: 0.75rem 2rem 0.75rem 2rem;
   }
 }
 .header-button__icon--new {
@@ -460,6 +513,7 @@
 }
 .header-button__text--new-task {
   display: none;
+  font-weight: var(--fw-700);
 }
 @media screen and (min-width: 768px) {
   .header-button__text--new-task {
