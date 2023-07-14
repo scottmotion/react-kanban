@@ -9,6 +9,12 @@ import BoardColumns from './Components/BoardColumns'
 
 function App() {
   const [sidebarVisible, setSidebarVisible] = useState(true)
+  const [darkMode, setDarkMode] = useState(true)
+
+  function toggleDarkMode() {
+    setDarkMode(prevMode => !prevMode)
+  }
+  console.log("Toggle Mode: ", darkMode)
 
   // allow animation after load
   setTimeout(function(){
@@ -26,7 +32,7 @@ function App() {
     <>
       <AppHeader />
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar}>
-        <Sidebar sidebarVisible={sidebarVisible} hideSidebar={hideSidebar}>
+        <Sidebar sidebarVisible={sidebarVisible} hideSidebar={hideSidebar} toggleDarkMode={toggleDarkMode}>
           <SidebarButton active="true"/>
           <SidebarButton />
           <SidebarButton />

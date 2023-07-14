@@ -29,8 +29,8 @@ export default function Sidebar(props) {
 
         <div className="theme-switcher">
           <LightModeIcon className='theme-switcher__icon theme-switcher__icon--light'/>
-          <button className="button theme-switcher__toggle" type="button" role="switch"></button>
-          <span className="theme-switcher__toggle-indicator" data-state="checked"></span>
+          <button className="button theme-switcher__toggle" type="button" role="switch" onClick={props.toggleDarkMode}></button>
+          <span className="theme-switcher__toggle-indicator" data-state="checked" onClick={props.toggleDarkMode}></span>
           <DarkModeIcon className='theme-switcher__icon theme-switcher__icon--dark'/>
         </div>
 

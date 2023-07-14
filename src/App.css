@@ -85,7 +85,7 @@
   content: url(/assets/logo-mobile.svg);
   width: 24px;
   height: 25px;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 @media screen and (min-width: 768px) {
   .header__app-logo {
@@ -94,7 +94,11 @@
     height: 26px;
   }
 }
-
+@media screen and (min-width: 1024px) {
+  .header__app-logo {
+    margin-left: 2rem;
+  }
+}
 .header__nav {
   display: flex;
   flex-direction: row;
@@ -155,9 +159,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0.75rem 0rem 0.75rem 2rem;
+  padding: 0.75rem 0rem 0.75rem 1rem;
 }
-
+@media screen and (min-width: 1024px) {
+  .sidebar__heading {
+    padding: 0.75rem 0rem 0.75rem 2rem;
+  }
+}
 .sidebar__options-wrapper {
   display: flex;
   flex-direction: column;
@@ -199,10 +207,8 @@
   cursor: pointer;
   transform: translateX(7px);
 }
-
 .theme-switcher__icon {
   flex-shrink: 0;
-  cursor: pointer;
 }
 .theme-switcher__icon--light {
   margin-right: .75rem;
@@ -285,12 +291,13 @@
   flex: auto;
   position: relative;
   gap: 2rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   overflow: auto;
 }
 @media screen and (min-width: 768px) {
   .board__column-section {
     flex-direction: row;
+    padding: 1rem 2rem;
   }
 }
 
@@ -440,11 +447,15 @@
   background-color: transparent;
   color: var(--text-mediumGrey);
   border: none;
-  padding: 0.75rem 0rem 0.75rem 2rem;
+  padding: 0.75rem 0rem 0.75rem 1rem;
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
 }
-
+@media screen and (min-width: 1024px) {
+  .sidebar-button.sidebar-button--hide-sidebar {
+    padding: 0.75rem 0rem 0.75rem 2rem;
+  }
+}
 .button__icon--hide {
   margin-right: .75rem;
 }
@@ -467,9 +478,14 @@
   background-color: transparent;
   color: var(--text-mediumGrey);
   border: none;
-  padding: 0.75rem 0rem 0.75rem 2rem;
+  padding: 0.75rem 0rem 0.75rem 1rem;
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
+}
+@media screen and (min-width: 1024px) {
+  .sidebar-button {
+    padding: 0.75rem 0rem 0.75rem 2rem;
+  }
 }
 .sidebar-button:hover {
   background-color: var(--bg-white);
