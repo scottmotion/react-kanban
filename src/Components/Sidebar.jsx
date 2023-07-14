@@ -16,7 +16,7 @@ export default function Sidebar(props) {
   let toggleIndicatorClass = "theme-switcher__toggle-indicator"
   if (props.darkMode) {
     toggleIndicatorClass += " dark-mode"
-    navClassName += "dark-mode"
+    navClassName += " dark-mode"
   } else {
     toggleIndicatorClass += " light-mode"
     navClassName += " light-mode"
