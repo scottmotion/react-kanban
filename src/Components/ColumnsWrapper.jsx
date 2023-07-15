@@ -4,15 +4,6 @@ import Column from "./Column"
 
 export default function ColumnsWrapper(props) {
 
-  const columns  = data.map(item => {
-    return (
-      <Column
-        key={item.id}
-        {...item}
-      />
-    )
-  })
-
   let sectionClassName = 'board__column-section'
   if (props.darkMode) {
     sectionClassName += " dark-mode"
@@ -23,7 +14,7 @@ export default function ColumnsWrapper(props) {
   return (
     <>
       <section className={sectionClassName}>
-        {/* <div className="board__column-single--wrapper">
+        <div className="board__column-single--wrapper">
           <div className="board__column-title"><span className="board__column-indicator"></span>Board Column 1</div>
           <div className="board__column-single">
 
@@ -137,8 +128,8 @@ export default function ColumnsWrapper(props) {
             </div>
 
           </div>
-        </div> */}
-        {columns}
+        </div>
+
         <div className="board__column-single--wrapper">
           <div className="board__column-title"> </div>
           <div className="board__column-single board__column-new">
