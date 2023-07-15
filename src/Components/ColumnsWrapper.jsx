@@ -1,4 +1,4 @@
-export default function BoardColumns(props) {
+export default function ColumnsWrapper(props) {
 
   let sectionClassName = 'board__column-section'
   if (props.darkMode) {

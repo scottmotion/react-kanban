@@ -5,7 +5,7 @@ import Sidebar from './Components/Sidebar'
 import SidebarButton from "./Components/SidebarButton"
 import BoardWrapper from './Components/BoardWrapper'
 import AppHeader from './Components/AppHeader'
-import BoardColumns from './Components/BoardColumns'
+import ColumnsWrapper from "./Components/ColumnsWrapper"
 
 function App() {
   const [sidebarVisible, setSidebarVisible] = useState(true)
@@ -14,7 +14,7 @@ function App() {
   function toggleDarkMode() {
     setDarkMode(prevMode => !prevMode)
   }
-  console.log("Toggle Mode: ", darkMode)
+  // console.log("Toggle Mode: ", darkMode)
 
   // allow animation after load
   setTimeout(function(){
@@ -37,7 +37,7 @@ function App() {
           <SidebarButton />
           <SidebarButton />
         </Sidebar>
-        <BoardColumns darkMode={darkMode}/>
+        <ColumnsWrapper darkMode={darkMode}/>
       </BoardWrapper>
     </>
   )
