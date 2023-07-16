@@ -1,13 +1,27 @@
 import { ReactComponent as PlusIcon } from "/src/assets/icons/icon-plus.svg"
 import { ReactComponent as VerticalEllipsisIcon } from "/src/assets/icons/icon-ellipsis-vertical.svg"
+import { useState } from "react"
 
 export default function AppHeader(props) {
+
+  const [showEditBoardMenu, setShowEditBoardMenu] = useState(false)
 
   let headerClassName = "header"
   if (props.darkMode) {
     headerClassName += " dark-mode"
   } else {
     headerClassName += " light-mode"
+  }
+
+  let editBoardMenuClassName = "edit-board-menu"
+
+  if (showEditBoardMenu) {
+    editBoardMenuClassName += " show"
+  } else {
+    editBoardMenuClassName += " hide"
+  }
+  function toggleEditBoardMenu() {
+    setShowEditBoardMenu(prevState => !prevState)
   }
 
   return (
@@ -20,9 +34,16 @@ export default function AppHeader(props) {
             <PlusIcon className='header-button__icon header-button__icon--new'/>
             <div className="header-button__text--new-task">Add New Task</div>
           </button>
-          <button className="button header-button header-button--edit-board">
-            <VerticalEllipsisIcon className='header-button__icon header-button__icon--edit'/>
-          </button>
+          <div className="edit-board-menu--wrapper">
+            <button className="button header-button header-button--edit-board" onClick={toggleEditBoardMenu}>
+              <VerticalEllipsisIcon className='header-button__icon header-button__icon--edit'/>
+            </button>
+            <div className={editBoardMenuClassName}>
+              <div className="button edit-board-menu--edit">Edit Board</div>
+              <div className="button edit-board-menu--delete">Delete Board</div>
+            </div>            
+          </div>
+
         </div>
       </div>
     </header>
