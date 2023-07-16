@@ -1,5 +1,3 @@
-@import url(/src/App.css);
-
 /* all board columns section */
 .board__column-section {
     display: flex;

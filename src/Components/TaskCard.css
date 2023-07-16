@@ -1,5 +1,3 @@
-@import url(/src/App.css);
-
 /* TASKS */
 .board__column-section .task-card {
     display: flex;

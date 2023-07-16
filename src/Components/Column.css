@@ -1,5 +1,3 @@
-@import url(/src/App.css);
-
 /* single board column */
 .board__column-single--wrapper {
     display: flex;
