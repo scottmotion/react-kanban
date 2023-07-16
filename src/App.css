@@ -47,32 +47,3 @@
 /* ------------------- */
 
 
-
-/* TASKS */
-.board__column-section .task-card {
-  padding: 1rem;
-  min-height: 5rem;
-  min-width: 17.5rem;
-  border-radius: .5rem;
-  box-shadow: rgba(54, 78, 126, 0.1) 0px 4px 6px 0px;
-}
-.board__column-section.dark-mode .task-card {
-  background-color: var(--bg-primary);
-}
-.board__column-section.light-mode .task-card {
-  background-color: var(--bg-white);
-}
-
-.task-card:hover {
-  cursor: pointer;
-}
-.task-card:hover .task-card__title {
-  color: var(--text-purple);
-}
-.task-card__title {
-  font-weight: var(--fw-700);
-}
-.task-card__subtasks {
-  font-size: .75rem;
-  color: var(--text-mediumGrey);
-}

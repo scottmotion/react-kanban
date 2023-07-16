@@ -1,4 +1,5 @@
 import './Column.css'
+import './TaskCard.css'
 
 export default function Column(props) {
     return (
