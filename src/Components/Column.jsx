@@ -1,3 +1,5 @@
+import './Column.css'
+
 export default function Column(props) {
     return (
         <div className="board__column-single--wrapper">

@@ -1,4 +1,5 @@
 import { ReactComponent as ShowIcon } from "/src/assets/icons/icon-show.svg"
+import './BoardWrapper.css'
 
 export default function BoardWrapper(props) {
 

@@ -1,6 +1,7 @@
 import { ReactComponent as PlusIcon } from "/src/assets/icons/icon-plus.svg"
 import { ReactComponent as VerticalEllipsisIcon } from "/src/assets/icons/icon-ellipsis-vertical.svg"
 import { useState } from "react"
+import './AppHeader.css'
 
 export default function AppHeader(props) {
 

@@ -2,6 +2,7 @@ import { ReactComponent as BoardIcon } from "/src/assets/icons/icon-board.svg"
 import { ReactComponent as LightModeIcon } from "/src/assets/icons/icon-light-mode.svg"
 import { ReactComponent as DarkModeIcon } from "/src/assets/icons/icon-dark-mode.svg"
 import { ReactComponent as HideIcon } from "/src/assets/icons/icon-hide.svg"
+import './Sidebar.css'
 
 
 export default function Sidebar(props) {

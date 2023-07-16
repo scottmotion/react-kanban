@@ -1,0 +1,57 @@
+@import url(/src/App.css);
+
+/* single board column */
+.board__column-single--wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .board__column-indicator {
+    display: inline-block;
+    background-color: var(--bg-purple);
+    width: 1rem;
+    aspect-ratio: 1/1;
+    border-radius: 1rem;
+    margin-right: .75rem;
+  }
+  .board__column-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--text-mediumGrey);
+    margin-bottom: 1rem;
+  
+    font-size: .75rem;
+    font-weight: var(--fw-700);
+    letter-spacing: .1rem;
+  }
+  
+  .board__column-single {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+  @media screen and (min-width: 768px) {
+    .board__column-single {
+      overflow: auto;
+      /* overflow-y: scroll; */
+    }
+  }
+  
+  /* single board column scrollbar */
+  .board__column-single::-webkit-scrollbar {
+    width: 1.25rem;
+  }
+  .board__column-single::-webkit-scrollbar-thumb {
+    /* background-color: var(--bg-primary); */
+    border-left: .75rem solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+  }
+  .board__column-section.dark-mode .board__column-single::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-dark);
+  }
+  .board__column-section.light-mode .board__column-single::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-light);
+  }
+  

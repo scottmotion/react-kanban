@@ -1,3 +1,4 @@
+import './ColumnsWrapper.css'
 import data from '/data/data.js?url'
 
 import Column from "./Column"
