@@ -16,7 +16,7 @@ function App() {
   }
   // console.log("Toggle Mode: ", darkMode)
 
-  // allow animation after load
+  // supress animation until first load
   setTimeout(function(){
     document.body.className="loaded";
   },1000);
