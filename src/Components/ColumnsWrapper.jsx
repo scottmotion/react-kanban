@@ -1,9 +1,11 @@
+import { doc } from 'firebase/firestore'
+import { db, boardsCollection } from '../firebase'
 import './ColumnsWrapper.css'
-import data from '/data/data.js?url'
-
 import Column from "./Column"
 
 export default function ColumnsWrapper(props) {
+  const currentBoard = doc(boardsCollection, "6QJ0SAFB6NcdNOBS7gda")
+  console.log("ColumnsWrapper.jsx: currentBoardId: ", props.currentBoardId)
 
   let sectionClassName = 'board__column-section'
   if (props.darkMode) {
