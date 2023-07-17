@@ -1,6 +1,6 @@
 import { ReactComponent as PlusIcon } from "/src/assets/icons/icon-plus.svg"
 import { ReactComponent as VerticalEllipsisIcon } from "/src/assets/icons/icon-ellipsis-vertical.svg"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import './AppHeader.css'
 
 export default function AppHeader(props) {
@@ -28,6 +28,27 @@ export default function AppHeader(props) {
     setShowBoardOptions(!showBoardOptions)
   }
 
+  /**
+   * Hook that fires on clicks outside of the passed ref
+   */
+  function boardOptionsClickOutside(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setShowBoardOptions(false)
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  const boardOptionsWrapperRef = useRef(null);
+  boardOptionsClickOutside(boardOptionsWrapperRef);
+
   return (
     <header className={headerClassName}>
       <div className="header__app-brand"><img className="header__app-logo" /></div>
@@ -38,7 +59,7 @@ export default function AppHeader(props) {
             <PlusIcon className='header-button__icon header-button__icon--new'/>
             <div className="header-button__text--new-task">Add New Task</div>
           </button>
-          <div className="edit-board-menu--wrapper">
+          <div className="edit-board-menu--wrapper" ref={boardOptionsWrapperRef}>
             <button className="button header-button header-button--edit-board" onClick={toggleBoardOptions}>
               <VerticalEllipsisIcon className='header-button__icon header-button__icon--edit'/>
             </button>
