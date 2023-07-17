@@ -3,9 +3,18 @@ import { ReactComponent as LightModeIcon } from "/src/assets/icons/icon-light-mo
 import { ReactComponent as DarkModeIcon } from "/src/assets/icons/icon-dark-mode.svg"
 import { ReactComponent as HideIcon } from "/src/assets/icons/icon-hide.svg"
 import './Sidebar.css'
-
+import SidebarButton from "./SidebarButton"
 
 export default function Sidebar(props) {
+
+  const boardButtonElements = props.boards.map((board, index) => (
+    <SidebarButton
+      key={board.id}
+      board={board}
+      active={board.id === props.currentBoardId ? "true" : "false" }
+      onClick={() => props.setCurrentBoardId(board.id)}
+    />
+  ))
 
   let navClassName = 'nav section sidebar'
   if (props.sidebarVisible) {
@@ -28,7 +37,7 @@ export default function Sidebar(props) {
 
       <div className="sidebar__nav-wrapper">
         <div className="sidebar__heading">All Boards</div>
-        {props.children}
+        {boardButtonElements}
         <button className="button sidebar-button sidebar-button--new-board">
           <BoardIcon className='sidebar-button__icon sidebar-button__icon--board'/>
           <div className="sidebar-button__text">+ New Board</div>

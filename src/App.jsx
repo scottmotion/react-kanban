@@ -14,11 +14,14 @@ function App() {
   const [sidebarVisible, setSidebarVisible] = useState(true)
   const [darkMode, setDarkMode] = useState(true)
   const [boards, setBoards] = useState([])
+  const [currentBoardId, setCurrentBoardId] = useState("")
+  
+  const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
+  console.log(currentBoardId)
 
   function toggleDarkMode() {
     setDarkMode(prevMode => !prevMode)
   }
-  // console.log("Toggle Mode: ", darkMode)
 
   // supress animation until first load
   setTimeout(function(){
@@ -44,15 +47,25 @@ function App() {
     return unsubscribe
   }, [])
 
+  useEffect(() => {
+    if (!currentBoardId) {
+        setCurrentBoardId(boards[0]?.id)
+    }
+  }, [boards])
+
   return (
     <>
       <AppHeader darkMode={darkMode}/>
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
-        <Sidebar sidebarVisible={sidebarVisible} hideSidebar={hideSidebar} darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
-          <SidebarButton active="true"/>
-          <SidebarButton />
-          <SidebarButton />
-        </Sidebar>
+        <Sidebar
+          sidebarVisible={sidebarVisible}
+          hideSidebar={hideSidebar}
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
+          boards={boards}
+          currentBoardId={currentBoardId}
+          setCurrentBoardId={setCurrentBoardId}
+        />
         <ColumnsWrapper darkMode={darkMode}/>
       </BoardWrapper>
     </>

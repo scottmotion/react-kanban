@@ -4,14 +4,14 @@ export default function SidebarButton(props) {
 
     let className = "button sidebar-button sidebar-button--board-select"
 
-    if (props.active) {
+    if (props.active === "true") {
         className += " active"
     }
 
-    const boardTitle = "Board Title"
+    const boardTitle = props.board.name
   
     return (
-        <button className={className}>
+        <button className={className} onClick={props.onClick}>
             <BoardIcon className='sidebar-button__icon sidebar-button__icon--board'/>
             <div className="sidebar-button__text">{boardTitle}</div>
         </button>
