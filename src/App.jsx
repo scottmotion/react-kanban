@@ -17,7 +17,7 @@ function App() {
   const [currentBoardId, setCurrentBoardId] = useState("")
   
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
-  console.log(currentBoardId)
+  console.log("App.jsx: currentBoard: ", currentBoard)
 
   function toggleDarkMode() {
     setDarkMode(prevMode => !prevMode)
@@ -66,7 +66,7 @@ function App() {
           currentBoardId={currentBoardId}
           setCurrentBoardId={setCurrentBoardId}
         />
-        <ColumnsWrapper darkMode={darkMode}/>
+        <ColumnsWrapper darkMode={darkMode} currentBoardId={currentBoardId}/>
       </BoardWrapper>
     </>
   )
