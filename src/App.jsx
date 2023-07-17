@@ -2,12 +2,11 @@ import { useState, useEffect } from "react"
 
 import './App.css'
 import Sidebar from './Components/Sidebar'
-import SidebarButton from "./Components/SidebarButton"
 import BoardWrapper from './Components/BoardWrapper'
 import AppHeader from './Components/AppHeader'
 import ColumnsWrapper from "./Components/ColumnsWrapper"
 
-import { onSnapshot, addDoc, doc, deleteDoc, setDoc } from "firebase/firestore"
+import { onSnapshot, addDoc, doc, deleteDoc, setDoc, collection } from "firebase/firestore"
 import { boardsCollection, db } from "./firebase"
 
 function App() {
@@ -15,9 +14,9 @@ function App() {
   const [darkMode, setDarkMode] = useState(true)
   const [boards, setBoards] = useState([])
   const [currentBoardId, setCurrentBoardId] = useState("")
-  
+
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
-  console.log("App.jsx: currentBoard: ", currentBoard)
+  // console.log("App.jsx: currentBoard: ", currentBoard)
 
   function toggleDarkMode() {
     setDarkMode(prevMode => !prevMode)
