@@ -10,9 +10,8 @@ export default function ColumnsWrapper(props) {
     {"name": "Doing", "id": 377964764281209},
     {"name": "Done", "id": 537301857666471},
   ])
-  // const columnsCollection = collection(db, "boards", "6QJ0SAFB6NcdNOBS7gda", "columns")
 
-  console.log("ColumnsWrapper.jsx: currentBoardId: ", props.currentBoardId)
+  const columnsCollection = collection(db, "boards", "jZ0b9MvVW9lOVIEOQ9He", "columns")
 
   let sectionClassName = 'board__column-section'
   if (props.darkMode) {
@@ -21,18 +20,17 @@ export default function ColumnsWrapper(props) {
     sectionClassName += " light-mode"
   }
 
-
-  // useEffect(() => {
-  //   const unsubscribe = onSnapshot(columnsCollection, function(snapshot) {
-  //       // Sync up our local notes array with the snapshot data
-  //       const columnsArr = snapshot.docs.map(doc => ({
-  //           ...doc.data(),
-  //           id: doc.id
-  //       }))
-  //       setColumns(columnsArr)
-  //   })
-  //   return unsubscribe
-  // }, [])
+  useEffect(() => {
+    const unsubscribe = onSnapshot(columnsCollection, function(snapshot) {
+        // Sync up our local notes array with the snapshot data
+        const columnsArr = snapshot.docs.map(doc => ({
+            ...doc.data(),
+            id: doc.id
+        }))
+        setColumns(columnsArr)
+    })
+    return unsubscribe
+  }, [])
 
   const columnElements = columns.map((column, index) => (
     <Column
@@ -40,7 +38,6 @@ export default function ColumnsWrapper(props) {
       name={column.name}
     />
   ))
-
 
   return (
     <>
