@@ -49,11 +49,15 @@ export default function AppHeader(props) {
   const boardOptionsWrapperRef = useRef(null);
   boardOptionsClickOutside(boardOptionsWrapperRef);
 
+  // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
+  const loading = !props.currentBoard;
+
   return (
     <header className={headerClassName}>
       <div className="header__app-brand"><img className="header__app-logo" /></div>
       <div className="header__nav">
-        <h1 className="header__board-title">Board Title</h1>
+        <h1 className="header__board-title">{loading ? null : props.currentBoard.name}</h1>
+
         <div className="header__button-wrapper">
           <button className="button header-button header-button--new-task" onClick={addNewTask}>
             <PlusIcon className='header-button__icon header-button__icon--new'/>

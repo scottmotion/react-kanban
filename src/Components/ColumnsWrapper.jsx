@@ -3,15 +3,20 @@ import { onSnapshot, collection } from 'firebase/firestore'
 import { db } from '../firebase'
 import './ColumnsWrapper.css'
 import Column from "./Column"
+import NewColumn from './NewColumn'
 
 export default function ColumnsWrapper(props) {
-  const [columns, setColumns] = useState([
-    {"name": "Todo", "id": 246670584801596},
-    {"name": "Doing", "id": 377964764281209},
-    {"name": "Done", "id": 537301857666471},
-  ])
+  // console.log("columnsWrapper loaded")
+  // const [columns, setColumns] = useState([
+  //   {"name": "Todo", "id": 246670584801596},
+  //   {"name": "Doing", "id": 377964764281209},
+  //   {"name": "Done", "id": 537301857666471},
+  // ])
+  const [columns, setColumns] = useState([])
+  const sortedColumns = columns.sort((a,b) => a.order - b.order)
 
-  const columnsCollection = collection(db, "boards", "jZ0b9MvVW9lOVIEOQ9He", "columns")
+  // const columnsCollection = collection(db, "boards", "jZ0b9MvVW9lOVIEOQ9He", "columns")
+  const columnsCollection = collection(db, "boards", props.currentBoard.id, "columns")
 
   let sectionClassName = 'board__column-section'
   if (props.darkMode) {
@@ -28,9 +33,10 @@ export default function ColumnsWrapper(props) {
             id: doc.id
         }))
         setColumns(columnsArr)
+        console.log(columnsArr)
     })
     return unsubscribe
-  }, [])
+  }, [props.currentBoard.id])
 
   const columnElements = columns.map((column, index) => (
     <Column
@@ -38,134 +44,18 @@ export default function ColumnsWrapper(props) {
       name={column.name}
     />
   ))
+  const loading = columns.length === 0;
 
   return (
     <>
       <section className={sectionClassName}>
+        
         {columnElements}
 
-        {/* <div className="board__column-single--wrapper">
-          <div className="board__column-title"><span className="board__column-indicator"></span>Board Column 1</div>
-          <div className="board__column-single">
-
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-
-          </div>
-        </div>
-
-        <div className="board__column-single--wrapper">
-        <div className="board__column-title"><span className="board__column-indicator"></span>Board Column 2</div>
-          <div className="board__column-single">
-
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-
-          </div>
-        </div>
-
-        <div className="board__column-single--wrapper">
-        <div className="board__column-title"><span className="board__column-indicator"></span>Board Column 3</div>
-          <div className="board__column-single">
-
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-            <div className="task-card">
-              <div className="task-card__title">Task Card</div>
-              <div className="task-card__subtasks">1 of 3 subtasks</div>
-            </div>
-
-          </div>
-        </div> */}
-
-        <div className="board__column-single--wrapper">
-          <div className="board__column-title"> </div>
-          <div className="board__column-single board__column-new">
-            <button className="button button--new-column">+ New Column</button>
-          </div>
-        </div>
+        {loading
+          ? null
+          : <NewColumn />
+        }
 
       </section>
     </>

@@ -15,9 +15,8 @@ function App() {
   const [boards, setBoards] = useState([])
   const [currentBoardId, setCurrentBoardId] = useState("")
 
-  // console.log(currentBoardId)
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
-  // console.log("App.jsx: currentBoard: ", currentBoard)
+  const sortedBoards = boards.sort((a,b) => b.updatedAt - a.updatedAt)
 
   function toggleDarkMode() {
     setDarkMode(prevMode => !prevMode)
@@ -54,9 +53,13 @@ function App() {
     }
   }, [boards])
 
+  // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
+  const loading = !currentBoardId;
+  console.log("loading: ", loading)
+
   return (
     <>
-      <AppHeader darkMode={darkMode}/>
+      <AppHeader darkMode={darkMode} currentBoard={currentBoard}/>
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
         <Sidebar
           sidebarVisible={sidebarVisible}
@@ -67,7 +70,10 @@ function App() {
           currentBoardId={currentBoardId}
           setCurrentBoardId={setCurrentBoardId}
         />
-        <ColumnsWrapper darkMode={darkMode} currentBoardId={currentBoardId} currentBoard={currentBoard}/>
+        {loading
+          ? null
+          : <ColumnsWrapper darkMode={darkMode} currentBoard={currentBoard} />
+        }
       </BoardWrapper>
     </>
   )
