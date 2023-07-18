@@ -38,7 +38,7 @@ export default function Sidebar(props) {
       <div className="sidebar__nav-wrapper">
         <div className="sidebar__heading">All Boards</div>
         {boardButtonElements}
-        <button className="button sidebar-button sidebar-button--new-board">
+        <button className="button sidebar-button sidebar-button--new-board" onClick={props.setNewBoardModalOpen}>
           <BoardIcon className='sidebar-button__icon sidebar-button__icon--board'/>
           <div className="sidebar-button__text">+ New Board</div>
         </button>

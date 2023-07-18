@@ -6,7 +6,7 @@
     padding: 1rem;
     min-width: 17.5rem;
     border-radius: .5rem;
-    box-shadow: rgba(54, 78, 126, 0.1) 0px 4px 6px 0px;
+    box-shadow: var(--box-shadow);
   }
   .board__column-section.dark-mode .task-card {
     background-color: var(--bg-primary);

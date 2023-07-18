@@ -5,6 +5,7 @@ import Sidebar from './Components/Sidebar'
 import BoardWrapper from './Components/BoardWrapper'
 import AppHeader from './Components/AppHeader'
 import ColumnsWrapper from "./Components/ColumnsWrapper"
+import NewBoardModal from "./Components/Modals/NewBoardModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, setDoc, collection } from "firebase/firestore"
 import { boardsCollection, db } from "./firebase"
@@ -14,6 +15,8 @@ function App() {
   const [darkMode, setDarkMode] = useState(true)
   const [boards, setBoards] = useState([])
   const [currentBoardId, setCurrentBoardId] = useState("")
+
+  const [newBoardModalOpen, setNewBoardModalOpen] = useState(false);
 
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
   const sortedBoards = boards.sort((a,b) => b.updatedAt - a.updatedAt)
@@ -69,12 +72,15 @@ function App() {
           boards={boards}
           currentBoardId={currentBoardId}
           setCurrentBoardId={setCurrentBoardId}
+          setNewBoardModalOpen={setNewBoardModalOpen}
         />
         {loading
           ? null
           : <ColumnsWrapper darkMode={darkMode} currentBoard={currentBoard} />
         }
       </BoardWrapper>
+      {newBoardModalOpen && <NewBoardModal setNewBoardModalOpen={setNewBoardModalOpen} />}
+      {/* <NewBoardModal /> */}
     </>
   )
 }

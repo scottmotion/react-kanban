@@ -24,6 +24,9 @@
   --text-dark: hsl(237 100% 4%);
   --text-danger: hsl(0 78% 63%);
 
+  --box-shadow: rgba(54, 78, 126, 0.1) 0px 4px 6px 0px;
+
+
   /* sidebar width */
   --sidebar-width-mobile: 100px;
   --sidebar-width-tablet: 200px;
