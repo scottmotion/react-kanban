@@ -17,7 +17,9 @@ export default function NewBoardModal(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.createNewBoard(newBoard)
+        if (newBoard.name) {
+          props.createNewBoard(newBoard)
+        }
     }
 
     return (
@@ -28,9 +30,9 @@ export default function NewBoardModal(props) {
             <div className={styles.modalHeader}>
               <h5 className={styles.heading}>New Board Modal</h5>
             </div>
-            <button className={styles.closeBtn} onClick={() => props.setNewBoardModalOpen(false)}>
+            {/* <button className={styles.closeBtn} onClick={() => props.setNewBoardModalOpen(false)}>
               X
-            </button>
+            </button> */}
             <div className={styles.modalContent}>
                 <form className="form" onSubmit={handleSubmit}>
                     <input
