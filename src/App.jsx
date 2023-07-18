@@ -15,6 +15,7 @@ function App() {
   const [boards, setBoards] = useState([])
   const [currentBoardId, setCurrentBoardId] = useState("")
 
+  // console.log(currentBoardId)
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
   // console.log("App.jsx: currentBoard: ", currentBoard)
 
@@ -42,6 +43,7 @@ function App() {
             id: doc.id
         }))
         setBoards(boardsArr)
+        // console.log(boardsArr)
     })
     return unsubscribe
   }, [])
@@ -65,7 +67,7 @@ function App() {
           currentBoardId={currentBoardId}
           setCurrentBoardId={setCurrentBoardId}
         />
-        <ColumnsWrapper darkMode={darkMode} currentBoardId={currentBoardId}/>
+        <ColumnsWrapper darkMode={darkMode} currentBoardId={currentBoardId} currentBoard={currentBoard}/>
       </BoardWrapper>
     </>
   )
