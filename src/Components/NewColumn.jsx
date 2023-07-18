@@ -1,5 +1,5 @@
 import './Column.css'
-import './TaskCard.css'
+// import './TaskCard.css'
 
 export default function NewColumn(props) {
     return (
