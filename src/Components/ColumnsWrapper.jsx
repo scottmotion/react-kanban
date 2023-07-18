@@ -6,12 +6,7 @@ import Column from "./Column"
 import NewColumn from './NewColumn'
 
 export default function ColumnsWrapper(props) {
-  // console.log("columnsWrapper loaded")
-  // const [columns, setColumns] = useState([
-  //   {"name": "Todo", "id": 246670584801596},
-  //   {"name": "Doing", "id": 377964764281209},
-  //   {"name": "Done", "id": 537301857666471},
-  // ])
+  
   const [columns, setColumns] = useState([])
   const sortedColumns = columns.sort((a,b) => a.order - b.order)
 
@@ -33,7 +28,6 @@ export default function ColumnsWrapper(props) {
             id: doc.id
         }))
         setColumns(columnsArr)
-        console.log(columnsArr)
     })
     return unsubscribe
   }, [props.currentBoard.id])
@@ -44,7 +38,7 @@ export default function ColumnsWrapper(props) {
       name={column.name}
     />
   ))
-  const loading = columns.length === 0;
+  const loading = columns.length === null;
 
   return (
     <>

@@ -7,6 +7,9 @@ export default function AppHeader(props) {
 
   const [showBoardOptions, setShowBoardOptions] = useState(false)
 
+  // check if there is a currentBoard before rendering child that needs currentBoard as prop
+  const loading = !props.currentBoard;
+  
   let headerClassName = "header"
   if (props.darkMode) {
     headerClassName += " dark-mode"
@@ -15,7 +18,7 @@ export default function AppHeader(props) {
   }
 
   function addNewTask() {
-
+    console.log("New Task Click")
   }
 
   let boardOptionsClassName = "edit-board-menu"
@@ -49,8 +52,7 @@ export default function AppHeader(props) {
   const boardOptionsWrapperRef = useRef(null);
   boardOptionsClickOutside(boardOptionsWrapperRef);
 
-  // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
-  const loading = !props.currentBoard;
+
 
   return (
     <header className={headerClassName}>

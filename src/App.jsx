@@ -21,6 +21,9 @@ function App() {
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
   const sortedBoards = boards.sort((a,b) => b.updatedAt - a.updatedAt)
 
+  // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
+  const loading = !currentBoardId;
+
   function toggleDarkMode() {
     setDarkMode(prevMode => !prevMode)
   }
@@ -39,13 +42,12 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(boardsCollection, function(snapshot) {
-        // Sync up our local notes array with the snapshot data
+        // Sync local boards array with the snapshot data
         const boardsArr = snapshot.docs.map(doc => ({
             ...doc.data(),
             id: doc.id
         }))
         setBoards(boardsArr)
-        // console.log(boardsArr)
     })
     return unsubscribe
   }, [])
@@ -56,9 +58,30 @@ function App() {
     }
   }, [boards])
 
-  // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
-  const loading = !currentBoardId;
-  console.log("loading: ", loading)
+  async function createNewBoard(data) {
+    setNewBoardModalOpen(false)
+    const newBoard = {
+        name: data.name,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+    }
+    const newBoardRef = await addDoc(boardsCollection, newBoard)
+    setCurrentBoardId(newBoardRef.id)
+  }
+
+  // async function updateBoard(text) {
+  //     const docRef =  doc(db, "notes",currentNoteId)
+  //     await setDoc(
+  //         docRef,
+  //         {body: text, updatedAt: Date.now()},
+  //         {merge: true}
+  //     )
+  // }
+
+  // async function deleteBoard(noteId) {
+  //     const docRef =  doc(db, "notes", noteId)
+  //     await deleteDoc(docRef)
+  // }
 
   return (
     <>
@@ -79,8 +102,7 @@ function App() {
           : <ColumnsWrapper darkMode={darkMode} currentBoard={currentBoard} />
         }
       </BoardWrapper>
-      {newBoardModalOpen && <NewBoardModal setNewBoardModalOpen={setNewBoardModalOpen} />}
-      {/* <NewBoardModal /> */}
+      {newBoardModalOpen && <NewBoardModal setNewBoardModalOpen={setNewBoardModalOpen} createNewBoard={createNewBoard}/>}
     </>
   )
 }
