@@ -17,16 +17,16 @@ export default function NewBoardModal(props) {
                 <form className="form">
                     <input
                         type="text"
-                        placeholder="Board Title"
+                        placeholder="Board Name"
                         className="form__input"
-                        name="boardTitle"
+                        name="boardName"
                     />
-                    <button className="form__button">Create New Board</button>
+                    <button className="form__button" onClick={() => props.setNewBoardModalOpen(false)}>Create New Board</button>
                     <button className="form__button" onClick={() => props.setNewBoardModalOpen(false)}>Cancel</button>
 
                 </form>
             </div>
-            <div className={styles.modalActions}>
+            {/* <div className={styles.modalActions}>
               <div className={styles.actionsContainer}>
                 <button className={styles.deleteBtn} onClick={() => props.setNewBoardModalOpen(false)}>
                   Delete
@@ -39,7 +39,7 @@ export default function NewBoardModal(props) {
                   Cancel
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </>
