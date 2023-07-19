@@ -107,6 +107,7 @@ function App() {
       await deleteDoc(docRef)
       setModalOpen("")
       setCurrentBoardId(false)
+      // TODO: recursively delete columns and tasks
   }
 
   ///////////////////
