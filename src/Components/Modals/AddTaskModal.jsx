@@ -30,26 +30,24 @@ export default function AddTaskModal(props) {
   }
 
   return (
-      <>
+    <>
       <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
       <div className={styles.centered}>
         <div className={styles.modal}>
-          <div className={styles.modalHeader}>
-            <h5 className={styles.heading}>New Task Modal</h5>
-          </div>
+          <div className={styles.modalHeading}>New Task Modal</div>
           <div className={styles.modalContent}>
-              <form className={styles.modalForm} onSubmit={handleSubmit}>
-                  <input
-                      type="text"
-                      placeholder="Task Name"
-                      className="form__input"
-                      name="taskName"
-                      value={newTask.name}
-                      onChange={handleChange}
-                  />
-                  <button className={styles.btn} type="submit">Create New Task</button>
-                  <button className={styles.cancelBtn} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
-              </form>
+            <form className={styles.modalForm} onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Task Name"
+                    className={styles.modalFormInput}
+                    name="taskName"
+                    value={newTask.name}
+                    onChange={handleChange}
+                />
+                <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create New Task</button>
+                <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
+            </form>
           </div>
         </div>
       </div>

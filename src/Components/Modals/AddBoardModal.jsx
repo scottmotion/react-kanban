@@ -30,28 +30,23 @@ export default function AddBoardModal(props) {
     }
 
     return (
-        <>
+      <>
         <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
-        <div className={styles.centered}>
-          <div className={styles.modal}>
-            <div className={styles.modalHeader}>
-              <h5 className={styles.heading}>New Board Modal</h5>
-            </div>
-            <div className={styles.modalContent}>
-                <form className={styles.modalForm} onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Board Name"
-                        className="form__input"
-                        name="boardName"
-                        value={newBoard.name}
-                        onChange={handleChange}
-                    />
-                    <button className={styles.btn} type="submit">Create New Board</button>
-                    <button className={styles.cancelBtn} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
-
-                </form>
-            </div>
+        <div className={styles.modal}>
+          <div className={styles.modalHeading}>Add New Board</div>
+          <div className={styles.modalContent}>
+            <form className={styles.modalForm} onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Board Name"
+                    className={styles.modalFormInput}
+                    name="boardName"
+                    value={newBoard.name}
+                    onChange={handleChange}
+                />
+                <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create New Board</button>
+                <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
+            </form>
           </div>
         </div>
       </>

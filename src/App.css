@@ -11,6 +11,7 @@
   --bg-white: hsl(0 0% 100%);
   --bg-veryDarkGrey: hsl(235 16% 15%);
   --bg-veryLightBlue: hsl(224 100% 97%);
+  --bg-danger: hsl(0 78% 63%);
 
   --border-dark: hsl(236 11% 27%);
   --border-light: hsl(221 69% 94%);

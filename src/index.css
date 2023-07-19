@@ -70,6 +70,7 @@ button,
 textarea,
 select {
     font: inherit;
+    color: inherit
 }
 
 /* remove animation for people who turned them off */
