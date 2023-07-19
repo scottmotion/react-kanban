@@ -8,6 +8,7 @@ import ColumnsWrapper from "./Components/ColumnsWrapper"
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
+import AddColumnModal from "./Components/Modals/AddColumnModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, setDoc, collection } from "firebase/firestore"
 import { boardsCollection, db } from "./firebase"
@@ -65,6 +66,10 @@ function App() {
     }
   }, [boards, currentBoardId])
 
+  ///////////////////
+  // BOARD CRUD
+  ///////////////////
+
   // add new board
   async function addBoard(data) {
     setModalOpen("")
@@ -77,6 +82,7 @@ function App() {
     setCurrentBoardId(newBoardRef.id)
   }
 
+  // update board
   async function updateBoard(data) {
       const docRef =  doc(db, "boards", currentBoardId)
       const newData = {
@@ -93,6 +99,7 @@ function App() {
     setModalOpen("confirmDeleteBoard")
     setCurrentBoardId(boardId)
   }
+
   // delete board
   async function deleteBoard(boardId) {
       const docRef = doc(db, "boards", boardId)
@@ -100,6 +107,34 @@ function App() {
       setModalOpen("")
       setCurrentBoardId(false)
   }
+
+  ///////////////////
+  // COLUMN CRUD
+  ///////////////////
+
+  // add new column
+  async function addColumn(data) {
+    setModalOpen("")
+    const newColumn = {
+        name: data.name,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+    }
+    const columnsCollection = collection(db, "boards", currentBoardId, "columns" )
+    await addDoc(columnsCollection, newColumn)
+  }
+
+  // update column
+  // async function updateColumn(data) {
+  //   const docRef = doc(db, "boards", currentBoardId).collection("columns").doc(data.columnId)
+  //   const newData = {
+  //     name: data.name,
+  //     updatedAt: Date.now()
+  //   }
+  //   const options = {merge: true}
+  //   await setDoc(docRef, newData, options)
+  //   setModalOpen("")
+  // }
 
   return (
     <>
@@ -117,12 +152,13 @@ function App() {
         />
         {loading
           ? null
-          : <ColumnsWrapper darkMode={darkMode} currentBoard={currentBoard} />
+          : <ColumnsWrapper darkMode={darkMode} currentBoard={currentBoard} setModalOpen={setModalOpen} />
         }
       </BoardWrapper>
       {(modalOpen === "addBoard") && <AddBoardModal setModalOpen={setModalOpen} addBoard={addBoard} darkMode={darkMode} />}
       {(modalOpen === "updateBoard") && <UpdateBoardModal setModalOpen={setModalOpen} updateBoard={updateBoard} currentBoard={currentBoard} darkMode={darkMode} />}
       {(modalOpen === "confirmDeleteBoard") && <ConfirmDeleteModal setModalOpen={setModalOpen} deleteBoard={deleteBoard} currentBoardId={currentBoardId} darkMode={darkMode} />}
+      {(modalOpen === "addColumn") && <AddColumnModal setModalOpen={setModalOpen} addColumn={addColumn} currentBoardId={currentBoardId} darkMode={darkMode} />}
     </>
   )
 }

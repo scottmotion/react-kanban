@@ -48,7 +48,7 @@ export default function ColumnsWrapper(props) {
 
         {loading
           ? null
-          : <NewColumn />
+          : <NewColumn setModalOpen={props.setModalOpen} />
         }
 
       </section>

@@ -70,6 +70,7 @@
   background-image: linear-gradient(180deg,rgba(43,44,55,.05),rgba(43,44,55,.025));
 }
 .button--new-column {
+  cursor: pointer;
   color: var(--text-mediumGrey);
   background-color: transparent;
   border: none;
