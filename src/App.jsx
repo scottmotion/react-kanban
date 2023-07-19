@@ -5,7 +5,7 @@ import Sidebar from './Components/Sidebar'
 import BoardWrapper from './Components/BoardWrapper'
 import AppHeader from './Components/AppHeader'
 import ColumnsWrapper from "./Components/ColumnsWrapper"
-import NewBoardModal from "./Components/Modals/NewBoardModal"
+import AddBoardModal from "./Components/Modals/AddBoardModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, setDoc, collection } from "firebase/firestore"
@@ -17,13 +17,12 @@ function App() {
   const [boards, setBoards] = useState([])
   const [currentBoardId, setCurrentBoardId] = useState("")
 
-  const [newBoardModalOpen, setNewBoardModalOpen] = useState(false);
-  const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState("")
 
   // const [currentBoard, setCurrentBoard] = useState({})
 
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
-  const sortedBoards = boards.sort((a,b) => b.updatedAt - a.updatedAt)
+  // const sortedBoards = boards.sort((a,b) => b.updatedAt - a.updatedAt)
 
   // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
   const loading = !currentBoardId;
@@ -44,26 +43,30 @@ function App() {
     setSidebarVisible(true)
   }
 
+  // get boards from firebase
   useEffect(() => {
     const unsubscribe = onSnapshot(boardsCollection, function(snapshot) {
-        // Sync local boards array with the snapshot data
         const boardsArr = snapshot.docs.map(doc => ({
             ...doc.data(),
             id: doc.id
         }))
-        setBoards(boardsArr)
+        const sortedBoards = boardsArr.sort((a,b) => b.updatedAt - a.updatedAt)
+        setBoards(sortedBoards)
     })
     return unsubscribe
   }, [])
 
+  // set current board ID
   useEffect(() => {
     if (!currentBoardId) {
         setCurrentBoardId(boards[0]?.id)
+        console.log("currentBoardId: ", currentBoardId)
     }
-  }, [boards])
+  }, [boards, currentBoardId])
 
+  // add new board
   async function createNewBoard(data) {
-    setNewBoardModalOpen(false)
+    setModalOpen("")
     const newBoard = {
         name: data.name,
         createdAt: Date.now(),
@@ -73,22 +76,27 @@ function App() {
     setCurrentBoardId(newBoardRef.id)
   }
 
-  // async function updateBoard(text) {
-  //     const docRef =  doc(db, "notes",currentNoteId)
-  //     await setDoc(
-  //         docRef,
-  //         {body: text, updatedAt: Date.now()},
-  //         {merge: true}
-  //     )
-  // }
+  async function updateBoard(data) {
+      const docRef =  doc(db, "boards", currentBoardId)
+      const newData = {
+        name: data.name,
+        updatedAt: Date.now()
+      }
+      const options = {merge: true}
+      await setDoc(docRef, newData, options)
+  }
+
+  //confirm before delete board
   function confirmDeleteBoard(boardId) {
-    setConfirmDeleteModalOpen(true)
+    setModalOpen("confirmDeleteBoard")
     setCurrentBoardId(boardId)
   }
+  // delete board
   async function deleteBoard(boardId) {
       const docRef = doc(db, "boards", boardId)
       await deleteDoc(docRef)
-      setConfirmDeleteModalOpen(false)
+      setModalOpen("")
+      setCurrentBoardId(false)
   }
 
   return (
@@ -103,15 +111,15 @@ function App() {
           boards={boards}
           currentBoardId={currentBoardId}
           setCurrentBoardId={setCurrentBoardId}
-          setNewBoardModalOpen={setNewBoardModalOpen}
+          setModalOpen={setModalOpen}
         />
         {loading
           ? null
           : <ColumnsWrapper darkMode={darkMode} currentBoard={currentBoard} />
         }
       </BoardWrapper>
-      {newBoardModalOpen && <NewBoardModal setNewBoardModalOpen={setNewBoardModalOpen} createNewBoard={createNewBoard}/>}
-      {confirmDeleteModalOpen && <ConfirmDeleteModal setConfirmDeleteModalOpen={setConfirmDeleteModalOpen} deleteBoard={deleteBoard} currentBoardId={currentBoardId} />}
+      {(modalOpen === "addBoard") && <AddBoardModal setModalOpen={setModalOpen} createNewBoard={createNewBoard} darkMode={darkMode} />}
+      {(modalOpen === "confirmDeleteBoard") && <ConfirmDeleteModal setModalOpen={setModalOpen} deleteBoard={deleteBoard} currentBoardId={currentBoardId} darkMode={darkMode} />}
     </>
   )
 }

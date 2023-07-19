@@ -7,14 +7,25 @@ import SidebarButton from "./SidebarButton"
 
 export default function Sidebar(props) {
 
-  const boardButtonElements = props.boards.map((board, index) => (
-    <SidebarButton
-      key={board.id}
-      board={board}
-      active={board.id === props.currentBoardId ? "true" : "false" }
-      onClick={() => props.setCurrentBoardId(board.id)}
-    />
-  ))
+  // const boardButtonElements = props.boards.map((board, index) => (
+  //   <SidebarButton
+  //     key={board.id}
+  //     board={board}
+  //     active={board.id === props.currentBoardId ? "true" : "false" }
+  //     onClick={() => props.setCurrentBoardId(board.id)}
+  //   />
+  // ))
+
+  const boardButtonElements = [].concat(props.boards)
+    .sort((a,b) => b.updatedAt - a.updatedAt)
+    .map((board) => (
+      <SidebarButton
+        key={board.id}
+        board={board}
+        active={board.id === props.currentBoardId ? "true" : "false" }
+        onClick={() => props.setCurrentBoardId(board.id)}
+      />
+    ))
 
   let navClassName = 'nav section sidebar'
   if (props.sidebarVisible) {
@@ -38,7 +49,7 @@ export default function Sidebar(props) {
       <div className="sidebar__nav-wrapper">
         <div className="sidebar__heading">All Boards</div>
         {boardButtonElements}
-        <button className="button sidebar-button sidebar-button--new-board" onClick={props.setNewBoardModalOpen}>
+        <button className="button sidebar-button sidebar-button--new-board" onClick={() => props.setModalOpen("addBoard")}>
           <BoardIcon className='sidebar-button__icon sidebar-button__icon--board'/>
           <div className="sidebar-button__text">+ New Board</div>
         </button>

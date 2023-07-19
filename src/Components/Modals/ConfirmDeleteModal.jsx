@@ -24,7 +24,7 @@ export default function ConfirmDeleteModal(props) {
 
     return (
         <>
-        <div className={styles.darkBG} onClick={() => props.setConfirmDeleteModalOpen(false)} />
+        <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
         <div className={styles.centered}>
           <div className={styles.modal}>
             <div className={styles.modalHeader}>
@@ -33,7 +33,7 @@ export default function ConfirmDeleteModal(props) {
             <div className={styles.modalContent}>
                 <form className="form" onSubmit={handleSubmit}>
                     <button className="form__button" type="submit">Delete</button>
-                    <button className="form__button" onClick={(e) => {e.preventDefault(); props.setConfirmDeleteModalOpen(false)}}>Cancel</button>
+                    <button className="form__button" onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
                 </form>
             </div>
           </div>

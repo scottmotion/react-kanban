@@ -1,12 +1,19 @@
 import { useState } from "react";
 import styles from "./Modal.module.css"
 
-export default function NewBoardModal(props) {
+export default function AddBoardModal(props) {
 
     const [newBoard, setNewBoard] = useState({
         name: ''
     })
 
+    let modalClassName = "modal"
+    if (props.darkMode) {
+      modalClassName += " dark-mode"
+    } else {
+      modalClassName += " light-mode"
+    }
+  
     function handleChange(event) {
         const {value} = event.target
         setNewBoard(prevNewBoard => ({
@@ -24,7 +31,7 @@ export default function NewBoardModal(props) {
 
     return (
         <>
-        <div className={styles.darkBG} onClick={() => props.setNewBoardModalOpen(false)} />
+        <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
         <div className={styles.centered}>
           <div className={styles.modal}>
             <div className={styles.modalHeader}>
@@ -47,7 +54,7 @@ export default function NewBoardModal(props) {
 
                     {/* <button className="form__button" onClick={props.createNewBoard}>Create New Board</button> */}
                     {/* <button className="form__button" onClick={() => props.setNewBoardModalOpen(false)}>Cancel</button> */}
-                    <button className="form__button" onClick={(e) => {e.preventDefault(); props.setNewBoardModalOpen(false)}}>Cancel</button>
+                    <button className="form__button" onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
 
                 </form>
             </div>
