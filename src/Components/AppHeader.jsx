@@ -1,6 +1,7 @@
 import { ReactComponent as PlusIcon } from "/src/assets/icons/icon-plus.svg"
 import { ReactComponent as VerticalEllipsisIcon } from "/src/assets/icons/icon-ellipsis-vertical.svg"
 import { useState, useRef, useEffect } from "react"
+import ConfirmDeleteModal from "./Modals/ConfirmDeleteModal"
 import './AppHeader.css'
 
 export default function AppHeader(props) {
@@ -52,6 +53,12 @@ export default function AppHeader(props) {
   const boardOptionsWrapperRef = useRef(null);
   boardOptionsClickOutside(boardOptionsWrapperRef);
 
+  function handleDelete() {
+    if (props.currentBoard) {
+      setShowBoardOptions(false)
+      props.confirmDeleteBoard(props.currentBoard.id)
+    }
+  }
 
 
   return (
@@ -71,8 +78,8 @@ export default function AppHeader(props) {
             </button>
             <div className={boardOptionsClassName}>
               <div className="button edit-board-menu--edit">Edit Board</div>
-              <div className="button edit-board-menu--delete">Delete Board</div>
-            </div>            
+              <div className="button edit-board-menu--delete" onClick={handleDelete}>Delete Board</div>
+            </div>
           </div>
         </div>
       </div>

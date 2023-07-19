@@ -6,6 +6,7 @@ import BoardWrapper from './Components/BoardWrapper'
 import AppHeader from './Components/AppHeader'
 import ColumnsWrapper from "./Components/ColumnsWrapper"
 import NewBoardModal from "./Components/Modals/NewBoardModal"
+import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, setDoc, collection } from "firebase/firestore"
 import { boardsCollection, db } from "./firebase"
@@ -17,6 +18,9 @@ function App() {
   const [currentBoardId, setCurrentBoardId] = useState("")
 
   const [newBoardModalOpen, setNewBoardModalOpen] = useState(false);
+  const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] = useState(false);
+
+  // const [currentBoard, setCurrentBoard] = useState({})
 
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
   const sortedBoards = boards.sort((a,b) => b.updatedAt - a.updatedAt)
@@ -77,15 +81,19 @@ function App() {
   //         {merge: true}
   //     )
   // }
-
-  // async function deleteBoard(noteId) {
-  //     const docRef =  doc(db, "notes", noteId)
-  //     await deleteDoc(docRef)
-  // }
+  function confirmDeleteBoard(boardId) {
+    setConfirmDeleteModalOpen(true)
+    setCurrentBoardId(boardId)
+  }
+  async function deleteBoard(boardId) {
+      const docRef = doc(db, "boards", boardId)
+      await deleteDoc(docRef)
+      setConfirmDeleteModalOpen(false)
+  }
 
   return (
     <>
-      <AppHeader darkMode={darkMode} currentBoard={currentBoard}/>
+      <AppHeader darkMode={darkMode} currentBoard={currentBoard} confirmDeleteBoard={confirmDeleteBoard}/>
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
         <Sidebar
           sidebarVisible={sidebarVisible}
@@ -103,6 +111,7 @@ function App() {
         }
       </BoardWrapper>
       {newBoardModalOpen && <NewBoardModal setNewBoardModalOpen={setNewBoardModalOpen} createNewBoard={createNewBoard}/>}
+      {confirmDeleteModalOpen && <ConfirmDeleteModal setConfirmDeleteModalOpen={setConfirmDeleteModalOpen} deleteBoard={deleteBoard} currentBoardId={currentBoardId} />}
     </>
   )
 }
