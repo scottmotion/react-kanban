@@ -6,6 +6,7 @@ import BoardWrapper from './Components/BoardWrapper'
 import AppHeader from './Components/AppHeader'
 import ColumnsWrapper from "./Components/ColumnsWrapper"
 import AddBoardModal from "./Components/Modals/AddBoardModal"
+import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, setDoc, collection } from "firebase/firestore"
@@ -65,7 +66,7 @@ function App() {
   }, [boards, currentBoardId])
 
   // add new board
-  async function createNewBoard(data) {
+  async function addBoard(data) {
     setModalOpen("")
     const newBoard = {
         name: data.name,
@@ -84,6 +85,7 @@ function App() {
       }
       const options = {merge: true}
       await setDoc(docRef, newData, options)
+      setModalOpen("")
   }
 
   //confirm before delete board
@@ -101,7 +103,7 @@ function App() {
 
   return (
     <>
-      <AppHeader darkMode={darkMode} currentBoard={currentBoard} confirmDeleteBoard={confirmDeleteBoard}/>
+      <AppHeader darkMode={darkMode} currentBoard={currentBoard} setModalOpen={setModalOpen} confirmDeleteBoard={confirmDeleteBoard}/>
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
         <Sidebar
           sidebarVisible={sidebarVisible}
@@ -118,7 +120,8 @@ function App() {
           : <ColumnsWrapper darkMode={darkMode} currentBoard={currentBoard} />
         }
       </BoardWrapper>
-      {(modalOpen === "addBoard") && <AddBoardModal setModalOpen={setModalOpen} createNewBoard={createNewBoard} darkMode={darkMode} />}
+      {(modalOpen === "addBoard") && <AddBoardModal setModalOpen={setModalOpen} addBoard={addBoard} darkMode={darkMode} />}
+      {(modalOpen === "updateBoard") && <UpdateBoardModal setModalOpen={setModalOpen} updateBoard={updateBoard} currentBoard={currentBoard} darkMode={darkMode} />}
       {(modalOpen === "confirmDeleteBoard") && <ConfirmDeleteModal setModalOpen={setModalOpen} deleteBoard={deleteBoard} currentBoardId={currentBoardId} darkMode={darkMode} />}
     </>
   )

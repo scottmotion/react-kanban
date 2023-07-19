@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styles from "./Modal.module.css"
 
-export default function AddBoardModal(props) {
+export default function UpdateBoardModal(props) {
 
-    const [newBoard, setNewBoard] = useState({
-        name: ''
+    const [tempBoard, setTempBoard] = useState({
+        name: props.currentBoard.name
     })
 
     let modalClassName = "modal"
@@ -16,16 +16,16 @@ export default function AddBoardModal(props) {
   
     function handleChange(event) {
         const {value} = event.target
-        setNewBoard(prevNewBoard => ({
-            ...prevNewBoard,
+        setTempBoard(prevTempBoard => ({
+            ...prevTempBoard,
             name: value
         }))
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (newBoard.name) {
-          props.addBoard(newBoard)
+        if (tempBoard.name) {
+          props.updateBoard(tempBoard)
         }
     }
 
@@ -35,7 +35,7 @@ export default function AddBoardModal(props) {
         <div className={styles.centered}>
           <div className={styles.modal}>
             <div className={styles.modalHeader}>
-              <h5 className={styles.heading}>New Board Modal</h5>
+              <h5 className={styles.heading}>Update Board Modal</h5>
             </div>
             <div className={styles.modalContent}>
                 <form className={styles.modalForm} onSubmit={handleSubmit}>
@@ -44,10 +44,10 @@ export default function AddBoardModal(props) {
                         placeholder="Board Name"
                         className="form__input"
                         name="boardName"
-                        value={newBoard.name}
+                        value={tempBoard.name}
                         onChange={handleChange}
                     />
-                    <button className={styles.btn} type="submit">Create New Board</button>
+                    <button className={styles.saveBtn} type="submit">Save</button>
                     <button className={styles.cancelBtn} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
 
                 </form>

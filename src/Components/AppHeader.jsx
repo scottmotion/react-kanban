@@ -60,6 +60,13 @@ export default function AppHeader(props) {
     }
   }
 
+  function handleEdit() {
+    if (props.currentBoard) {
+      setShowBoardOptions(false)
+      props.setModalOpen("updateBoard")
+    }
+  }
+
 
   return (
     <header className={headerClassName}>
@@ -77,7 +84,7 @@ export default function AppHeader(props) {
               <VerticalEllipsisIcon className='header-button__icon header-button__icon--edit'/>
             </button>
             <div className={boardOptionsClassName}>
-              <div className="button edit-board-menu--edit">Edit Board</div>
+              <div className="button edit-board-menu--edit" onClick={handleEdit}>Edit Board</div>
               <div className="button edit-board-menu--delete" onClick={handleDelete}>Delete Board</div>
             </div>
           </div>
