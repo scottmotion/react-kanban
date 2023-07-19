@@ -9,6 +9,7 @@ import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 import AddColumnModal from "./Components/Modals/AddColumnModal"
+import AddTaskModal from "./Components/Modals/AddTaskModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, setDoc, collection } from "firebase/firestore"
 import { boardsCollection, db } from "./firebase"
@@ -136,6 +137,23 @@ function App() {
   //   setModalOpen("")
   // }
 
+  ///////////////////
+  // TASK CRUD
+  ///////////////////
+
+  // add new task
+  async function addTask(data) {
+    setModalOpen("")
+    const newTask = {
+        name: data.name,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+    }
+    // const columnsCollection = collection(db, "boards", currentBoardId, "columns" )
+    // await addDoc(columnsCollection, newColumn)
+    console.log("Task Added: ", data.name)
+  }
+
   return (
     <>
       <AppHeader darkMode={darkMode} currentBoard={currentBoard} setModalOpen={setModalOpen} confirmDeleteBoard={confirmDeleteBoard}/>
@@ -159,6 +177,7 @@ function App() {
       {(modalOpen === "updateBoard") && <UpdateBoardModal setModalOpen={setModalOpen} updateBoard={updateBoard} currentBoard={currentBoard} darkMode={darkMode} />}
       {(modalOpen === "confirmDeleteBoard") && <ConfirmDeleteModal setModalOpen={setModalOpen} deleteBoard={deleteBoard} currentBoardId={currentBoardId} darkMode={darkMode} />}
       {(modalOpen === "addColumn") && <AddColumnModal setModalOpen={setModalOpen} addColumn={addColumn} currentBoardId={currentBoardId} darkMode={darkMode} />}
+      {(modalOpen === "addTask") && <AddTaskModal setModalOpen={setModalOpen} addTask={addTask} currentBoardId={currentBoardId} darkMode={darkMode} />}
     </>
   )
 }
