@@ -28,6 +28,8 @@ export default function ColumnsWrapper(props) {
             id: doc.id
         }))
         setColumns(columnsArr)
+        // console.log("Column count: ", columnsArr.length)
+        props.setColumnCount(columnsArr.length)
     })
     return unsubscribe
   }, [props.currentBoard.id])

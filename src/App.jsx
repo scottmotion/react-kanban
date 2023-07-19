@@ -19,13 +19,12 @@ function App() {
   const [darkMode, setDarkMode] = useState(true)
   const [boards, setBoards] = useState([])
   const [currentBoardId, setCurrentBoardId] = useState("")
+  const [columnCount, setColumnCount] = useState(0)
 
   const [modalOpen, setModalOpen] = useState("")
 
   // const [currentBoard, setCurrentBoard] = useState({})
-
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
-  // const sortedBoards = boards.sort((a,b) => b.updatedAt - a.updatedAt)
 
   // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
   const loading = !currentBoardId;
@@ -157,7 +156,7 @@ function App() {
 
   return (
     <>
-      <AppHeader darkMode={darkMode} currentBoard={currentBoard} setModalOpen={setModalOpen} confirmDeleteBoard={confirmDeleteBoard}/>
+      <AppHeader darkMode={darkMode} currentBoard={currentBoard} columnCount={columnCount} setModalOpen={setModalOpen} confirmDeleteBoard={confirmDeleteBoard}/>
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
         <Sidebar
           sidebarVisible={sidebarVisible}
@@ -171,7 +170,7 @@ function App() {
         />
         {loading
           ? null
-          : <ColumnsWrapper darkMode={darkMode} currentBoard={currentBoard} setModalOpen={setModalOpen} />
+          : <ColumnsWrapper darkMode={darkMode} currentBoard={currentBoard} setModalOpen={setModalOpen} setColumnCount={setColumnCount} />
         }
       </BoardWrapper>
       {(modalOpen === "addBoard") && <AddBoardModal setModalOpen={setModalOpen} addBoard={addBoard} darkMode={darkMode} />}

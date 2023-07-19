@@ -124,6 +124,11 @@
     display: initial;
   }
 }
+.header-button--new-task:disabled {
+  background-color: var(--bg-secondary);
+  color: var(--text-mediumGrey);
+  cursor: initial;
+}
 
 .header-button--edit-board {
   font-size: 1.7rem;

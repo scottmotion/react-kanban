@@ -79,7 +79,7 @@ export default function AppHeader(props) {
         <h1 className="header__board-title">{loading ? null : props.currentBoard.name}</h1>
 
         <div className="header__button-wrapper">
-          <button className="button header-button header-button--new-task" onClick={handleNewTask}>
+          <button className="button header-button header-button--new-task" onClick={handleNewTask} disabled={props.columnCount <= 0}>
             <PlusIcon className='header-button__icon header-button__icon--new'/>
             <div className="header-button__text--new-task">Add New Task</div>
           </button>
