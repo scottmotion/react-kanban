@@ -19,6 +19,5 @@ export default function Column(props) {
 
             </div>
         </div>
-
     )
 }
