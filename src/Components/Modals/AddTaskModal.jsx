@@ -51,9 +51,9 @@ export default function AddTaskModal(props) {
       <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
       <div className={styles.centered}>
         <div className={styles.modal}>
-          <div className={styles.modalHeading}>New Task Modal</div>
+          <div className={styles.modalHeading}>Add New Task</div>
           <div className={styles.modalContent}>
-            <form className={styles.modalForm} onSubmit={handleSubmit}>
+            <form className={styles.modalForm} onSubmit={handleSubmit} autocomplete="off">
                 <label className={styles.modalFormLabel}>
                   Task Name
                   <input

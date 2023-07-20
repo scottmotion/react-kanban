@@ -35,7 +35,7 @@ export default function AddBoardModal(props) {
         <div className={styles.modal}>
           <div className={styles.modalHeading}>Add New Board</div>
           <div className={styles.modalContent}>
-            <form className={styles.modalForm} onSubmit={handleSubmit}>
+            <form className={styles.modalForm} onSubmit={handleSubmit} autocomplete="off">
                 <input
                     type="text"
                     placeholder="Board Name"

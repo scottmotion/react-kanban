@@ -28,7 +28,7 @@ export default function ConfirmDeleteModal(props) {
         <div className={styles.modal}>
           <div className={styles.modalHeading}>Delete Board</div>
           <div className={styles.modalContent}>
-            <form className={styles.modalForm} onSubmit={handleSubmit}>
+            <form className={styles.modalForm} onSubmit={handleSubmit} autocomplete="off">
                 <button className={`${styles.btn} ${styles.deleteBtn}`} type="submit">Delete</button>
                 <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
             </form>
