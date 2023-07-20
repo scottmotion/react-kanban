@@ -96,6 +96,11 @@ option {
   background-color: white;
 }
 
+.addBtn {
+  color: var(--text-purple);
+  background-color: var(--bg-white);
+}
+
 .saveBtn {
   color: var(--text-white);
   background-color: var(--bg-purple);
