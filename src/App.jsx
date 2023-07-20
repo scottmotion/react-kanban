@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 
 import './App.css'
-import AppHeader from './Components/AppHeader'
-import BoardWrapper from './Components/BoardWrapper'
-import Sidebar from './Components/Sidebar'
-import ColumnsWrapper from "./Components/ColumnsWrapper"
+import AppHeader from './Components/AppHeader/AppHeader'
+import BoardWrapper from './Components/Board/BoardWrapper'
+import Sidebar from './Components/Sidebar/Sidebar'
+import ColumnsWrapper from "./Components/Columns/ColumnsWrapper"
 
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { onSnapshot, collection } from 'firebase/firestore'
-import { db } from '../firebase'
+import { db } from '../../firebase'
 import './ColumnsWrapper.css'
 import Column from "./Column"
 import NewColumn from './NewColumn'
