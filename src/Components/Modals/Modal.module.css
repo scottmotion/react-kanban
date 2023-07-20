@@ -5,7 +5,6 @@ textarea:focus {
   outline: none;
 }
 
-
 .darkBG {
   background-color: rgba(0, 0, 0, 0.2);
   width: 100vw;
@@ -34,7 +33,7 @@ textarea:focus {
   flex-direction: column;
   gap: 1rem;
   width: 90vw;
-  max-width: 30rem;
+  max-width: 25rem;
   background-color: var(--bg-primary);
   color: var(--text-white);
   z-index: 10;
@@ -99,6 +98,7 @@ option {
 .addBtn {
   color: var(--text-purple);
   background-color: var(--bg-white);
+  border: 1px solid var(--border-dark);
 }
 
 .saveBtn {
@@ -117,4 +117,5 @@ option {
 .cancelBtn {
   color: var(--text-purple);
   background-color: var(--bg-white);
+  border: 1px solid var(--border-dark);
 }
