@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
 
 import './App.css'
-import Sidebar from './Components/Sidebar'
-import BoardWrapper from './Components/BoardWrapper'
 import AppHeader from './Components/AppHeader'
+import BoardWrapper from './Components/BoardWrapper'
+import Sidebar from './Components/Sidebar'
 import ColumnsWrapper from "./Components/ColumnsWrapper"
+
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
@@ -156,28 +157,75 @@ function App() {
 
   return (
     <>
-      <AppHeader darkMode={darkMode} currentBoard={currentBoard} columnCount={columnCount} setModalOpen={setModalOpen} confirmDeleteBoard={confirmDeleteBoard}/>
+      <AppHeader
+        darkMode={darkMode}
+        setModalOpen={setModalOpen}
+        currentBoard={currentBoard}
+        columnCount={columnCount}
+        confirmDeleteBoard={confirmDeleteBoard}
+      />
+      
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
         <Sidebar
           sidebarVisible={sidebarVisible}
           hideSidebar={hideSidebar}
           darkMode={darkMode}
           toggleDarkMode={toggleDarkMode}
+          setModalOpen={setModalOpen}
           boards={boards}
           currentBoardId={currentBoardId}
           setCurrentBoardId={setCurrentBoardId}
-          setModalOpen={setModalOpen}
         />
         {loading
           ? null
-          : <ColumnsWrapper darkMode={darkMode} currentBoard={currentBoard} setModalOpen={setModalOpen} setColumnCount={setColumnCount} />
+          : <ColumnsWrapper
+              darkMode={darkMode}
+              setModalOpen={setModalOpen}
+              currentBoard={currentBoard}
+              setColumnCount={setColumnCount}
+            />
         }
       </BoardWrapper>
-      {(modalOpen === "addBoard") && <AddBoardModal setModalOpen={setModalOpen} addBoard={addBoard} darkMode={darkMode} />}
-      {(modalOpen === "updateBoard") && <UpdateBoardModal setModalOpen={setModalOpen} updateBoard={updateBoard} currentBoard={currentBoard} darkMode={darkMode} />}
-      {(modalOpen === "confirmDeleteBoard") && <ConfirmDeleteModal setModalOpen={setModalOpen} deleteBoard={deleteBoard} currentBoardId={currentBoardId} darkMode={darkMode} />}
-      {(modalOpen === "addColumn") && <AddColumnModal setModalOpen={setModalOpen} addColumn={addColumn} currentBoardId={currentBoardId} darkMode={darkMode} />}
-      {(modalOpen === "addTask") && <AddTaskModal setModalOpen={setModalOpen} addTask={addTask} currentBoardId={currentBoardId} darkMode={darkMode} />}
+      
+      {(modalOpen === "addBoard") &&
+        <AddBoardModal
+          darkMode={darkMode}
+          setModalOpen={setModalOpen}
+          addBoard={addBoard}
+        />
+      }
+      {(modalOpen === "updateBoard") &&
+        <UpdateBoardModal
+          darkMode={darkMode}
+          setModalOpen={setModalOpen}
+          currentBoard={currentBoard}
+          updateBoard={updateBoard}
+        />
+      }
+      {(modalOpen === "confirmDeleteBoard") &&
+        <ConfirmDeleteModal
+          darkMode={darkMode}
+          setModalOpen={setModalOpen}
+          currentBoardId={currentBoardId}
+          deleteBoard={deleteBoard}
+        />
+      }
+      {(modalOpen === "addColumn") &&
+        <AddColumnModal
+          darkMode={darkMode}
+          setModalOpen={setModalOpen}
+          currentBoardId={currentBoardId}
+          addColumn={addColumn}
+        />
+      }
+      {(modalOpen === "addTask") &&
+        <AddTaskModal
+          darkMode={darkMode}
+          setModalOpen={setModalOpen}
+          currentBoardId={currentBoardId}
+          addTask={addTask}
+        />
+      }
     </>
   )
 }
