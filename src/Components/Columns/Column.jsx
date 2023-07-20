@@ -1,9 +1,41 @@
+import { useState, useEffect } from 'react'
+import { onSnapshot, collection } from 'firebase/firestore'
 import TaskCard from '../Task/TaskCard'
 import './Column.css'
 
 export default function Column(props) {
+    const [tasks, setTasks] = useState([])
+    // const columnsCollection = props.columnsCollection
+    const tasksCollection = collection(props.columnsCollection, props.id, "tasks")
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(tasksCollection, function(snapshot) {
+            // Sync up our local notes array with the snapshot data
+            const tasksArr = snapshot.docs.map(doc => ({
+                ...doc.data(),
+                id: doc.id
+            }))
+            // const sortedTasks = tasksArr.sort((a,b) => a.order - b.order)
+            // setTasks(sortedTasks)
+            setTasks(tasksArr)
+            console.log("Task count: ", tasksArr.length)
+            // props.setTaskCount(tasksArr.length)
+        })
+        return unsubscribe
+    }, [props.id])
+    
+
+    const taskElements = tasks.map((task, index) => (
+        <TaskCard
+          key={task.id}
+          name={task.title}
+          id={task.id}
+        />
+    ))
+    
+
     return (
-        <div className="board__column-single--wrapper">
+        <div className="board__column-single--wrapper" id={props.id}>
 
             <div className="board__column-title">
                 <span className="board__column-indicator"></span>
@@ -12,7 +44,7 @@ export default function Column(props) {
             
             <div className="board__column-single">
 
-                <TaskCard />
+                {taskElements}
 
             </div>
         </div>

@@ -21,15 +21,15 @@ export default function ColumnsWrapper(props) {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(columnsCollection, function(snapshot) {
-        // Sync up our local notes array with the snapshot data
-        const columnsArr = snapshot.docs.map(doc => ({
-            ...doc.data(),
-            id: doc.id
-        }))
-        const sortedColumns = columnsArr.sort((a,b) => a.order - b.order)
-        setColumns(sortedColumns)
-        // console.log("Column count: ", columnsArr.length)
-        props.setColumnCount(columnsArr.length)
+      // Sync up our local notes array with the snapshot data
+      const columnsArr = snapshot.docs.map(doc => ({
+          ...doc.data(),
+          id: doc.id
+      }))
+      const sortedColumns = columnsArr.sort((a,b) => a.order - b.order)
+      setColumns(sortedColumns)
+      // console.log("Column count: ", columnsArr.length)
+      props.setColumnCount(columnsArr.length)
     })
     return unsubscribe
   }, [props.currentBoard.id])
@@ -38,8 +38,11 @@ export default function ColumnsWrapper(props) {
     <Column
       key={column.id}
       name={column.name}
+      id={column.id}
+      columnsCollection={columnsCollection}
     />
   ))
+  // check if there is are columns before rendering child that needs columns as prop
   const loading = columns.length === null;
 
   return (
