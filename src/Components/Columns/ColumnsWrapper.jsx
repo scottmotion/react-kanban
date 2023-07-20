@@ -8,7 +8,6 @@ import NewColumn from './ColumnNew'
 export default function ColumnsWrapper(props) {
   
   const [columns, setColumns] = useState([])
-  const sortedColumns = columns.sort((a,b) => a.order - b.order)
 
   // const columnsCollection = collection(db, "boards", "jZ0b9MvVW9lOVIEOQ9He", "columns")
   const columnsCollection = collection(db, "boards", props.currentBoard.id, "columns")
@@ -27,7 +26,8 @@ export default function ColumnsWrapper(props) {
             ...doc.data(),
             id: doc.id
         }))
-        setColumns(columnsArr)
+        const sortedColumns = columnsArr.sort((a,b) => a.order - b.order)
+        setColumns(sortedColumns)
         // console.log("Column count: ", columnsArr.length)
         props.setColumnCount(columnsArr.length)
     })
