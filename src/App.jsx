@@ -47,7 +47,7 @@ function App() {
   }
 
   //////////////////////
-  // BOARDS GET - SET
+  // BOARDS GET & SET
   //////////////////////
 
   // get boards from firebase

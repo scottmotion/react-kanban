@@ -9,7 +9,6 @@ export default function ColumnsWrapper(props) {
   
   const [columns, setColumns] = useState([])
 
-  // const columnsCollection = collection(db, "boards", "jZ0b9MvVW9lOVIEOQ9He", "columns")
   const columnsCollection = collection(db, "boards", props.currentBoard.id, "columns")
 
   let sectionClassName = 'board__column-section'
@@ -18,6 +17,10 @@ export default function ColumnsWrapper(props) {
   } else {
     sectionClassName += " light-mode"
   }
+
+  //////////////////////
+  // COLUMNS GET & SET
+  //////////////////////
 
   useEffect(() => {
     const unsubscribe = onSnapshot(columnsCollection, function(snapshot) {
@@ -28,7 +31,6 @@ export default function ColumnsWrapper(props) {
       }))
       const sortedColumns = columnsArr.sort((a,b) => a.order - b.order)
       setColumns(sortedColumns)
-      // console.log("Column count: ", columnsArr.length)
       props.setColumnCount(columnsArr.length)
     })
     return unsubscribe
@@ -42,8 +44,9 @@ export default function ColumnsWrapper(props) {
       columnsCollection={columnsCollection}
     />
   ))
+
   // check if there is are columns before rendering child that needs columns as prop
-  const loading = columns.length === null;
+  const loading = columns.length === 0;
 
   return (
     <>

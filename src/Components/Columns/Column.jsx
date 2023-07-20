@@ -8,6 +8,10 @@ export default function Column(props) {
     // const columnsCollection = props.columnsCollection
     const tasksCollection = collection(props.columnsCollection, props.id, "tasks")
 
+    //////////////////////
+    // TASKS GET & SET
+    //////////////////////
+
     useEffect(() => {
         const unsubscribe = onSnapshot(tasksCollection, function(snapshot) {
             // Sync up our local notes array with the snapshot data
@@ -24,7 +28,6 @@ export default function Column(props) {
         return unsubscribe
     }, [props.id])
     
-
     const taskElements = tasks.map((task, index) => (
         <TaskCard
           key={task.id}
@@ -40,6 +43,7 @@ export default function Column(props) {
             <div className="board__column-title">
                 <span className="board__column-indicator"></span>
                 {props.name}
+                <span className="board__column-task-count">({tasks.length})</span>
             </div>
             
             <div className="board__column-single">
