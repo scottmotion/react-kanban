@@ -1,5 +1,5 @@
+import TaskCard from '../Task/TaskCard'
 import './Column.css'
-import './TaskCard.css'
 
 export default function Column(props) {
     return (
@@ -12,10 +12,7 @@ export default function Column(props) {
             
             <div className="board__column-single">
 
-                <div className="task-card">
-                    <div className="task-card__title">Task Card</div>
-                    <div className="task-card__subtasks">1 of 3 subtasks</div>
-                </div>
+                <TaskCard />
 
             </div>
         </div>

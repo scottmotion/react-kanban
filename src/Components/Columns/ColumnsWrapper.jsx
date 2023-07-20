@@ -3,7 +3,7 @@ import { onSnapshot, collection } from 'firebase/firestore'
 import { db } from '../../firebase'
 import './ColumnsWrapper.css'
 import Column from "./Column"
-import NewColumn from './NewColumn'
+import NewColumn from './ColumnNew'
 
 export default function ColumnsWrapper(props) {
   
