@@ -53,7 +53,7 @@ export default function AddTaskModal(props) {
         <div className={styles.modal}>
           <div className={styles.modalHeading}>Add New Task</div>
           <div className={styles.modalContent}>
-            <form className={styles.modalForm} onSubmit={handleSubmit} autocomplete="off">
+            <form className={styles.modalForm} onSubmit={handleSubmit} autoComplete="off">
                 <label className={styles.modalFormLabel}>
                   Task Name
                   <input

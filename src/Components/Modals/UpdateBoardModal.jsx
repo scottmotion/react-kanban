@@ -35,7 +35,7 @@ export default function UpdateBoardModal(props) {
         <div className={styles.modal}>
           <div className={styles.modalHeading}>Edit Board</div>
           <div className={styles.modalContent}>
-            <form className={styles.modalForm} onSubmit={handleSubmit} autocomplete="off">
+            <form className={styles.modalForm} onSubmit={handleSubmit} autoComplete="off">
                 <input
                     type="text"
                     placeholder="Board Name"
