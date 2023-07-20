@@ -7,17 +7,8 @@ import SidebarButton from "./SidebarButton"
 
 export default function Sidebar(props) {
 
-  // const boardButtonElements = props.boards.map((board, index) => (
-  //   <SidebarButton
-  //     key={board.id}
-  //     board={board}
-  //     active={board.id === props.currentBoardId ? "true" : "false" }
-  //     onClick={() => props.setCurrentBoardId(board.id)}
-  //   />
-  // ))
-
   const boardButtonElements = [].concat(props.boards)
-    .sort((a,b) => b.updatedAt - a.updatedAt)
+    // .sort((a,b) => b.updatedAt - a.updatedAt)
     .map((board) => (
       <SidebarButton
         key={board.id}
