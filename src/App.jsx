@@ -18,11 +18,11 @@ import { boardsCollection, db } from "./firebase"
 function App() {
   const [sidebarVisible, setSidebarVisible] = useState(true)
   const [darkMode, setDarkMode] = useState(true)
-  const [boards, setBoards] = useState([])
-  const [currentBoardId, setCurrentBoardId] = useState("")
-  const [columnCount, setColumnCount] = useState(0)
-
   const [modalOpen, setModalOpen] = useState("")
+
+  const [boards, setBoards] = useState([])
+  const [currentBoardId, setCurrentBoardId] = useState(boards[0]?.id)
+  const [columnCount, setColumnCount] = useState(0)
 
   // const [currentBoard, setCurrentBoard] = useState({})
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
@@ -46,6 +46,10 @@ function App() {
     setSidebarVisible(true)
   }
 
+  //////////////////////
+  // BOARDS GET - SET
+  //////////////////////
+
   // get boards from firebase
   useEffect(() => {
     const unsubscribe = onSnapshot(boardsCollection, function(snapshot) {
@@ -67,9 +71,9 @@ function App() {
     }
   }, [boards, currentBoardId])
 
-  ///////////////////
-  // BOARD CRUD
-  ///////////////////
+  //////////////////////
+  // BOARDS CRUD
+  //////////////////////
 
   // add new board
   async function addBoard(data) {
@@ -110,9 +114,9 @@ function App() {
       // TODO: recursively delete columns and tasks
   }
 
-  ///////////////////
-  // COLUMN CRUD
-  ///////////////////
+  //////////////////////
+  // COLUMNS CRUD
+  //////////////////////
 
   // add new column
   async function addColumn(data) {
@@ -138,9 +142,9 @@ function App() {
   //   setModalOpen("")
   // }
 
-  ///////////////////
-  // TASK CRUD
-  ///////////////////
+  //////////////////////
+  // TASKS CRUD
+  //////////////////////
 
   // add new task
   async function addTask(data) {
