@@ -6,6 +6,7 @@
   justify-content: space-between;
   padding: 0rem 1.5rem 1.5rem 0rem;
   width: var(--sidebar-width-mobile);
+  z-index: 99;
 }
 @media screen and (min-width: 768px) {
   .sidebar {
