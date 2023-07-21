@@ -23,6 +23,7 @@ function App() {
   const [boards, setBoards] = useState([])
   const [currentBoardId, setCurrentBoardId] = useState(boards[0]?.id)
   const [columnCount, setColumnCount] = useState(0)
+  // const [currentColumnId, setCurrentColumnId] = useState("")
 
   // const [currentBoard, setCurrentBoard] = useState({})
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
@@ -79,9 +80,9 @@ function App() {
   async function addBoard(data) {
     setModalOpen("")
     const newBoard = {
-        name: data.name,
-        createdAt: Date.now(),
-        updatedAt: Date.now()
+      name: data.name,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
     }
     const newBoardRef = await addDoc(boardsCollection, newBoard)
     setCurrentBoardId(newBoardRef.id)
@@ -89,14 +90,14 @@ function App() {
 
   // update board
   async function updateBoard(data) {
-      const docRef =  doc(db, "boards", currentBoardId)
-      const newData = {
-        name: data.name,
-        updatedAt: Date.now()
-      }
-      const options = {merge: true}
-      await setDoc(docRef, newData, options)
-      setModalOpen("")
+    const docRef =  doc(db, "boards", currentBoardId)
+    const newData = {
+      name: data.name,
+      updatedAt: Date.now()
+    }
+    const options = {merge: true}
+    await setDoc(docRef, newData, options)
+    setModalOpen("")
   }
 
   //confirm before delete board
@@ -107,11 +108,11 @@ function App() {
 
   // delete board
   async function deleteBoard(boardId) {
-      const docRef = doc(db, "boards", boardId)
-      await deleteDoc(docRef)
-      setModalOpen("")
-      setCurrentBoardId(false)
-      // TODO: recursively delete columns and tasks
+    const docRef = doc(db, "boards", boardId)
+    await deleteDoc(docRef)
+    setModalOpen("")
+    setCurrentBoardId(false)
+    // TODO: recursively delete columns and tasks
   }
 
   //////////////////////
@@ -122,9 +123,9 @@ function App() {
   async function addColumn(data) {
     setModalOpen("")
     const newColumn = {
-        name: data.name,
-        createdAt: Date.now(),
-        updatedAt: Date.now()
+      name: data.name,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
     }
     const columnsCollection = collection(db, "boards", currentBoardId, "columns" )
     await addDoc(columnsCollection, newColumn)
@@ -150,9 +151,9 @@ function App() {
   async function addTask(data) {
     setModalOpen("")
     const newTask = {
-        name: data.name,
-        createdAt: Date.now(),
-        updatedAt: Date.now()
+      name: data.name,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
     }
     // const columnsCollection = collection(db, "boards", currentBoardId, "columns" )
     // await addDoc(columnsCollection, newColumn)
@@ -230,6 +231,15 @@ function App() {
           addTask={addTask}
         />
       }
+      {(modalOpen === "showTask") &&
+        <AddTaskModal
+          darkMode={darkMode}
+          setModalOpen={setModalOpen}
+          currentBoardId={currentBoardId}
+          addTask={addTask}
+        />
+      }
+
     </>
   )
 }

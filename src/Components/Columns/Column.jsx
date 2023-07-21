@@ -33,6 +33,8 @@ export default function Column(props) {
           key={task.id}
           name={task.title}
           id={task.id}
+          tasksCollection={tasksCollection}
+          setModalOpen={props.setModalOpen}
         />
     ))
     

@@ -42,11 +42,12 @@ export default function ColumnsWrapper(props) {
       name={column.name}
       id={column.id}
       columnsCollection={columnsCollection}
+      setModalOpen={props.setModalOpen}
     />
   ))
 
   // check if there is are columns before rendering child that needs columns as prop
-  const loading = columns.length === 0;
+  const loading = (columns.length === null);
 
   return (
     <>
