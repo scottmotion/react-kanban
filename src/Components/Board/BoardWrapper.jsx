@@ -1,4 +1,3 @@
-import { ReactComponent as ShowIcon } from "/src/assets/icons/icon-show.svg"
 import ShowSidebar from "./ShowSidebar"
 import './BoardWrapper.css'
 
