@@ -127,7 +127,8 @@ function App() {
     const newColumn = {
       name: data.name,
       createdAt: Date.now(),
-      updatedAt: Date.now()
+      updatedAt: Date.now(),
+      order: (columnCount + 1)
     }
     const columnsCollection = collection(db, "boards", currentBoardId, "columns" )
     await addDoc(columnsCollection, newColumn)
