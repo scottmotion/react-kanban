@@ -113,6 +113,26 @@ function App() {
     // TODO: recursively delete columns and tasks
   }
 
+
+  //////////////////////
+  // COLUMNS GET & SET
+  //////////////////////
+
+  // useEffect(() => {
+  //   const unsubscribe = onSnapshot(columnsCollection, function(snapshot) {
+  //     // Sync up our local notes array with the snapshot data
+  //     const columnsArr = snapshot.docs.map(doc => ({
+  //         ...doc.data(),
+  //         id: doc.id
+  //     }))
+  //     const sortedColumns = columnsArr.sort((a,b) => a.order - b.order)
+  //     setColumns(sortedColumns)
+  //     setColumnCount(columnsArr.length)
+  //   })
+  //   return unsubscribe
+  // }, [currentBoard])
+
+
   //////////////////////
   // COLUMNS CRUD
   //////////////////////
