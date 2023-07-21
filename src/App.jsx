@@ -27,6 +27,8 @@ function App() {
 
   // const [currentBoard, setCurrentBoard] = useState({})
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
+  // const currentColumnsCollection = collection(boardsCollection, currentBoard.id, "columns")
+
 
   // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
   const loading = !currentBoardId;
@@ -204,6 +206,7 @@ function App() {
           darkMode={darkMode}
           setModalOpen={setModalOpen}
           currentBoard={currentBoard}
+          // currentColumnsCollection={currentColumnsCollection}
           updateBoard={updateBoard}
         />
       }
