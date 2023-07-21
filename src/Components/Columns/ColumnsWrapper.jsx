@@ -3,7 +3,7 @@ import { onSnapshot, collection } from 'firebase/firestore'
 import { db } from '../../firebase'
 import './ColumnsWrapper.css'
 import Column from "./Column"
-import NewColumn from './ColumnNew'
+import ColumnNew from './ColumnNew'
 
 export default function ColumnsWrapper(props) {
   
@@ -57,7 +57,7 @@ export default function ColumnsWrapper(props) {
 
         {loading
           ? null
-          : <NewColumn setModalOpen={props.setModalOpen} />
+          : <ColumnNew setModalOpen={props.setModalOpen} />
         }
 
       </section>

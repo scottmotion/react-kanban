@@ -1,7 +1,7 @@
 import './Column.css'
 
 // setModalOpen={props.setModalOpen}
-export default function NewColumn(props) {
+export default function ColumnNew(props) {
     return (
         <div className="board__column-single--wrapper">
           <div className="board__column-title"> </div>
