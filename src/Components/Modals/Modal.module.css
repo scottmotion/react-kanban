@@ -10,7 +10,6 @@ textarea:focus {
   /* background-color: rgba(17, 0, 57, 0.2); */
   width: 100vw;
   height: 100vh;
-  z-index: 0;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

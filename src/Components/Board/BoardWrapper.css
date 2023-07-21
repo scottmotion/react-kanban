@@ -71,6 +71,7 @@
   display: none;
   cursor: pointer;
   position: absolute;
+  left: 0;
   bottom: 2rem;
   opacity: 1;
   color: var(--text-white);

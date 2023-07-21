@@ -29,10 +29,12 @@ export default function BoardWrapper(props) {
   
   return (
     <>
-      <main className={mainClassName}>{props.children}</main>
+      <main className={mainClassName}>
+        {props.children}
       <button className={buttonClassName} onClick={props.showSidebar} disabled={buttonDisabled}>
         <ShowIcon className="button__icon--show" stroke="currentColor"/>
       </button>
+      </main>
     </>
   )
 }
