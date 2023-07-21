@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./Modal.module.css"
 
 export default function UpdateBoardModal(props) {
-
+  // currentColumnsCollection
     const [tempBoard, setTempBoard] = useState({
         name: props.currentBoard.name
     })
