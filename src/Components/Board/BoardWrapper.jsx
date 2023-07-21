@@ -1,4 +1,5 @@
 import { ReactComponent as ShowIcon } from "/src/assets/icons/icon-show.svg"
+import ShowSidebar from "./ShowSidebar"
 import './BoardWrapper.css'
 
 export default function BoardWrapper(props) {
@@ -31,9 +32,7 @@ export default function BoardWrapper(props) {
     <>
       <main className={mainClassName}>
         {props.children}
-        <button className={buttonClassName} onClick={props.showSidebar} disabled={buttonDisabled}>
-          <ShowIcon className="button__icon--show" stroke="currentColor"/>
-        </button>
+        <ShowSidebar showSidebar={props.showSidebar} sidebarVisible={props.sidebarVisible}/>
       </main>
     </>
   )

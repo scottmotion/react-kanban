@@ -23,25 +23,21 @@ function App() {
   const [boards, setBoards] = useState([])
   const [currentBoardId, setCurrentBoardId] = useState(boards[0]?.id)
   const [columnCount, setColumnCount] = useState(0)
-  // const [currentColumnId, setCurrentColumnId] = useState("")
 
-  // const [currentBoard, setCurrentBoard] = useState({})
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
-  // const currentColumnsCollection = collection(boardsCollection, currentBoard.id, "columns")
-
 
   // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
   const loading = !currentBoardId;
-
-  function toggleDarkMode() {
-    setDarkMode(prevMode => !prevMode)
-  }
 
   // supress animation until first load
   setTimeout(function(){
     document.body.className="loaded";
   },1000);
 
+  function toggleDarkMode() {
+    setDarkMode(prevMode => !prevMode)
+  }
+  
   function hideSidebar() {
     setSidebarVisible(false)
   }
