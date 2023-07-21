@@ -31,6 +31,7 @@ export default function Board(props) {
       }))
       const sortedColumns = columnsArr.sort((a,b) => a.order - b.order)
       setColumns(sortedColumns)
+      props.setColumns(sortedColumns)
       props.setColumnCount(columnsArr.length)
     })
     return unsubscribe

@@ -22,7 +22,10 @@ function App() {
 
   const [boards, setBoards] = useState([])
   const [currentBoardId, setCurrentBoardId] = useState(boards[0]?.id)
+  
+  const [columns, setColumns] = useState([])
   const [columnCount, setColumnCount] = useState(0)
+
 
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
 
@@ -170,13 +173,15 @@ function App() {
   async function addTask(data) {
     setModalOpen("")
     const newTask = {
-      name: data.name,
+      title: data.name,
       createdAt: Date.now(),
       updatedAt: Date.now()
+      // order: (taskCount + 1)
     }
-    // const columnsCollection = collection(db, "boards", currentBoardId, "columns" )
-    // await addDoc(columnsCollection, newColumn)
+    // const tasksCollection = collection(db, "boards", currentBoardId, "columns", currentColumnId, "tasks" )
+    // await addDoc(tasksCollection, newTask)
     console.log("Task Added: ", data.name)
+    console.log("Columns: ", columns)
   }
 
   return (
@@ -206,6 +211,7 @@ function App() {
               darkMode={darkMode}
               setModalOpen={setModalOpen}
               currentBoard={currentBoard}
+              setColumns={setColumns}
               setColumnCount={setColumnCount}
             />
         }
