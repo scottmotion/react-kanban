@@ -4,7 +4,7 @@ import './App.css'
 import AppHeader from './Components/AppHeader/AppHeader'
 import BoardWrapper from './Components/Board/BoardWrapper'
 import Sidebar from './Components/Sidebar/Sidebar'
-import ColumnsWrapper from "./Components/Columns/ColumnsWrapper"
+import Board from "./Components/Board/Board"
 
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
@@ -185,7 +185,7 @@ function App() {
         />
         {loading
           ? null
-          : <ColumnsWrapper
+          : <Board
               darkMode={darkMode}
               setModalOpen={setModalOpen}
               currentBoard={currentBoard}

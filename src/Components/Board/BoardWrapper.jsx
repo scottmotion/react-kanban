@@ -31,9 +31,9 @@ export default function BoardWrapper(props) {
     <>
       <main className={mainClassName}>
         {props.children}
-      <button className={buttonClassName} onClick={props.showSidebar} disabled={buttonDisabled}>
-        <ShowIcon className="button__icon--show" stroke="currentColor"/>
-      </button>
+        <button className={buttonClassName} onClick={props.showSidebar} disabled={buttonDisabled}>
+          <ShowIcon className="button__icon--show" stroke="currentColor"/>
+        </button>
       </main>
     </>
   )

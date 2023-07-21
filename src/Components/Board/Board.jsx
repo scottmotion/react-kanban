@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { onSnapshot, collection } from 'firebase/firestore'
 import { db } from '../../firebase'
-import './ColumnsWrapper.css'
-import Column from "./Column"
-import ColumnNew from './ColumnNew'
+import './Board.css'
+import Column from "../Columns/Column"
+import ColumnNew from '../Columns/ColumnNew'
 
-export default function ColumnsWrapper(props) {
+export default function Board(props) {
   
   const [columns, setColumns] = useState([])
 
