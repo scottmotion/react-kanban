@@ -174,13 +174,19 @@ function App() {
     setModalOpen("")
     const newTask = {
       title: data.name,
+      description: data.description,
+      status: data.columnId,
+      subtaskName: data.subtaskName,
       createdAt: Date.now(),
       updatedAt: Date.now()
       // order: (taskCount + 1)
     }
-    // const tasksCollection = collection(db, "boards", currentBoardId, "columns", currentColumnId, "tasks" )
-    // await addDoc(tasksCollection, newTask)
-    console.log("Task Added: ", data.name)
+    const tasksCollection = collection(boardsCollection, currentBoardId, "columns", data.columnId, "tasks" )
+    await addDoc(tasksCollection, newTask)
+
+    console.log("Task Added: ", data)
+    console.log("data.columnId: ", data.columnId)
+    console.log("tasksCollection: ", tasksCollection)
     console.log("Columns: ", columns)
   }
 
@@ -254,6 +260,7 @@ function App() {
           darkMode={darkMode}
           setModalOpen={setModalOpen}
           currentBoardId={currentBoardId}
+          columns={columns}
           addTask={addTask}
         />
       }

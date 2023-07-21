@@ -6,7 +6,7 @@ export default function AddTaskModal(props) {
   const [newTask, setNewTask] = useState({
     name: '',
     description: '',
-    column: '',
+    columnId: 'defaultValue',
     subtaskName: ''
   })
 
@@ -25,12 +25,16 @@ export default function AddTaskModal(props) {
     }))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
     event.preventDefault();
     if (newTask.name) {
       props.addTask(newTask)
     }
   }
+
+  const columnOptions = props.columns.map((column, index) => (
+    <option key={index} value={column.id}>{column.name}</option>
+  ))
 
   return (
     <>
@@ -68,13 +72,12 @@ export default function AddTaskModal(props) {
               Column
               <select
                   className={`${styles.modalFormInput} ${styles.modalFormSelect}`}
-                  name="column"
-                  value={newTask.column}
+                  name="columnId"
+                  value={newTask.columnId}
                   onChange={handleChange}
               >
-                <option value="1">Column 1</option>
-                <option value="2">Column 2</option>
-                <option value="3">Column 3</option>
+                <option disabled value="defaultValue">Select Column</option>
+                {columnOptions}
               </select>
             </label>
 
