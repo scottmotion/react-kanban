@@ -16,17 +16,6 @@ export default function BoardWrapper(props) {
     mainClassName += " light-mode"
   }
 
-
-  let buttonClassName = 'button button--show-sidebar'
-  let buttonDisabled = ''
-  if (props.sidebarVisible) {
-    buttonClassName += ' animate-buttonHide'
-    buttonDisabled = 'disabled'
-  } else {
-    buttonClassName += ' animate-buttonShow'
-    buttonDisabled = ''
-  }
-  
   return (
     <>
       <main className={mainClassName}>
