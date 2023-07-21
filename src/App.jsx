@@ -37,7 +37,7 @@ function App() {
   function toggleDarkMode() {
     setDarkMode(prevMode => !prevMode)
   }
-  
+
   function hideSidebar() {
     setSidebarVisible(false)
   }
@@ -52,12 +52,12 @@ function App() {
   // get boards from firebase
   useEffect(() => {
     const unsubscribe = onSnapshot(boardsCollection, function(snapshot) {
-        const boardsArr = snapshot.docs.map(doc => ({
-            ...doc.data(),
-            id: doc.id
-        }))
-        const sortedBoards = boardsArr.sort((a,b) => b.updatedAt - a.updatedAt)
-        setBoards(sortedBoards)
+      const boardsArr = snapshot.docs.map(doc => ({
+          ...doc.data(),
+          id: doc.id
+      }))
+      const sortedBoards = boardsArr.sort((a,b) => b.updatedAt - a.updatedAt)
+      setBoards(sortedBoards)
     })
     return unsubscribe
   }, [])
@@ -65,8 +65,8 @@ function App() {
   // set current board ID
   useEffect(() => {
     if (!currentBoardId) {
-        setCurrentBoardId(boards[0]?.id)
-        console.log("currentBoardId: ", currentBoardId)
+      setCurrentBoardId(boards[0]?.id)
+      console.log("currentBoardId: ", currentBoardId)
     }
   }, [boards, currentBoardId])
 
