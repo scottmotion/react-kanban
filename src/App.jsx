@@ -78,6 +78,18 @@ function App() {
   //////////////////////
 
   // add new board
+  // async function addBoard(data) {
+  //   setModalOpen("")
+  //   const newBoard = {
+  //     name: data.name,
+  //     createdAt: Date.now(),
+  //     updatedAt: Date.now()
+  //   }
+  //   const newBoardRef = await addDoc(boardsCollection, newBoard)
+  //   setCurrentBoardId(newBoardRef.id)
+  // }
+
+  // add new board
   async function addBoard(data) {
     setModalOpen("")
     const newBoard = {
@@ -88,7 +100,7 @@ function App() {
     const newBoardRef = await addDoc(boardsCollection, newBoard)
     setCurrentBoardId(newBoardRef.id)
   }
-
+  
   // update board
   async function updateBoard(data) {
     const docRef =  doc(db, "boards", currentBoardId)
