@@ -228,6 +228,7 @@ function App() {
           darkMode={darkMode}
           setModalOpen={setModalOpen}
           addBoard={addBoard}
+          addColumn={addColumn}
         />
       }
       {(modalOpen === "updateBoard") &&

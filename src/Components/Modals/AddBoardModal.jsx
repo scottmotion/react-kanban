@@ -1,10 +1,12 @@
 import { useState } from "react";
 import styles from "./Modal.module.css"
 
+let nextId = 0;
+
 export default function AddBoardModal(props) {
 
   const [newBoard, setNewBoard] = useState({
-      name: ''
+      name: ""
   })
 
   const [newColumns, setNewColumns] = useState([])
@@ -16,8 +18,9 @@ export default function AddBoardModal(props) {
       placeholder="Column Name"
       className={styles.modalFormInput}
       name="columnName"
-      value={column.name}
-      onChange={handleChange}
+      value={column.name || ""}
+      onChange={handleChangeColumn}
+      id={column.id}
       />
     </label>
 
@@ -30,7 +33,7 @@ export default function AddBoardModal(props) {
     modalClassName += " light-mode"
   }
 
-  function handleChange(event) {
+  function handleChangeBoard(event) {
     const {value} = event.target
     setNewBoard(prevNewBoard => ({
         ...prevNewBoard,
@@ -41,8 +44,30 @@ export default function AddBoardModal(props) {
   function handleNewColumn(event) {
     event.preventDefault();
     console.log("New Column Clicked")
-    // const columnsArr = newColumns.map(column => ({name: column.name}))
-    // columnsArr.push({name:""})
+    setNewColumns([
+      ...newColumns,
+      {
+        id: nextId++
+      }
+    ]);
+  }
+
+  function handleChangeColumn(event) {
+    // const {value, id} = event.target
+    const columnValue = event.target.value
+    const columnId = Number(event.target.id)
+    const tempColumn = {id:columnId, name: columnValue}
+    // console.log("value: ", columnValue)
+    // console.log("id: ", columnId)
+    console.log("tempColumn: ", tempColumn)
+
+    setNewColumns(newColumns.map(c => {
+      if (c.id === columnId) {
+        return tempColumn;
+      } else {
+        return c;
+      }
+    }));
   }
 
   const handleSubmit = (event) => {
@@ -50,6 +75,10 @@ export default function AddBoardModal(props) {
     if (newBoard.name) {
       props.addBoard(newBoard)
     }
+    console.log("submitted columns: ", newColumns)
+    // if (newColumns.length > 0)  {
+    //   newColumns.forEach((column) => props.addColumn(column))
+    // }
   }
 
   return (
@@ -66,7 +95,7 @@ export default function AddBoardModal(props) {
                   className={styles.modalFormInput}
                   name="boardName"
                   value={newBoard.name}
-                  onChange={handleChange}
+                  onChange={handleChangeBoard}
               />
             </label>
             {newColumnInputs}
