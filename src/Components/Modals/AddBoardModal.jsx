@@ -53,7 +53,6 @@ export default function AddBoardModal(props) {
   }
 
   function handleChangeColumn(event) {
-    // const {value, id} = event.target
     const columnValue = event.target.value
     const columnId = Number(event.target.id)
     const tempColumn = {id:columnId, name: columnValue}
@@ -99,7 +98,7 @@ export default function AddBoardModal(props) {
               />
             </label>
             {newColumnInputs}
-            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>Add New Column</button>
+            {/* <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>Add New Column</button> */}
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create New Board</button>
             <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
           </form>
