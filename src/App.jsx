@@ -282,6 +282,7 @@ function App() {
           darkMode={darkMode}
           setModalOpen={setModalOpen}
           currentBoardId={currentBoardId}
+          columns={columns}
           addTask={addTask}
         />
       }

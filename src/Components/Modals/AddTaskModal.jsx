@@ -6,9 +6,14 @@ export default function AddTaskModal(props) {
   const [newTask, setNewTask] = useState({
     name: '',
     description: '',
-    columnId: 'defaultValue',
+    columnId: props.columns[0].id,
     subtaskName: ''
   })
+
+  const [newSubtasks, setNewSubtasks] = useState([{
+    name: '',
+    isCompleted: false
+  }])
 
   let modalClassName = "modal"
   if (props.darkMode) {
@@ -25,6 +30,21 @@ export default function AddTaskModal(props) {
     }))
   }
 
+  function handleChangeSubtask(event) {
+    const subtaskValue = event.target.value
+    const subtaskId = Number(event.target.id)
+    const tempSubtask = {name: subtaskValue}
+    console.log(tempSubtask)
+
+    setNewSubtasks(newSubtasks.map((s, index) => {
+      if (index === subtaskId) {
+        return tempSubtask;
+      } else {
+        return s;
+      }
+    }));
+  }
+
   const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
     event.preventDefault();
     if (newTask.name) {
@@ -34,6 +54,21 @@ export default function AddTaskModal(props) {
 
   const columnOptions = props.columns.map((column, index) => (
     <option key={index} value={column.id}>{column.name}</option>
+  ))
+
+  const subtaskElements = newSubtasks.map((subtask, index) => (
+    <label className={styles.modalFormLabel} key={index}>
+      Subtask Name
+      <input
+          type="text"
+          placeholder="Subtask Name"
+          className={styles.modalFormInput}
+          name="subtaskName"
+          id={index}
+          value={subtask.name}
+          onChange={handleChangeSubtask}
+      />
+    </label>
   ))
 
   return (
@@ -59,8 +94,7 @@ export default function AddTaskModal(props) {
             <label className={styles.modalFormLabel}>
               Description
               <textarea
-                  // type="text"
-                  placeholder="e.g. It's always good to take a break. This 15 minute break will  recharge the batteries a little."
+                  placeholder="e.g. It's always good to take a break. 15 minutes will recharge the batteries a little."
                   className={`${styles.modalFormInput} ${styles.modalFormTextarea}`}
                   name="description"
                   value={newTask.description}
@@ -76,24 +110,34 @@ export default function AddTaskModal(props) {
                   value={newTask.columnId}
                   onChange={handleChange}
               >
-                <option disabled value="defaultValue">Select Column</option>
+                {/* <option disabled value="defaultValue">Select Column</option> */}
                 {columnOptions}
               </select>
             </label>
 
-            <label className={styles.modalFormLabel}>
-              Subtask Name
-              <input
-                  type="text"
-                  placeholder="Subtask Name"
-                  className={styles.modalFormInput}
-                  name="subtaskName"
-                  value={newTask.subtaskName}
-                  onChange={handleChange}
-              />
-            </label>
+            <fieldset>
+              <legend>Subtasks:</legend>
 
-            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create New Column</button>
+
+              {subtaskElements}
+
+
+              {/* <label className={styles.modalFormLabel}>
+                Subtask Name
+                <input
+                    type="text"
+                    placeholder="Subtask Name"
+                    className={styles.modalFormInput}
+                    name="subtaskName"
+                    value={newTask.subtaskName}
+                    onChange={handleChange}
+                />
+              </label>               */}
+            </fieldset>
+
+
+
+            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create New Task</button>
             <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
           </form>
         </div>
