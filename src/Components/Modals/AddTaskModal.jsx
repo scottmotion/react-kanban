@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styles from "./Modal.module.css"
 
+let nextId = 0;
+
 export default function AddTaskModal(props) {
 
   const [newTask, setNewTask] = useState({
@@ -28,6 +30,18 @@ export default function AddTaskModal(props) {
         ...prevNewTask,
         [name]: value
     }))
+  }
+
+  function handleNewSubtask(event) {
+    event.preventDefault();
+    console.log("New Subtask Clicked")
+    setNewSubtasks([
+      ...newSubtasks,
+      {
+        name: '',
+        isCompleted: false
+      }
+    ]);
   }
 
   function handleChangeSubtask(event) {
@@ -139,6 +153,7 @@ export default function AddTaskModal(props) {
             </fieldset>
 
 
+            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewSubtask(e)}>Add Subtask</button>
 
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create New Task</button>
             <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
