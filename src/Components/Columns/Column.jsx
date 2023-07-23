@@ -31,8 +31,7 @@ export default function Column(props) {
     const taskElements = tasks.map((task, index) => (
         <TaskCard
           key={task.id}
-          name={task.title}
-          id={task.id}
+          task={task}
           tasksCollection={tasksCollection}
           setModalOpen={props.setModalOpen}
         />
