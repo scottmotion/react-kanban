@@ -99,6 +99,7 @@ function App() {
     }
     const newBoardRef = await addDoc(boardsCollection, newBoard)
     setCurrentBoardId(newBoardRef.id)
+    return newBoardRef
   }
   
   // update board
@@ -153,7 +154,7 @@ function App() {
   //////////////////////
 
   // add new column
-  async function addColumn(data) {
+  async function addColumn(data, boardRef) {
     setModalOpen("")
     const newColumn = {
       name: data.name,
@@ -161,8 +162,16 @@ function App() {
       updatedAt: Date.now(),
       order: (columnCount + 1)
     }
-    const columnsCollection = collection(db, "boards", currentBoardId, "columns" )
-    await addDoc(columnsCollection, newColumn)
+    let columnsCollection
+    if (boardRef) {
+      columnsCollection = collection(db, "boards", boardRef.id, "columns" )
+    } else {
+      columnsCollection = collection(db, "boards", currentBoardId, "columns" )
+    }
+    // await addDoc(columnsCollection, newColumn)
+    const newColumnRef = await addDoc(columnsCollection, newColumn)
+    console.log("newColumnRef: ", newColumnRef)
+    return newColumnRef
   }
 
   // update column

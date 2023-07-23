@@ -69,15 +69,20 @@ export default function AddBoardModal(props) {
     }));
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (newBoard.name) {
-      props.addBoard(newBoard)
+      const newBoardRef = await props.addBoard(newBoard)
+      console.log("newBoardRef: ",newBoardRef)
+      if (newColumns.length > 0) {
+        console.log("submitted columns: ", newColumns)
+        newColumns.forEach(async (column) => {
+          console.log("this column: ", column)
+          const newColumnRef = await props.addColumn(column, newBoardRef)
+          console.log("this columnRef: ", newColumnRef)
+        })
+      }
     }
-    console.log("submitted columns: ", newColumns)
-    // if (newColumns.length > 0)  {
-    //   newColumns.forEach((column) => props.addColumn(column))
-    // }
   }
 
   return (
@@ -98,7 +103,7 @@ export default function AddBoardModal(props) {
               />
             </label>
             {newColumnInputs}
-            {/* <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>Add New Column</button> */}
+            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>Add New Column</button>
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create New Board</button>
             <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
           </form>
