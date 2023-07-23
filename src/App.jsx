@@ -78,18 +78,6 @@ function App() {
   //////////////////////
 
   // add new board
-  // async function addBoard(data) {
-  //   setModalOpen("")
-  //   const newBoard = {
-  //     name: data.name,
-  //     createdAt: Date.now(),
-  //     updatedAt: Date.now()
-  //   }
-  //   const newBoardRef = await addDoc(boardsCollection, newBoard)
-  //   setCurrentBoardId(newBoardRef.id)
-  // }
-
-  // add new board
   async function addBoard(data) {
     setModalOpen("")
     const newBoard = {
@@ -191,22 +179,22 @@ function App() {
   //////////////////////
 
   // add new task
-  async function addTask(data) {
+  async function addTask(task, subtasks) {
     setModalOpen("")
     const newTask = {
-      title: data.name,
-      description: data.description,
-      status: data.columnId,
-      subtaskName: data.subtaskName,
+      title: task.name,
+      description: task.description,
+      status: task.columnId,
+      subtasks: subtasks,
       createdAt: Date.now(),
       updatedAt: Date.now()
       // order: (taskCount + 1)
     }
-    const tasksCollection = collection(boardsCollection, currentBoardId, "columns", data.columnId, "tasks" )
+    const tasksCollection = collection(boardsCollection, currentBoardId, "columns", task.columnId, "tasks" )
     await addDoc(tasksCollection, newTask)
 
-    console.log("Task Added: ", data)
-    console.log("data.columnId: ", data.columnId)
+    console.log("Task Added: ", task)
+    console.log("data.columnId: ", task.columnId)
     console.log("tasksCollection: ", tasksCollection)
     console.log("Columns: ", columns)
   }

@@ -33,7 +33,10 @@ export default function AddTaskModal(props) {
   function handleChangeSubtask(event) {
     const subtaskValue = event.target.value
     const subtaskId = Number(event.target.id)
-    const tempSubtask = {name: subtaskValue}
+    const tempSubtask = {
+      name: subtaskValue,
+      isCompleted: false
+    }
     console.log(tempSubtask)
 
     setNewSubtasks(newSubtasks.map((s, index) => {
@@ -48,7 +51,7 @@ export default function AddTaskModal(props) {
   const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
     event.preventDefault();
     if (newTask.name) {
-      props.addTask(newTask)
+      props.addTask(newTask, newSubtasks)
     }
   }
 
