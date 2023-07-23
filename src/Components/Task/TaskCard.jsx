@@ -1,7 +1,7 @@
 import './TaskCard.css'
 
 export default function TaskCard(props) {
-    const subtaskCount  = props.task.subtasks?.length
+    const subtaskCount  = props.task.subtasks?.length || 0
     let completedCount = 0
     props.task.subtasks?.forEach(subtask => {
         if (subtask.isCompleted = true) {
