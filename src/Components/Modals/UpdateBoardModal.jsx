@@ -10,7 +10,7 @@ export default function UpdateBoardModal(props) {
     const [tempColumns, setTempColumns] = useState(props.columns)
     console.log("tempColumns: ", tempColumns)
 
-    const [newColumns, setNewColumns] = useState([])
+    const [removedColumns, setRemovedColumns] = useState([])
 
     const tempColumnInputs = tempColumns.map((column, index) => (
       <div className={styles.modalFormInputWrapper} key={index}>
@@ -58,14 +58,13 @@ export default function UpdateBoardModal(props) {
 
     function handleChangeColumn(event, columnIndex) {
       const columnValue = event.target.value
-      // const columnId = event.target.id
       const tempColumn = {name: columnValue}
 
-      console.log("tempColumn: ", tempColumn)
+      console.log("handleChangeColumn: ", tempColumn)
   
       setTempColumns(tempColumns.map((c, index) => {
         if (index === columnIndex) {
-          return tempColumn;
+          return ({...c, ...tempColumn}); 
         } else {
           return c;
         }
@@ -75,6 +74,7 @@ export default function UpdateBoardModal(props) {
     function handleRemoveColumn(event, columnIndex) {
       event.preventDefault();
       console.log("Remove Column Clicked: ", columnIndex)
+
       const filteredColumns = tempColumns.filter((c, index) =>
         index !== columnIndex
       )
@@ -82,7 +82,6 @@ export default function UpdateBoardModal(props) {
         ...c,
         order: index
       }))
-
       setTempColumns(
         newArray
       );
