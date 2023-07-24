@@ -1,8 +1,6 @@
 import { useState } from "react";
 import styles from "./Modal.module.css"
 
-let nextId = 0;
-
 export default function AddTaskModal(props) {
 
   const [newTask, setNewTask] = useState({
@@ -62,6 +60,16 @@ export default function AddTaskModal(props) {
     }));
   }
 
+  function handleRemoveSubtask(event, subtaskIndex) {
+    event.preventDefault();
+    console.log("Remove Subtask Clicked: ", subtaskIndex)
+    setNewSubtasks(
+      newSubtasks.filter((s, index) =>
+        index !== subtaskIndex
+      )
+    );
+  }
+
   const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
     event.preventDefault();
     if (newTask.name) {
@@ -73,9 +81,10 @@ export default function AddTaskModal(props) {
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   ))
 
-  const subtaskElements = newSubtasks.map((subtask, index) => (
-    <label className={styles.modalFormLabel} key={index}>
-      <input
+  const newSubtaskInputs = newSubtasks.map((subtask, index) => (
+    <div className={styles.modalFormInputWrapper} key={index}>
+      <label className={styles.modalFormLabel}>
+        <input
           type="text"
           placeholder="Subtask Name"
           className={styles.modalFormInput}
@@ -83,8 +92,10 @@ export default function AddTaskModal(props) {
           id={index}
           value={subtask.name}
           onChange={(e) => handleChangeSubtask(e, index)}
-      />
-    </label>
+        />
+      </label>
+      <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveSubtask(e, index)}}>X</button>
+    </div>
   ))
 
   return (
@@ -98,43 +109,40 @@ export default function AddTaskModal(props) {
             <label className={styles.modalFormLabel}>
               Task Name
               <input
-                  type="text"
-                  placeholder="Task Name"
-                  className={styles.modalFormInput}
-                  name="name"
-                  value={newTask.name}
-                  onChange={handleChange}
+                type="text"
+                placeholder="Task Name"
+                className={styles.modalFormInput}
+                name="name"
+                value={newTask.name}
+                onChange={handleChange}
               />
             </label>
 
             <label className={styles.modalFormLabel}>
               Description
               <textarea
-                  placeholder="e.g. It's always good to take a break. 15 minutes will recharge the batteries a little."
-                  className={`${styles.modalFormInput} ${styles.modalFormTextarea}`}
-                  name="description"
-                  value={newTask.description}
-                  onChange={handleChange}
+                placeholder="e.g. It's always good to take a break. 15 minutes will recharge the batteries a little."
+                className={`${styles.modalFormInput} ${styles.modalFormTextarea}`}
+                name="description"
+                value={newTask.description}
+                onChange={handleChange}
               />
             </label>
 
-
-
             <fieldset className={styles.modalFormFieldset}>
               <legend className={styles.modalFormLegend}>Subtasks</legend>
-              {subtaskElements}
+              {newSubtaskInputs}
             </fieldset>
 
             <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewSubtask(e)}>+ Add New Subtask</button>
 
-
             <label className={styles.modalFormLabel}>
               Column
               <select
-                  className={`${styles.modalFormInput} ${styles.modalFormSelect}`}
-                  name="columnId"
-                  value={newTask.columnId}
-                  onChange={handleChange}
+                className={`${styles.modalFormInput} ${styles.modalFormSelect}`}
+                name="columnId"
+                value={newTask.columnId}
+                onChange={handleChange}
               >
                 {/* <option disabled value="defaultValue">Select Column</option> */}
                 {columnOptions}
