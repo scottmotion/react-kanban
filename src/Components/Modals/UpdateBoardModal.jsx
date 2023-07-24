@@ -54,7 +54,7 @@ export default function UpdateBoardModal(props) {
       }));
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event) => { //TODO: Send temp columns
         event.preventDefault();
         if (tempBoard.name) {
           props.updateBoard(tempBoard)

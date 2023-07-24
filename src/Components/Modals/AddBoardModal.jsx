@@ -11,19 +11,20 @@ export default function AddBoardModal(props) {
 
   const [newColumns, setNewColumns] = useState([])
   const newColumnInputs = newColumns.map((column, index) => (
-
-    <label className={styles.modalFormLabel} key={index}>
-      <input
-        type="text"
-        placeholder="Column Name"
-        className={styles.modalFormInput}
-        name="columnName"
-        value={column.name || ""}
-        onChange={(e) => handleChangeColumn(e, index)}
-        // id={index}
-      />
-    </label>
-
+    <div className={styles.modalFormInputWrapper} key={index}>
+      <label className={styles.modalFormLabel}>
+        <input
+          type="text"
+          placeholder="Column Name"
+          className={styles.modalFormInput}
+          name="columnName"
+          value={column.name || ""}
+          onChange={(e) => handleChangeColumn(e, index)}
+          // id={index}
+        />
+      </label>
+      <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveColumn(e, index)}}>X</button>
+    </div>
   ))
 
   let modalClassName = "modal"
@@ -66,6 +67,16 @@ export default function AddBoardModal(props) {
         return c;
       }
     }));
+  }
+
+  function handleRemoveColumn(event, columnIndex) {
+    event.preventDefault();
+    console.log("Remove Column Clicked: ", columnIndex)
+    setNewColumns(
+      newColumns.filter((c, index) =>
+        index !== columnIndex
+      )
+    );
   }
 
   const handleSubmit = async (event) => {
