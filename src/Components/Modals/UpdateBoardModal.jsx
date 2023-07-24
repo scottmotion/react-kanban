@@ -76,10 +76,12 @@ export default function UpdateBoardModal(props) {
     function handleRemoveColumn(event, columnIndex, columnId) {
       event.preventDefault();
       // console.log("Remove Column Clicked: ", columnIndex, " : ", columnId)
-      setRemovedColumns([
-        ...removedColumns,
-        columnId
-      ])
+      if (columnId) {
+        setRemovedColumns([
+          ...removedColumns,
+          columnId
+        ])        
+      }
       const filteredColumns = tempColumns.filter((c, index) =>
         index !== columnIndex
       )
@@ -96,6 +98,7 @@ export default function UpdateBoardModal(props) {
         event.preventDefault();
         if (tempBoard.name) {
           props.updateBoard(tempBoard)
+          // const newBoardRef = await props.updateBoard(tempBoard)
         }
     }
 

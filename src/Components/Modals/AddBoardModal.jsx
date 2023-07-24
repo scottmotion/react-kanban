@@ -90,14 +90,13 @@ export default function AddBoardModal(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (newBoard.name) {
+      // add the board and get firebase ref
       const newBoardRef = await props.addBoard(newBoard)
-      console.log("newBoardRef: ",newBoardRef)
       if (newColumns.length > 0) {
-        console.log("submitted columns: ", newColumns)
+        // add each new column
         newColumns.forEach(async (column, index) => {
-          console.log("this column: ", column)
           const newColumnRef = await props.addColumn(column, index, newBoardRef)
-          console.log("this columnRef: ", newColumnRef)
+          console.log("this newColumnRef: ", newColumnRef)
         })
       }
     }
