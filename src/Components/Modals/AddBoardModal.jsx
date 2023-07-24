@@ -1,8 +1,6 @@
 import { useState } from "react";
 import styles from "./Modal.module.css"
 
-let nextId = 0;
-
 export default function AddBoardModal(props) {
 
   const [newBoard, setNewBoard] = useState({
@@ -10,6 +8,7 @@ export default function AddBoardModal(props) {
   })
 
   const [newColumns, setNewColumns] = useState([])
+
   const newColumnInputs = newColumns.map((column, index) => (
     <div className={styles.modalFormInputWrapper} key={index}>
       <label className={styles.modalFormLabel}>
