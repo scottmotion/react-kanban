@@ -44,8 +44,8 @@ export default function AddColumnModal(props) {
                     value={newColumn.name}
                     onChange={handleChange}
                 />
-                <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create New Column</button>
-                <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
+                <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create Column</button>
+                {/* <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button> */}
             </form>
           </div>
         </div>

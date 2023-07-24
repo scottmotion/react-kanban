@@ -47,6 +47,7 @@ export default function AddBoardModal(props) {
     setNewColumns([
       ...newColumns,
       {
+        name: '',
         id: nextId++
       }
     ]);
@@ -112,7 +113,7 @@ export default function AddBoardModal(props) {
                 </fieldset> 
               : ""          
             }
-            
+
             <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>+ Add New Column</button>
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create Board</button>
             {/* <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button> */}
