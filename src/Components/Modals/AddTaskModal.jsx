@@ -125,7 +125,7 @@ export default function AddTaskModal(props) {
               {subtaskElements}
             </fieldset>
 
-            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewSubtask(e)}>+Add New Subtask</button>
+            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewSubtask(e)}>+ Add New Subtask</button>
 
 
             <label className={styles.modalFormLabel}>
