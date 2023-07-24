@@ -92,7 +92,9 @@ export default function AddBoardModal(props) {
         <div className={styles.modalHeading}>Add New Board</div>
         <div className={styles.modalContent}>
           <form className={styles.modalForm} onSubmit={handleSubmit} autoComplete="off">
+
             <label className={styles.modalFormLabel}>
+              Board Name
               <input
                   type="text"
                   placeholder="Board Name"
@@ -102,10 +104,18 @@ export default function AddBoardModal(props) {
                   onChange={handleChangeBoard}
               />
             </label>
-            {newColumnInputs}
-            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>Add New Column</button>
-            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create New Board</button>
-            <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
+
+            {newColumns.length > 0
+              ? <fieldset className={styles.modalFormFieldset}>
+                  <legend className={styles.modalFormLegend}>Columns</legend>
+                  {newColumnInputs}
+                </fieldset> 
+              : ""          
+            }
+            
+            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>+ Add New Column</button>
+            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create Board</button>
+            {/* <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button> */}
           </form>
         </div>
       </div>
