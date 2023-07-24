@@ -22,7 +22,7 @@ export default function Column(props) {
             // const sortedTasks = tasksArr.sort((a,b) => a.order - b.order)
             // setTasks(sortedTasks)
             setTasks(tasksArr)
-            console.log("Task count: ", tasksArr.length)
+            // console.log("Task count: ", tasksArr.length)
             // props.setTaskCount(tasksArr.length)
         })
         return unsubscribe
@@ -48,9 +48,7 @@ export default function Column(props) {
             </div>
             
             <div className="board__column-single">
-
                 {taskElements}
-
             </div>
         </div>
     )
