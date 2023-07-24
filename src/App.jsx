@@ -193,10 +193,10 @@ function App() {
     const tasksCollection = collection(boardsCollection, currentBoardId, "columns", task.columnId, "tasks" )
     await addDoc(tasksCollection, newTask)
 
-    console.log("Task Added: ", task)
-    console.log("data.columnId: ", task.columnId)
-    console.log("tasksCollection: ", tasksCollection)
-    console.log("Columns: ", columns)
+    // console.log("Task Added: ", task)
+    // console.log("data.columnId: ", task.columnId)
+    // console.log("tasksCollection: ", tasksCollection)
+    // console.log("Columns: ", columns)
   }
 
   return (
@@ -245,6 +245,7 @@ function App() {
           darkMode={darkMode}
           setModalOpen={setModalOpen}
           currentBoard={currentBoard}
+          columns={columns}
           // currentColumnsCollection={currentColumnsCollection}
           updateBoard={updateBoard}
         />
