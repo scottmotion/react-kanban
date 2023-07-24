@@ -44,9 +44,9 @@ export default function AddTaskModal(props) {
     ]);
   }
 
-  function handleChangeSubtask(event) {
+  function handleChangeSubtask(event, subtaskIndex) {
     const subtaskValue = event.target.value
-    const subtaskId = Number(event.target.id)
+    const subtaskId = subtaskIndex
     const tempSubtask = {
       name: subtaskValue,
       isCompleted: false
@@ -82,7 +82,7 @@ export default function AddTaskModal(props) {
           name="subtaskName"
           id={index}
           value={subtask.name}
-          onChange={handleChangeSubtask}
+          onChange={(e) => handleChangeSubtask(e, index)}
       />
     </label>
   ))
