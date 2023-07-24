@@ -70,12 +70,11 @@ export default function AddTaskModal(props) {
   }
 
   const columnOptions = props.columns.map((column, index) => (
-    <option key={index} value={column.id}>{column.name}</option>
+    <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   ))
 
   const subtaskElements = newSubtasks.map((subtask, index) => (
     <label className={styles.modalFormLabel} key={index}>
-      Subtask Name
       <input
           type="text"
           placeholder="Subtask Name"
@@ -119,6 +118,16 @@ export default function AddTaskModal(props) {
               />
             </label>
 
+
+
+            <fieldset className={styles.modalFormFieldset}>
+              <legend className={styles.modalFormLegend}>Subtasks</legend>
+              {subtaskElements}
+            </fieldset>
+
+            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewSubtask(e)}>+Add New Subtask</button>
+
+
             <label className={styles.modalFormLabel}>
               Column
               <select
@@ -132,31 +141,8 @@ export default function AddTaskModal(props) {
               </select>
             </label>
 
-            <fieldset>
-              <legend>Subtasks:</legend>
-
-
-              {subtaskElements}
-
-
-              {/* <label className={styles.modalFormLabel}>
-                Subtask Name
-                <input
-                    type="text"
-                    placeholder="Subtask Name"
-                    className={styles.modalFormInput}
-                    name="subtaskName"
-                    value={newTask.subtaskName}
-                    onChange={handleChange}
-                />
-              </label>               */}
-            </fieldset>
-
-
-            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewSubtask(e)}>Add Subtask</button>
-
-            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create New Task</button>
-            <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
+            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create Task</button>
+            {/* <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button> */}
           </form>
         </div>
       </div>

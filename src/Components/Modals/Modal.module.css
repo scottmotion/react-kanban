@@ -84,7 +84,24 @@ textarea:focus {
   outline: none;
   border: 1px solid var(--text-white);
 }
-option {
+
+.modalFormFieldset {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.5rem; */
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.modalFormFieldset > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.modalFormLegend {
+
+}
+
+.modalFormOption {
   color: initial;
 }
 
