@@ -94,12 +94,17 @@ export default function UpdateBoardModal(props) {
       );
     }
 
-    const handleSubmit = (event) => { //TODO: Check old columns against temp columns
-        event.preventDefault();
-        if (tempBoard.name) {
-          props.updateBoard(tempBoard)
-          // const newBoardRef = await props.updateBoard(tempBoard)
-        }
+    const handleSubmit = (event) => {
+      // TODO:
+      // create async chain
+      // send boardRef & tempBoard to props.updateBoard
+      // send boardRef and removedColumns to props.removeColumn
+      // send boardRef and tempColumns to props.addColumn
+      event.preventDefault();
+      if (tempBoard.name) {
+        props.updateBoard(tempBoard)
+        // const newBoardRef = await props.updateBoard(tempBoard)
+      }
     }
 
     return (

@@ -91,7 +91,7 @@ function App() {
   }
   
   // update board
-  async function updateBoard(data) {
+  async function updateBoard(data) { // TODO: take boardRef or currentBoardId
     const docRef =  doc(db, "boards", currentBoardId)
     const newData = {
       name: data.name,
