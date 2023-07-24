@@ -11,6 +11,8 @@ export default function UpdateBoardModal(props) {
     console.log("tempColumns: ", tempColumns)
 
     const [removedColumns, setRemovedColumns] = useState([])
+    console.log("removedColumns: ", removedColumns)
+
 
     const tempColumnInputs = tempColumns.map((column, index) => (
       <div className={styles.modalFormInputWrapper} key={index}>
@@ -25,7 +27,7 @@ export default function UpdateBoardModal(props) {
             id={column.id}
           />
         </label>
-        <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveColumn(e, index)}}>X</button>
+        <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveColumn(e, index, column.id)}}>X</button>
       </div>
     ))
   
@@ -71,10 +73,13 @@ export default function UpdateBoardModal(props) {
       }));
     }
 
-    function handleRemoveColumn(event, columnIndex) {
+    function handleRemoveColumn(event, columnIndex, columnId) {
       event.preventDefault();
-      console.log("Remove Column Clicked: ", columnIndex)
-
+      // console.log("Remove Column Clicked: ", columnIndex, " : ", columnId)
+      setRemovedColumns([
+        ...removedColumns,
+        columnId
+      ])
       const filteredColumns = tempColumns.filter((c, index) =>
         index !== columnIndex
       )
