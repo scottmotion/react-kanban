@@ -26,7 +26,6 @@ function App() {
   const [columns, setColumns] = useState([])
   const [columnCount, setColumnCount] = useState(0)
 
-
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
 
   // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
