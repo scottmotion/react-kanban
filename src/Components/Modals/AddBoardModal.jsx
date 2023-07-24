@@ -19,7 +19,6 @@ export default function AddBoardModal(props) {
           name="columnName"
           value={column.name || ""}
           onChange={(e) => handleChangeColumn(e, index)}
-          // id={index}
         />
       </label>
       <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveColumn(e, index)}}>X</button>
@@ -61,7 +60,10 @@ export default function AddBoardModal(props) {
 
     setNewColumns(newColumns.map((c, index) => {
       if (index === columnIndex) {
-        return ({...c, ...tempColumn}); 
+        return ({
+          ...c,
+          ...tempColumn
+        }); 
       } else {
         return c;
       }
