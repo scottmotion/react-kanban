@@ -79,7 +79,6 @@ function App() {
 
   // add new board
   async function addBoard(data) {
-    setModalOpen("")
     const newBoard = {
       name: data.name,
       createdAt: Date.now(),
@@ -87,6 +86,7 @@ function App() {
     }
     const newBoardRef = await addDoc(boardsCollection, newBoard)
     setCurrentBoardId(newBoardRef.id)
+    setModalOpen("")
     return newBoardRef
   }
   
@@ -142,13 +142,12 @@ function App() {
   //////////////////////
 
   // add new column
-  async function addColumn(data, boardRef) {
-    setModalOpen("")
+  async function addColumn(data, columnIndex, boardRef) {
     const newColumn = {
       name: data.name,
       createdAt: Date.now(),
       updatedAt: Date.now(),
-      order: (columnCount + 1)
+      order: columnIndex
     }
     let columnsCollection
     if (boardRef) {
@@ -156,23 +155,31 @@ function App() {
     } else {
       columnsCollection = collection(db, "boards", currentBoardId, "columns" )
     }
-    // await addDoc(columnsCollection, newColumn)
     const newColumnRef = await addDoc(columnsCollection, newColumn)
     console.log("newColumnRef: ", newColumnRef)
+    setModalOpen("")
     return newColumnRef
   }
 
   // update column
-  // async function updateColumn(data) {
-  //   const docRef = doc(db, "boards", currentBoardId).collection("columns").doc(data.columnId)
-  //   const newData = {
-  //     name: data.name,
-  //     updatedAt: Date.now()
-  //   }
-  //   const options = {merge: true}
-  //   await setDoc(docRef, newData, options)
-  //   setModalOpen("")
-  // }
+  async function updateColumn(data, boardRef) {
+
+    let columnsCollection
+    if (boardRef) {
+      columnsCollection = collection(db, "boards", boardRef.id, "columns" )
+    } else {
+      columnsCollection = collection(db, "boards", currentBoardId, "columns" )
+    }
+
+    const docRef = collection(columnsCollection).doc(data.columnId)
+    const newData = {
+      name: data.name,
+      updatedAt: Date.now()
+    }
+    const options = {merge: true}
+    await setDoc(docRef, newData, options)
+    setModalOpen("")
+  }
 
   //////////////////////
   // TASKS CRUD
@@ -180,7 +187,6 @@ function App() {
 
   // add new task
   async function addTask(task, subtasks) {
-    setModalOpen("")
     const newTask = {
       title: task.name,
       description: task.description,
@@ -192,11 +198,11 @@ function App() {
     }
     const tasksCollection = collection(boardsCollection, currentBoardId, "columns", task.columnId, "tasks" )
     await addDoc(tasksCollection, newTask)
-
     // console.log("Task Added: ", task)
     // console.log("data.columnId: ", task.columnId)
     // console.log("tasksCollection: ", tasksCollection)
     // console.log("Columns: ", columns)
+    setModalOpen("")
   }
 
   return (
@@ -246,7 +252,6 @@ function App() {
           setModalOpen={setModalOpen}
           currentBoard={currentBoard}
           columns={columns}
-          // currentColumnsCollection={currentColumnsCollection}
           updateBoard={updateBoard}
         />
       }

@@ -14,13 +14,13 @@ export default function AddBoardModal(props) {
 
     <label className={styles.modalFormLabel} key={index}>
       <input
-      type="text"
-      placeholder="Column Name"
-      className={styles.modalFormInput}
-      name="columnName"
-      value={column.name || ""}
-      onChange={handleChangeColumn}
-      id={column.id}
+        type="text"
+        placeholder="Column Name"
+        className={styles.modalFormInput}
+        name="columnName"
+        value={column.name || ""}
+        onChange={(e) => handleChangeColumn(e, index)}
+        // id={index}
       />
     </label>
 
@@ -47,22 +47,20 @@ export default function AddBoardModal(props) {
     setNewColumns([
       ...newColumns,
       {
-        name: '',
-        id: nextId++
+        name: ''
       }
     ]);
   }
 
-  function handleChangeColumn(event) {
+  function handleChangeColumn(event, columnIndex) {
     const columnValue = event.target.value
-    const columnId = Number(event.target.id)
-    const tempColumn = {id:columnId, name: columnValue}
-    // console.log("value: ", columnValue)
-    // console.log("id: ", columnId)
+    // const columnId = columnIndex
+    const tempColumn = {name: columnValue}
+
     console.log("tempColumn: ", tempColumn)
 
-    setNewColumns(newColumns.map(c => {
-      if (c.id === columnId) {
+    setNewColumns(newColumns.map((c, index) => {
+      if (index === columnIndex) {
         return tempColumn;
       } else {
         return c;
@@ -77,9 +75,9 @@ export default function AddBoardModal(props) {
       console.log("newBoardRef: ",newBoardRef)
       if (newColumns.length > 0) {
         console.log("submitted columns: ", newColumns)
-        newColumns.forEach(async (column) => {
+        newColumns.forEach(async (column, index) => {
           console.log("this column: ", column)
-          const newColumnRef = await props.addColumn(column, newBoardRef)
+          const newColumnRef = await props.addColumn(column, index, newBoardRef)
           console.log("this columnRef: ", newColumnRef)
         })
       }
