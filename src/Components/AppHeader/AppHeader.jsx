@@ -65,9 +65,6 @@ export default function AppHeader(props) {
 
   function handleNewTask() {
     if (props.currentBoard) {
-      // setShowBoardOptions(false)
-      // props.confirmDeleteBoard(props.currentBoard.id)
-      console.log("New Task Clicked")
       props.setModalOpen("addTask")
     }
   }
@@ -77,7 +74,6 @@ export default function AppHeader(props) {
       <div className="header__app-brand"><img className="header__app-logo" /></div>
       <div className="header__nav">
         <h1 className="header__board-title">{loading ? null : props.currentBoard.name}</h1>
-
         <div className="header__button-wrapper">
           <button className="button header-button header-button--new-task" onClick={handleNewTask} disabled={props.columnCount <= 0}>
             <PlusIcon className='header-button__icon header-button__icon--new'/>

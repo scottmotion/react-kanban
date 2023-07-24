@@ -54,6 +54,16 @@ export default function UpdateBoardModal(props) {
       }));
     }
 
+    function handleRemoveColumn(event, columnIndex) {
+      event.preventDefault();
+      console.log("Remove Column Clicked: ", columnIndex)
+      // setNewColumns(
+      //   newColumns.filter((c, index) =>
+      //     index !== columnIndex
+      //   )
+      // );
+    }
+
     const handleSubmit = (event) => { //TODO: Send temp columns
         event.preventDefault();
         if (tempBoard.name) {

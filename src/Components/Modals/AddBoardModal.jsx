@@ -10,6 +10,22 @@ export default function AddBoardModal(props) {
   })
 
   const [newColumns, setNewColumns] = useState([])
+  const newColumnInputs = newColumns.map((column, index) => (
+    <div className={styles.modalFormInputWrapper} key={index}>
+      <label className={styles.modalFormLabel}>
+        <input
+          type="text"
+          placeholder="Column Name"
+          className={styles.modalFormInput}
+          name="columnName"
+          value={column.name || ""}
+          onChange={(e) => handleChangeColumn(e, index)}
+          // id={index}
+        />
+      </label>
+      <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveColumn(e, index)}}>X</button>
+    </div>
+  ))
 
   let modalClassName = "modal"
   if (props.darkMode) {
@@ -67,34 +83,17 @@ export default function AddBoardModal(props) {
     event.preventDefault();
     if (newBoard.name) {
       const newBoardRef = await props.addBoard(newBoard)
-      // console.log("newBoardRef: ",newBoardRef)
+      console.log("newBoardRef: ",newBoardRef)
       if (newColumns.length > 0) {
-        // console.log("submitted columns: ", newColumns)
+        console.log("submitted columns: ", newColumns)
         newColumns.forEach(async (column, index) => {
-          // console.log("this column: ", column)
+          console.log("this column: ", column)
           const newColumnRef = await props.addColumn(column, index, newBoardRef)
-          // console.log("this columnRef: ", newColumnRef)
+          console.log("this columnRef: ", newColumnRef)
         })
       }
     }
   }
-
-  const newColumnInputs = newColumns.map((column, index) => (
-    <div className={styles.modalFormInputWrapper} key={index}>
-      <label className={styles.modalFormLabel}>
-        <input
-          type="text"
-          placeholder="Column Name"
-          className={styles.modalFormInput}
-          name="columnName"
-          value={column.name || ""}
-          onChange={(e) => handleChangeColumn(e, index)}
-          // id={index}
-        />
-      </label>
-      <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveColumn(e, index)}}>X</button>
-    </div>
-  ))
 
   return (
     <>
