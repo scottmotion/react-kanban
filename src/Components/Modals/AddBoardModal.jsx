@@ -47,21 +47,21 @@ export default function AddBoardModal(props) {
     setNewColumns([
       ...newColumns,
       {
-        name: ''
+        name: '',
+        order: newColumns.length
       }
     ]);
   }
 
   function handleChangeColumn(event, columnIndex) {
     const columnValue = event.target.value
-    // const columnId = columnIndex
     const tempColumn = {name: columnValue}
 
     console.log("tempColumn: ", tempColumn)
 
     setNewColumns(newColumns.map((c, index) => {
       if (index === columnIndex) {
-        return tempColumn;
+        return ({...c, ...tempColumn}); 
       } else {
         return c;
       }
@@ -71,10 +71,17 @@ export default function AddBoardModal(props) {
   function handleRemoveColumn(event, columnIndex) {
     event.preventDefault();
     console.log("Remove Column Clicked: ", columnIndex)
+
+    const filteredColumns = newColumns.filter((c, index) =>
+      index !== columnIndex
+    )
+    const newArray = filteredColumns.map((c, index) => ({
+      ...c,
+      order: index
+    }))
+
     setNewColumns(
-      newColumns.filter((c, index) =>
-        index !== columnIndex
-      )
+      newArray
     );
   }
 
