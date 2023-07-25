@@ -11,6 +11,7 @@ import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 import AddColumnModal from "./Components/Modals/AddColumnModal"
 import AddTaskModal from "./Components/Modals/AddTaskModal"
+import ShowTaskModal from "./Components/Modals/ShowTaskModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, setDoc, updateDoc, collection } from "firebase/firestore"
 import { boardsCollection, db } from "./firebase"
@@ -281,7 +282,7 @@ function App() {
         />
       }
       {(modalOpen === "showTask") &&
-        <AddTaskModal
+        <ShowTaskModal
           darkMode={darkMode}
           setModalOpen={setModalOpen}
           currentBoardId={currentBoardId}
