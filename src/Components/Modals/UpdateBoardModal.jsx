@@ -104,13 +104,13 @@ export default function UpdateBoardModal(props) {
       event.preventDefault();
 
       try{
-        let boardUpdated = await props.updateBoard(tempBoard, tempBoard.id)
+        let updateTempBoard = await props.updateBoard(tempBoard, tempBoard.id)
 
-        // let deleteRemovedColumns = async () => {
-        //   for (let col of removedColumns) {
-        //     await props.deleteColumn(col, tempBoard.id)
-        //   }
-        // }
+        let deleteRemovedColumns = async () => {
+          for (let columnId of removedColumns) {
+            await props.deleteColumn(tempBoard.id, columnId)
+          }
+        }
 
         let updateTempColumns = async () => {
           tempColumns.forEach(async (col) => {
@@ -122,8 +122,8 @@ export default function UpdateBoardModal(props) {
           })
         }
 
-        return await updateTempColumns(boardUpdated)
-        
+        return await updateTempColumns(deleteRemovedColumns(updateTempBoard))
+
       } catch(e) {
          return e;
       }

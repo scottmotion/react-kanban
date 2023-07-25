@@ -171,6 +171,8 @@ function App() {
 
   // delete column
   async function deleteColumn(boardId, columnId) {
+    // console.log("deleteColumn(boardId, columnId) ", boardId, columnId)
+
     const docRef = doc(db, "boards", boardId, "columns", columnId)
     await deleteDoc(docRef)
     setModalOpen("")
@@ -246,6 +248,7 @@ function App() {
           columns={columns}
           addColumn={addColumn}
           updateColumn={updateColumn}
+          deleteColumn={deleteColumn}
         />
       }
       {(modalOpen === "confirmDeleteBoard") &&
