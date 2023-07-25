@@ -42,8 +42,8 @@ export default function UpdateBoardModal(props) {
     function handleChange(event) {
       const {value} = event.target
       setTempBoard(prevTempBoard => ({
-          ...prevTempBoard,
-          name: value
+        ...prevTempBoard,
+        name: value
       }))
     }
 
