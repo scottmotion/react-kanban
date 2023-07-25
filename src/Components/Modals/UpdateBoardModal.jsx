@@ -95,17 +95,40 @@ export default function UpdateBoardModal(props) {
       );
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       // TODO:
       // create async chain
       // send boardRef & tempBoard to props.updateBoard
       // send boardRef and removedColumns to props.removeColumn
       // send boardRef and tempColumns to props.addColumn
       event.preventDefault();
-      if (tempBoard.name) {
-        props.updateBoard(tempBoard, tempBoard.id)
-        // const newBoardRef = await props.updateBoard(tempBoard)
+
+      try{
+        let boardUpdated = await props.updateBoard(tempBoard, tempBoard.id)
+        // let deleteColumns = async () => {
+        //   for (let col of removedColumns) {
+        //     await props.deleteColumn(col, tempBoard.id)
+        //   }
+        // }
+
+        let updateAllColumns = async () => {
+          for (let col of tempColumns) {
+            await props.updateColumn(col, tempBoard.id)
+          }
+        }
+
+        // async function updateAllColumns() {
+        //   for (let col of tempColumns) {
+        //     await props.updateColumn(col, tempBoard.id)
+        //   }
+        // }
+
+        return await updateAllColumns(boardUpdated)
+
+      } catch(e) {
+         return e;
       }
+
     }
 
     return (

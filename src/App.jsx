@@ -91,6 +91,7 @@ function App() {
   
   // update board
   async function updateBoard(data, boardId) {
+    console.log("updateBoard(data, boardId) ", data, boardId)
 
     // const docRef =  doc(db, "boards", currentBoardId)
 
@@ -114,16 +115,15 @@ function App() {
     //   console.log(`Unsuccessful returned error ${error}`)});
     // setModalOpen("")
   
-    await updateDoc(docRef, newData)
-    .then(() => {
-      console.log("Successful")
-      setModalOpen("")
-    })
-    .catch((error) => {
-      console.log(`Unsuccessful returned error ${error}`)
-    });
+    return await updateDoc(docRef, newData)
+    // .then(() => {
+    //   console.log("updateDoc Successful")
+    //   setModalOpen("")
+    // })
+    // .catch((error) => {
+    //   console.log(`Unsuccessful returned error ${error}`)
+    // });
 
-    // setModalOpen("")
   }
 
   //confirm before delete board
@@ -187,22 +187,33 @@ function App() {
 
   // update column
   async function updateColumn(data, boardId) {
+    console.log("updateColumn(data, boardId) ", data, boardId)
+    let docRef
+    if (boardId) {
+      docRef = doc(db, "boards", boardId, "columns", data.id)
+    } else {
+      docRef = doc(db, "boards", currentBoardId, "columns", data.id)
+    }
+
 
     // let columnsCollection
     // if (boardId) {
+    //   console.log("boardId: ", boardId)
     //   columnsCollection = collection(db, "boards", boardId, "columns" )
+    //   console.log("columnsCollection: ", columnsCollection)
     // } else {
     //   columnsCollection = collection(db, "boards", currentBoardId, "columns" )
+    //   console.log("columnsCollection: ", columnsCollection)
     // }
 
-    // const docRef = collection(columnsCollection).doc(data.columnId)
+    // const docRef = doc(columnsCollection, data.columnId)
 
-    let docRef
-    if (boardId) {
-      docRef = doc(db, "boards", boardId, "columns", data.columnId )
-    } else {
-      docRef = doc(db, "boards", boardId, "columns", currentBoardId )
-    }
+    // let docRef
+    // if (boardId) {
+    //   docRef = doc(db, "boards", boardId, "columns", data.columnId )
+    // } else {
+    //   docRef = doc(db, "boards", currentBoardId, "columns", data.columnId )
+    // }
 
     const newData = {
       name: data.name,
@@ -211,15 +222,15 @@ function App() {
     // const options = {merge: true}
     // await setDoc(docRef, newData, options)
     // setModalOpen("")
-
-    await updateDoc(docRef, newData)
-    .then(() => {
-      console.log("Successful")
-      setModalOpen("")
-    })
-    .catch((error) => {
-      console.log(`Unsuccessful returned error ${error}`)
-    });
+    return await updateDoc(docRef, newData)
+    // await updateDoc(docRef, newData)
+    // .then((success) => {
+    //   console.log("Successful")
+    //   setModalOpen("")
+    // })
+    // .catch((error) => {
+    //   console.log(`Unsuccessful returned error ${error}`)
+    // });
 
   }
 
@@ -295,6 +306,7 @@ function App() {
           currentBoard={currentBoard}
           columns={columns}
           updateBoard={updateBoard}
+          updateColumn={updateColumn}
         />
       }
       {(modalOpen === "confirmDeleteBoard") &&
