@@ -4,7 +4,8 @@ import styles from "./Modal.module.css"
 export default function UpdateBoardModal(props) {
 
     const [tempBoard, setTempBoard] = useState({
-        name: props.currentBoard.name
+        name: props.currentBoard.name,
+        id: props.currentBoard.id
     })
 
     const [tempColumns, setTempColumns] = useState(props.columns)
@@ -102,7 +103,7 @@ export default function UpdateBoardModal(props) {
       // send boardRef and tempColumns to props.addColumn
       event.preventDefault();
       if (tempBoard.name) {
-        props.updateBoard(tempBoard)
+        props.updateBoard(tempBoard, tempBoard.id)
         // const newBoardRef = await props.updateBoard(tempBoard)
       }
     }

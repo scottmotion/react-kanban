@@ -12,7 +12,7 @@ import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 import AddColumnModal from "./Components/Modals/AddColumnModal"
 import AddTaskModal from "./Components/Modals/AddTaskModal"
 
-import { onSnapshot, addDoc, doc, deleteDoc, setDoc, collection } from "firebase/firestore"
+import { onSnapshot, addDoc, doc, deleteDoc, setDoc, updateDoc, collection } from "firebase/firestore"
 import { boardsCollection, db } from "./firebase"
 
 function App() {
@@ -90,15 +90,40 @@ function App() {
   }
   
   // update board
-  async function updateBoard(data) { // TODO: take boardRef or currentBoardId
-    const docRef =  doc(db, "boards", currentBoardId)
+  async function updateBoard(data, boardId) {
+
+    // const docRef =  doc(db, "boards", currentBoardId)
+
+    let docRef
+    if (boardId) {
+      docRef = doc(db, "boards", boardId)
+    } else {
+      docRef = doc(db, "boards", currentBoardId)
+    }
+
     const newData = {
       name: data.name,
       updatedAt: Date.now()
     }
-    const options = {merge: true}
-    await setDoc(docRef, newData, options)
-    setModalOpen("")
+    // const options = {merge: true}
+
+    // await setDoc(docRef, newData, options)
+    // .then(() => {
+    //   console.log("Successful")})
+    // .catch((error) => {
+    //   console.log(`Unsuccessful returned error ${error}`)});
+    // setModalOpen("")
+  
+    await updateDoc(docRef, newData)
+    .then(() => {
+      console.log("Successful")
+      setModalOpen("")
+    })
+    .catch((error) => {
+      console.log(`Unsuccessful returned error ${error}`)
+    });
+
+    // setModalOpen("")
   }
 
   //confirm before delete board
@@ -161,23 +186,41 @@ function App() {
   }
 
   // update column
-  async function updateColumn(data, boardRef) {
+  async function updateColumn(data, boardId) {
 
-    let columnsCollection
-    if (boardRef) {
-      columnsCollection = collection(db, "boards", boardRef.id, "columns" )
+    // let columnsCollection
+    // if (boardId) {
+    //   columnsCollection = collection(db, "boards", boardId, "columns" )
+    // } else {
+    //   columnsCollection = collection(db, "boards", currentBoardId, "columns" )
+    // }
+
+    // const docRef = collection(columnsCollection).doc(data.columnId)
+
+    let docRef
+    if (boardId) {
+      docRef = doc(db, "boards", boardId, "columns", data.columnId )
     } else {
-      columnsCollection = collection(db, "boards", currentBoardId, "columns" )
+      docRef = doc(db, "boards", boardId, "columns", currentBoardId )
     }
 
-    const docRef = collection(columnsCollection).doc(data.columnId)
     const newData = {
       name: data.name,
       updatedAt: Date.now()
     }
-    const options = {merge: true}
-    await setDoc(docRef, newData, options)
-    setModalOpen("")
+    // const options = {merge: true}
+    // await setDoc(docRef, newData, options)
+    // setModalOpen("")
+
+    await updateDoc(docRef, newData)
+    .then(() => {
+      console.log("Successful")
+      setModalOpen("")
+    })
+    .catch((error) => {
+      console.log(`Unsuccessful returned error ${error}`)
+    });
+
   }
 
   //////////////////////
