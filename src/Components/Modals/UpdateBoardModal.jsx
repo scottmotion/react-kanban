@@ -9,10 +9,10 @@ export default function UpdateBoardModal(props) {
     })
 
     const [tempColumns, setTempColumns] = useState(props.columns)
-    console.log("tempColumns: ", tempColumns)
+    // console.log("tempColumns: ", tempColumns)
 
     const [removedColumns, setRemovedColumns] = useState([])
-    console.log("removedColumns: ", removedColumns)
+    // console.log("removedColumns: ", removedColumns)
 
 
     const tempColumnInputs = tempColumns.map((column, index) => (

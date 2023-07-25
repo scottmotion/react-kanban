@@ -44,6 +44,7 @@ export default function Board(props) {
       id={column.id}
       columnsCollection={columnsCollection}
       setModalOpen={props.setModalOpen}
+      setCurrentTask={props.setCurrentTask}
     />
   ))
 

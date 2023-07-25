@@ -26,6 +26,8 @@ function App() {
   const [columns, setColumns] = useState([])
   const [columnCount, setColumnCount] = useState(0)
 
+  const [currentTask, setCurrentTask] = useState({})
+
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
 
   // check if there is a currentBoardId before rendering child that needs currentBoardId as prop
@@ -228,6 +230,7 @@ function App() {
               currentBoard={currentBoard}
               setColumns={setColumns}
               setColumnCount={setColumnCount}
+              setCurrentTask={setCurrentTask}
             />
         }
       </BoardWrapper>
@@ -284,6 +287,7 @@ function App() {
           currentBoardId={currentBoardId}
           columns={columns}
           addTask={addTask}
+          currentTask={currentTask}
         />
       }
 

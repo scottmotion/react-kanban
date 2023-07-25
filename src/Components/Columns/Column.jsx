@@ -34,6 +34,7 @@ export default function Column(props) {
           task={task}
           tasksCollection={tasksCollection}
           setModalOpen={props.setModalOpen}
+          setCurrentTask={props.setCurrentTask}
         />
     ))
     
