@@ -91,9 +91,7 @@ function App() {
   
   // update board
   async function updateBoard(data, boardId) {
-    console.log("updateBoard(data, boardId) ", data, boardId)
-
-    // const docRef =  doc(db, "boards", currentBoardId)
+    // console.log("updateBoard(data, boardId) ", data, boardId)
 
     let docRef
     if (boardId) {
@@ -106,23 +104,8 @@ function App() {
       name: data.name,
       updatedAt: Date.now()
     }
-    // const options = {merge: true}
-
-    // await setDoc(docRef, newData, options)
-    // .then(() => {
-    //   console.log("Successful")})
-    // .catch((error) => {
-    //   console.log(`Unsuccessful returned error ${error}`)});
-    // setModalOpen("")
   
     return await updateDoc(docRef, newData)
-    // .then(() => {
-    //   console.log("updateDoc Successful")
-    //   setModalOpen("")
-    // })
-    // .catch((error) => {
-    //   console.log(`Unsuccessful returned error ${error}`)
-    // });
 
   }
 
@@ -140,25 +123,6 @@ function App() {
     setCurrentBoardId(false)
     // TODO: recursively delete columns and tasks
   }
-
-
-  //////////////////////
-  // COLUMNS GET & SET
-  //////////////////////
-
-  // useEffect(() => {
-  //   const unsubscribe = onSnapshot(columnsCollection, function(snapshot) {
-  //     // Sync up our local notes array with the snapshot data
-  //     const columnsArr = snapshot.docs.map(doc => ({
-  //         ...doc.data(),
-  //         id: doc.id
-  //     }))
-  //     const sortedColumns = columnsArr.sort((a,b) => a.order - b.order)
-  //     setColumns(sortedColumns)
-  //     setColumnCount(columnsArr.length)
-  //   })
-  //   return unsubscribe
-  // }, [currentBoard])
 
 
   //////////////////////
@@ -187,53 +151,31 @@ function App() {
 
   // update column
   async function updateColumn(data, boardId) {
-    console.log("updateColumn(data, boardId) ", data, boardId)
+    // console.log("updateColumn(data, boardId) ", data, boardId)
     let docRef
+
     if (boardId) {
       docRef = doc(db, "boards", boardId, "columns", data.id)
     } else {
       docRef = doc(db, "boards", currentBoardId, "columns", data.id)
     }
 
-
-    // let columnsCollection
-    // if (boardId) {
-    //   console.log("boardId: ", boardId)
-    //   columnsCollection = collection(db, "boards", boardId, "columns" )
-    //   console.log("columnsCollection: ", columnsCollection)
-    // } else {
-    //   columnsCollection = collection(db, "boards", currentBoardId, "columns" )
-    //   console.log("columnsCollection: ", columnsCollection)
-    // }
-
-    // const docRef = doc(columnsCollection, data.columnId)
-
-    // let docRef
-    // if (boardId) {
-    //   docRef = doc(db, "boards", boardId, "columns", data.columnId )
-    // } else {
-    //   docRef = doc(db, "boards", currentBoardId, "columns", data.columnId )
-    // }
-
     const newData = {
       name: data.name,
       updatedAt: Date.now()
     }
-    // const options = {merge: true}
-    // await setDoc(docRef, newData, options)
-    // setModalOpen("")
-    return await updateDoc(docRef, newData)
-    // await updateDoc(docRef, newData)
-    // .then((success) => {
-    //   console.log("Successful")
-    //   setModalOpen("")
-    // })
-    // .catch((error) => {
-    //   console.log(`Unsuccessful returned error ${error}`)
-    // });
 
+    return await updateDoc(docRef, newData)
   }
 
+
+  // delete column
+  async function deleteColumn(boardId, columnId) {
+    const docRef = doc(db, "boards", boardId, "columns", columnId)
+    await deleteDoc(docRef)
+    setModalOpen("")
+    // TODO: recursively delete tasks
+  }
   //////////////////////
   // TASKS CRUD
   //////////////////////
@@ -251,10 +193,6 @@ function App() {
     }
     const tasksCollection = collection(boardsCollection, currentBoardId, "columns", task.columnId, "tasks" )
     await addDoc(tasksCollection, newTask)
-    // console.log("Task Added: ", task)
-    // console.log("data.columnId: ", task.columnId)
-    // console.log("tasksCollection: ", tasksCollection)
-    // console.log("Columns: ", columns)
     setModalOpen("")
   }
 
