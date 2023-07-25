@@ -4,8 +4,8 @@ import styles from "./Modal.module.css"
 export default function UpdateBoardModal(props) {
 
     const [tempBoard, setTempBoard] = useState({
-        name: props.currentBoard.name,
-        id: props.currentBoard.id
+      name: props.currentBoard.name,
+      id: props.currentBoard.id
     })
 
     const [tempColumns, setTempColumns] = useState(props.columns)
