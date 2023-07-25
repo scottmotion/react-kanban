@@ -7,7 +7,6 @@ export default function AddTaskModal(props) {
     name: '',
     description: '',
     columnId: props.columns[0].id,
-    // subtaskName: ''
   })
 
   const [newSubtasks, setNewSubtasks] = useState([{
