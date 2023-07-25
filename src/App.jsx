@@ -162,6 +162,7 @@ function App() {
 
     const newData = {
       name: data.name,
+      order: data.order,
       updatedAt: Date.now()
     }
 
