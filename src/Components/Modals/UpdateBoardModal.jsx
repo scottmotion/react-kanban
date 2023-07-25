@@ -105,26 +105,25 @@ export default function UpdateBoardModal(props) {
 
       try{
         let boardUpdated = await props.updateBoard(tempBoard, tempBoard.id)
-        // let deleteColumns = async () => {
+
+        // let deleteRemovedColumns = async () => {
         //   for (let col of removedColumns) {
         //     await props.deleteColumn(col, tempBoard.id)
         //   }
         // }
 
-        let updateAllColumns = async () => {
-          for (let col of tempColumns) {
-            await props.updateColumn(col, tempBoard.id)
-          }
+        let updateTempColumns = async () => {
+          tempColumns.forEach(async (col) => {
+            if (col.id) {
+              await props.updateColumn(col, tempBoard.id)
+            } else {
+              await props.addColumn(col, col.order, tempBoard)
+            }
+          })
         }
 
-        // async function updateAllColumns() {
-        //   for (let col of tempColumns) {
-        //     await props.updateColumn(col, tempBoard.id)
-        //   }
-        // }
-
-        return await updateAllColumns(boardUpdated)
-
+        return await updateTempColumns(boardUpdated)
+        
       } catch(e) {
          return e;
       }

@@ -242,8 +242,9 @@ function App() {
           darkMode={darkMode}
           setModalOpen={setModalOpen}
           currentBoard={currentBoard}
-          columns={columns}
           updateBoard={updateBoard}
+          columns={columns}
+          addColumn={addColumn}
           updateColumn={updateColumn}
         />
       }
