@@ -40,11 +40,11 @@ export default function UpdateBoardModal(props) {
     }
   
     function handleChange(event) {
-        const {value} = event.target
-        setTempBoard(prevTempBoard => ({
-            ...prevTempBoard,
-            name: value
-        }))
+      const {value} = event.target
+      setTempBoard(prevTempBoard => ({
+          ...prevTempBoard,
+          name: value
+      }))
     }
 
     function handleNewColumn(event) {
