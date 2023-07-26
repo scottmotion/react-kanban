@@ -32,8 +32,10 @@ export default function Column(props) {
         <TaskCard
           key={task.id}
           task={task}
+          columnId={props.id}
           tasksCollection={tasksCollection}
           setModalOpen={props.setModalOpen}
+          setCurrentColumnId={props.setCurrentColumnId}
           setCurrentTask={props.setCurrentTask}
         />
     ))

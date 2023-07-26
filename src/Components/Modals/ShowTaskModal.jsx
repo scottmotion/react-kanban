@@ -6,7 +6,7 @@ export default function ShowTaskModal(props) {
   const [newTask, setNewTask] = useState({
     name: '',
     description: '',
-    columnId: props.columns[0].id,
+    columnId: props.currentColumnId,
   })
 
   const [newSubtasks, setNewSubtasks] = useState([{
@@ -29,17 +29,17 @@ export default function ShowTaskModal(props) {
     }))
   }
 
-  function handleNewSubtask(event) {
-    event.preventDefault();
-    console.log("New Subtask Clicked")
-    setNewSubtasks([
-      ...newSubtasks,
-      {
-        name: '',
-        isCompleted: false
-      }
-    ]);
-  }
+  // function handleNewSubtask(event) {
+  //   event.preventDefault();
+  //   console.log("New Subtask Clicked")
+  //   setNewSubtasks([
+  //     ...newSubtasks,
+  //     {
+  //       name: '',
+  //       isCompleted: false
+  //     }
+  //   ]);
+  // }
 
   function handleChangeSubtask(event, subtaskIndex) {
     const subtaskValue = event.target.value
@@ -59,15 +59,15 @@ export default function ShowTaskModal(props) {
     }));
   }
 
-  function handleRemoveSubtask(event, subtaskIndex) {
-    event.preventDefault();
-    console.log("Remove Subtask Clicked: ", subtaskIndex)
-    setNewSubtasks(
-      newSubtasks.filter((s, index) =>
-        index !== subtaskIndex
-      )
-    );
-  }
+  // function handleRemoveSubtask(event, subtaskIndex) {
+  //   event.preventDefault();
+  //   console.log("Remove Subtask Clicked: ", subtaskIndex)
+  //   setNewSubtasks(
+  //     newSubtasks.filter((s, index) =>
+  //       index !== subtaskIndex
+  //     )
+  //   );
+  // }
 
   const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
     event.preventDefault();
@@ -80,7 +80,7 @@ export default function ShowTaskModal(props) {
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   ))
 
-  const newSubtaskInputs = newSubtasks.map((subtask, index) => (
+  const newSubtaskInputs = props.currentTask.subtasks.map((subtask, index) => (
     <div className={styles.modalFormInputWrapper} key={index}>
       <label className={styles.modalFormLabel}>
         <input
@@ -93,7 +93,7 @@ export default function ShowTaskModal(props) {
           onChange={(e) => handleChangeSubtask(e, index)}
         />
       </label>
-      <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveSubtask(e, index)}}>X</button>
+      {/* <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveSubtask(e, index)}}>X</button> */}
     </div>
   ))
 
@@ -103,10 +103,24 @@ export default function ShowTaskModal(props) {
       <div className={styles.modal}>
         <div className={styles.modalHeading}>{props.currentTask.title}</div>
         <div className={styles.modalContent}>
-          <div>Description</div>
-          <div>{props.currentTask.description}</div>
+          <div>Description: {props.currentTask.description}</div>
           <div>Subtasks</div>
+          {newSubtaskInputs}
           <div>Column</div>
+          <div>{props.currentColumnId}</div>
+          <label className={styles.modalFormLabel}>
+              Column
+              <select
+                className={`${styles.modalFormInput} ${styles.modalFormSelect}`}
+                name="columnId"
+                value={newTask.columnId}
+                onChange={handleChange}
+              >
+                {/* <option disabled value="defaultValue">Select Column</option> */}
+                {columnOptions}
+              </select>
+            </label>
+
         </div>
       </div>
     </>

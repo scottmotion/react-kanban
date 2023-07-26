@@ -26,6 +26,7 @@ function App() {
   
   const [columns, setColumns] = useState([])
   const [columnCount, setColumnCount] = useState(0)
+  const [currentColumnId, setCurrentColumnId] = useState("")
 
   const [currentTask, setCurrentTask] = useState({})
 
@@ -231,6 +232,7 @@ function App() {
               currentBoard={currentBoard}
               setColumns={setColumns}
               setColumnCount={setColumnCount}
+              setCurrentColumnId={setCurrentColumnId}
               setCurrentTask={setCurrentTask}
             />
         }
@@ -287,6 +289,7 @@ function App() {
           setModalOpen={setModalOpen}
           currentBoardId={currentBoardId}
           columns={columns}
+          currentColumnId={currentColumnId}
           addTask={addTask}
           currentTask={currentTask}
         />
