@@ -94,7 +94,7 @@ export default function ShowTaskModal(props) {
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   ))
 
-  const newSubtaskInputs = props.currentTask.subtasks.map((subtask, index) => (
+  const newSubtaskInputs = props.currentTask.subtasks?.map((subtask, index) => (
     <div className={styles.modalFormInputWrapper} key={index}>
 
       <label className={`${styles.modalFormLabel} ${styles.modalFormLabelCheckbox}`}>
