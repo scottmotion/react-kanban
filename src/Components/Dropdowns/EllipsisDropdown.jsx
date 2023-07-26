@@ -63,8 +63,8 @@ export default function EllipsisDropdown(props) {
                 <VerticalEllipsisIcon className='header-button__icon header-button__icon--edit'/>
             </button>
             <div className={optionsClassName}>
-                <div className="button edit-board-menu--edit" onClick={handleClickEdit}>Edit Board</div>
-                <div className="button edit-board-menu--delete" onClick={handleClickDelete}>Delete Board</div>
+                <div className="button edit-board-menu--edit" onClick={handleClickEdit}>Edit THIS</div>
+                <div className="button edit-board-menu--delete" onClick={handleClickDelete}>Delete THIS</div>
             </div>
         </div>
     )

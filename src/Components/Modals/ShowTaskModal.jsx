@@ -1,3 +1,4 @@
+import EllipsisDropdown from "../Dropdowns/EllipsisDropdown";
 import { useState } from "react";
 import styles from "./Modal.module.css"
 
@@ -128,9 +129,11 @@ export default function ShowTaskModal(props) {
   return (
     <>
       <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
-      <div className={styles.modal}>
+      {/* <div className={styles.modal}> */}
+      <div className={`${styles.modal} ${modalClassName}`}>
         <div className={styles.modalHeader}>
           <div className={styles.modalHeading}>{props.currentTask.title}</div>
+          <EllipsisDropdown />
         </div>
         <div className={styles.modalContent}>
 

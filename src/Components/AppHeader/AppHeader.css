@@ -165,7 +165,7 @@
 .header.light-mode .edit-board-menu {
   background-color: var(--bg-veryLightBlue);
 }
-.header.dark-mode .edit-board-menu {
+.dark-mode .edit-board-menu {
   background-color: var(--bg-secondary);
 }
 .edit-board-menu.show {
