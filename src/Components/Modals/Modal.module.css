@@ -45,12 +45,15 @@ textarea:focus {
   padding: 1.5rem;
 }
 
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+}
+
 .modalHeading {
   margin: 0;
-  /* padding: 1rem; */
   font-size: 1.125rem;
   font-weight: var(--fw-700);
-  /* text-align: center; */
 }
 
 .modalContent {

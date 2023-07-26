@@ -129,7 +129,9 @@ export default function ShowTaskModal(props) {
     <>
       <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
       <div className={styles.modal}>
-        <div className={styles.modalHeading}>{props.currentTask.title}</div>
+        <div className={styles.modalHeader}>
+          <div className={styles.modalHeading}>{props.currentTask.title}</div>
+        </div>
         <div className={styles.modalContent}>
 
           <div className={styles.taskDescription}>{props.currentTask.description}</div>
