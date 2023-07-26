@@ -21,7 +21,7 @@ export default function ShowTaskModal(props) {
     modalClassName += " light-mode"
   }
 
-  function handleChange(event) {
+  function handleChangeColumn(event) {
     const {name, value} = event.target
     setNewTask(prevNewTask => ({
         ...prevNewTask,
@@ -114,7 +114,7 @@ export default function ShowTaskModal(props) {
                 className={`${styles.modalFormInput} ${styles.modalFormSelect}`}
                 name="columnId"
                 value={newTask.columnId}
-                onChange={handleChange}
+                onChange={handleChangeColumn}
               >
                 {/* <option disabled value="defaultValue">Select Column</option> */}
                 {columnOptions}
