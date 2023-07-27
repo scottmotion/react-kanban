@@ -49,11 +49,11 @@ export default function EllipsisDropdown(props) {
     }
 
     function handleClickDelete() {
-        // if (props.currentBoard) {
-        //     setShowDropdown(false)
-        //     props.confirmDeleteBoard(props.currentBoard.id)
-        // }
-        setShowDropdown(false)
+        if (props.currentItem) {
+            setShowDropdown(false)
+            // props.confirmDeleteBoard(props.currentBoard.id)
+        }
+        // setShowDropdown(false)
         // props.confirmDeleteBoard(props.currentBoard.id)
     }
 
