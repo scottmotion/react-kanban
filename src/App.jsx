@@ -8,7 +8,7 @@ import Board from "./Components/Board/Board"
 
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
-import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
+import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteBoardModal"
 import AddColumnModal from "./Components/Modals/AddColumnModal"
 import AddTaskModal from "./Components/Modals/AddTaskModal"
 import ShowTaskModal from "./Components/Modals/ShowTaskModal"
@@ -29,6 +29,8 @@ function App() {
   const [currentColumnId, setCurrentColumnId] = useState("")
 
   const [currentTask, setCurrentTask] = useState({})
+  const [currentTaskId, setCurrentTaskId] = useState("")
+
 
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
 
@@ -49,6 +51,16 @@ function App() {
   }
   function showSidebar() {
     setSidebarVisible(true)
+  }
+
+  //////////////////////
+  // GENERAL CRUD
+  //////////////////////
+
+  //confirm before delete
+  function confirmDelete(itemId) {
+    // setModalOpen("confirmDeleteBoard")
+    // setCurrentBoardId(boardId)
   }
 
   //////////////////////
@@ -203,6 +215,27 @@ function App() {
     setModalOpen("")
   }
 
+  //confirm before delete task
+  function confirmDeleteTask(taskId) {
+    setModalOpen("confirmDeleteTask")
+    setCurrentTaskId(taskId)
+  }
+
+  // delete board
+  async function deleteTask(taskId) {
+    const docRef = doc(db, "boards", currentBoardId, "columns", currentColumnId, "tasks", taskId)
+    await deleteDoc(docRef)
+    setModalOpen("")
+    setCurrentTaskId(false)
+    // TODO: recursively delete columns and tasks
+  }
+
+
+
+
+
+
+
   return (
     <>
       <AppHeader
@@ -292,6 +325,7 @@ function App() {
           currentColumnId={currentColumnId}
           addTask={addTask}
           currentTask={currentTask}
+          confirmDelete={confirmDeleteTask}
         />
       }
 

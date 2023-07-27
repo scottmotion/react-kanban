@@ -1,19 +1,6 @@
-import { useState } from "react";
 import styles from "./Modal.module.css"
 
 export default function ConfirmDeleteModal(props) {
-
-    // const [newBoard, setNewBoard] = useState({
-    //     name: ''
-    // })
-
-    // function handleChange(event) {
-    //     const {value} = event.target
-    //     setNewBoard(prevNewBoard => ({
-    //         ...prevNewBoard,
-    //         name: value
-    //     }))
-    // }
 
     const handleSubmit = (event) => {
         event.preventDefault();

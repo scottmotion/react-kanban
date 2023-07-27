@@ -51,7 +51,7 @@ export default function EllipsisDropdown(props) {
     function handleClickDelete() {
         if (props.currentItem) {
             setShowDropdown(false)
-            // props.confirmDeleteBoard(props.currentBoard.id)
+            props.confirmDelete(props.currentItem.id)
         }
         // setShowDropdown(false)
         // props.confirmDeleteBoard(props.currentBoard.id)
