@@ -8,10 +8,11 @@ import Board from "./Components/Board/Board"
 
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
-import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteBoardModal"
+import ConfirmDeleteBoardModal from "./Components/Modals/ConfirmDeleteBoardModal"
 import AddColumnModal from "./Components/Modals/AddColumnModal"
 import AddTaskModal from "./Components/Modals/AddTaskModal"
 import ShowTaskModal from "./Components/Modals/ShowTaskModal"
+import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, setDoc, updateDoc, collection } from "firebase/firestore"
 import { boardsCollection, db } from "./firebase"
@@ -30,6 +31,8 @@ function App() {
 
   const [currentTask, setCurrentTask] = useState({})
   const [currentTaskId, setCurrentTaskId] = useState("")
+
+  const [willDeleteId, setWillDeleteId] = useState({type: "", id: ""})
 
 
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
@@ -217,16 +220,18 @@ function App() {
 
   //confirm before delete task
   function confirmDeleteTask(taskId) {
-    setModalOpen("confirmDeleteTask")
+    setModalOpen("confirmDelete")
     setCurrentTaskId(taskId)
+    setWillDeleteId({type: "task", id: taskId})
   }
 
-  // delete board
+  // delete task
   async function deleteTask(taskId) {
     const docRef = doc(db, "boards", currentBoardId, "columns", currentColumnId, "tasks", taskId)
     await deleteDoc(docRef)
     setModalOpen("")
     setCurrentTaskId(false)
+    setWillDeleteId(false)
     // TODO: recursively delete columns and tasks
   }
 
@@ -292,7 +297,7 @@ function App() {
         />
       }
       {(modalOpen === "confirmDeleteBoard") &&
-        <ConfirmDeleteModal
+        <ConfirmDeleteBoardModal
           darkMode={darkMode}
           setModalOpen={setModalOpen}
           currentBoardId={currentBoardId}
@@ -326,6 +331,15 @@ function App() {
           addTask={addTask}
           currentTask={currentTask}
           confirmDelete={confirmDeleteTask}
+        />
+      }
+      {(modalOpen === "confirmDelete") &&
+        <ConfirmDeleteModal
+          darkMode={darkMode}
+          setModalOpen={setModalOpen}
+          willDeleteId={willDeleteId}
+          deleteBoard={deleteBoard}
+          deleteTask={deleteTask}
         />
       }
 

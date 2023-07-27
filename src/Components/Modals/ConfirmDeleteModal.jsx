@@ -1,11 +1,11 @@
 import styles from "./Modal.module.css"
 
-export default function ConfirmDeleteBoardModal(props) {
+export default function ConfirmDeleteModal(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (props.currentBoardId) {
-          props.deleteBoard(props.currentBoardId)
+        if (props.willDeleteId.type === "task") {
+          props.deleteTask(props.willDeleteId.id)
         }
     }
 
@@ -13,7 +13,7 @@ export default function ConfirmDeleteBoardModal(props) {
       <>
         <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
         <div className={styles.modal}>
-          <div className={styles.modalHeading}>Delete Board</div>
+          <div className={styles.modalHeading}>Delete {props.willDeleteId.type}</div>
           <div className={styles.modalContent}>
             <form className={styles.modalForm} onSubmit={handleSubmit} autoComplete="off">
                 <button className={`${styles.btn} ${styles.deleteBtn}`} type="submit">Delete</button>
