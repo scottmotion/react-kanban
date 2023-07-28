@@ -49,6 +49,7 @@ export default function EllipsisDropdown(props) {
     }
 
     function handleClickDelete() {
+        console.log("Delete Item: ", props.currentItem)
         if (props.currentItem) {
             setShowDropdown(false)
             props.confirmDelete(props.currentItem.id)

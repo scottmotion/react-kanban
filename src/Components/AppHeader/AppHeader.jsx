@@ -1,5 +1,6 @@
 import { ReactComponent as PlusIcon } from "/src/assets/icons/icon-plus.svg"
 import { ReactComponent as VerticalEllipsisIcon } from "/src/assets/icons/icon-ellipsis-vertical.svg"
+import EllipsisDropdown from "../Dropdowns/EllipsisDropdown"
 import { useState, useRef, useEffect } from "react"
 import './AppHeader.css'
 
@@ -49,19 +50,19 @@ export default function AppHeader(props) {
   boardOptionsClickOutside(boardOptionsWrapperRef);
 
   // button handlers
-  function handleEditBoard() {
-    if (props.currentBoard) {
-      setShowBoardOptions(false)
-      props.setModalOpen("updateBoard")
-    }
-  }
+  // function handleEditBoard() {
+  //   if (props.currentBoard) {
+  //     setShowBoardOptions(false)
+  //     props.setModalOpen("updateBoard")
+  //   }
+  // }
 
-  function handleDeleteBoard() {
-    if (props.currentBoard) {
-      setShowBoardOptions(false)
-      props.confirmDeleteBoard(props.currentBoard.id)
-    }
-  }
+  // function handleDeleteBoard() {
+  //   if (props.currentBoard) {
+  //     setShowBoardOptions(false)
+  //     props.confirmDeleteBoard(props.currentBoard.id)
+  //   }
+  // }
 
   function handleNewTask() {
     if (props.currentBoard) {
@@ -79,7 +80,9 @@ export default function AppHeader(props) {
             <PlusIcon className='header-button__icon header-button__icon--new'/>
             <div className="header-button__text--new-task">Add New Task</div>
           </button>
-          <div className="edit-board-menu--wrapper" ref={boardOptionsWrapperRef}>
+          <EllipsisDropdown currentItem={props.currentBoard} confirmDelete={props.confirmDelete} />
+
+          {/* <div className="edit-board-menu--wrapper" ref={boardOptionsWrapperRef}>
             <button className="button header-button header-button--edit-board" onClick={toggleBoardOptions}>
               <VerticalEllipsisIcon className='header-button__icon header-button__icon--edit'/>
             </button>
@@ -87,7 +90,8 @@ export default function AppHeader(props) {
               <div className="button edit-board-menu--edit" onClick={handleEditBoard}>Edit Board</div>
               <div className="button edit-board-menu--delete" onClick={handleDeleteBoard}>Delete Board</div>
             </div>
-          </div>
+          </div> */}
+
         </div>
       </div>
     </header>

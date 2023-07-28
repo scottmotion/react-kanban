@@ -3,12 +3,14 @@ import styles from "./Modal.module.css"
 export default function ConfirmDeleteModal(props) {
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        if (props.willDeleteId.type === "task") {
-          props.deleteTask(props.willDeleteId.id)
-        }
+      event.preventDefault();
+      if (props.willDeleteId.type === "board") {
+        props.deleteBoard(props.willDeleteId.id)
+      } else if (props.willDeleteId.type === "task") {
+        props.deleteTask(props.willDeleteId.id)
+      }
     }
-
+    
     return (
       <>
         <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />

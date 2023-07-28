@@ -130,8 +130,9 @@ function App() {
 
   //confirm before delete board
   function confirmDeleteBoard(boardId) {
-    setModalOpen("confirmDeleteBoard")
+    setModalOpen("confirmDelete")
     setCurrentBoardId(boardId)
+    setWillDeleteId({type: "board", id: boardId})
   }
 
   // delete board
@@ -140,6 +141,7 @@ function App() {
     await deleteDoc(docRef)
     setModalOpen("")
     setCurrentBoardId(false)
+    setWillDeleteId(false)
     // TODO: recursively delete columns and tasks
   }
 
@@ -249,6 +251,7 @@ function App() {
         currentBoard={currentBoard}
         columnCount={columnCount}
         confirmDeleteBoard={confirmDeleteBoard}
+        confirmDelete={confirmDeleteBoard}
       />
       
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
