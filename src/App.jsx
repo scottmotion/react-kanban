@@ -250,7 +250,7 @@ function App() {
         setModalOpen={setModalOpen}
         currentBoard={currentBoard}
         columnCount={columnCount}
-        confirmDeleteBoard={confirmDeleteBoard}
+        // confirmDeleteBoard={confirmDeleteBoard}
         confirmDelete={confirmDeleteBoard}
       />
       
