@@ -1,5 +1,5 @@
 import { ReactComponent as PlusIcon } from "/src/assets/icons/icon-plus.svg"
-import { ReactComponent as VerticalEllipsisIcon } from "/src/assets/icons/icon-ellipsis-vertical.svg"
+// import { ReactComponent as VerticalEllipsisIcon } from "/src/assets/icons/icon-ellipsis-vertical.svg"
 import EllipsisDropdown from "../Dropdowns/EllipsisDropdown"
 import { useState, useRef, useEffect } from "react"
 import './AppHeader.css'

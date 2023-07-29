@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
+
 import styles from "./Modal.module.css"
 
 export default function AddTaskModal(props) {
@@ -93,7 +95,9 @@ export default function AddTaskModal(props) {
           onChange={(e) => handleChangeSubtask(e, index)}
         />
       </label>
-      <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveSubtask(e, index)}}>X</button>
+      <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveSubtask(e, index)}}>
+        <CrossIcon className={`${styles.deleteBtnIcon}`}/>
+      </button>
     </div>
   ))
 

@@ -163,8 +163,16 @@ textarea:focus {
 }
 
 .deleteBtn {
-  color: #fff;
-  background-color: #ff3e4e;
+  color: var(--text-mediumGrey);
+  background: none;
+  /* background-color: #ff3e4e; */
+  padding: 0;
+}
+.deleteBtnIcon {
+  border-radius: 100%;
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: text-top;
 }
 
 .cancelBtn {
@@ -172,3 +180,13 @@ textarea:focus {
   background-color: var(--bg-white);
   border: 1px solid var(--border-dark);
 }
+
+/* .deleteBtn {
+  border-radius: 100%;
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: text-top;
+  color: #fff;
+  background-color: #ff3e4e;
+  padding: 0;
+} */
