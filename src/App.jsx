@@ -219,9 +219,39 @@ function App() {
     setModalOpen("")
   }
 
-  function updateTask(taskId) {
-    console.log("Update Task: ", taskId)
+  // function updateTask(taskId) {
+  //   console.log("Update Task: ", taskId)
+  // }
+
+
+
+
+  // update task
+  async function updateTask(data, columnId) {
+    // let docRef
+
+    // if (columnId) {
+    //   docRef = doc(db, "boards", currentBoardId, "columns", columnId, "tasks", data.id)
+    // } else {
+    //   docRef = doc(db, "boards", currentBoardId, "columns", currentColumnId, "tasks", data.id)
+    // }
+
+    // const newData = {
+    //   name: data.name,
+    //   order: data.order,
+    //   updatedAt: Date.now()
+    // }
+
+    // return await updateDoc(docRef, newData)
+    return console.log("updateTask(data, columnId) ", data, columnId)
+
   }
+
+
+
+
+
+
 
   //confirm before delete task
   function confirmDeleteTask(taskId) {
