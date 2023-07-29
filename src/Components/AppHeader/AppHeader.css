@@ -179,11 +179,13 @@
   color: var(--text-mediumGrey);
   white-space: nowrap;
   cursor: pointer;
+  text-transform: capitalize;
 }
 .edit-board-menu--delete {
   color: var(--text-danger);
   white-space: nowrap;
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 .edit-board-menu--edit:hover, .edit-board-menu--delete:hover {
