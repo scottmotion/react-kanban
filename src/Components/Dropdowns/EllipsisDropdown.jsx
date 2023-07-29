@@ -40,12 +40,15 @@ export default function EllipsisDropdown(props) {
 
     // button handlers
     function handleClickEdit() {
-        // if (props.currentBoard) {
-        //     setShowDropdown(false)
-        //     props.setModalOpen("updateBoard")
-        // }
+        if (props.itemType === "board") {
+            setShowDropdown(false)
+            props.setModalOpen("updateBoard")
+        } else if (props.itemType ==="task") {
+            setShowDropdown(false)
+            // props.setModalOpen("updateTask")
+            console.log("Update Task: ", props.currentItem.id)
+        }
         setShowDropdown(false)
-        // props.setModalOpen("updateBoard")
     }
 
     function handleClickDelete() {
@@ -54,8 +57,6 @@ export default function EllipsisDropdown(props) {
             setShowDropdown(false)
             props.confirmDelete(props.currentItem.id)
         }
-        // setShowDropdown(false)
-        // props.confirmDeleteBoard(props.currentBoard.id)
     }
 
     return (

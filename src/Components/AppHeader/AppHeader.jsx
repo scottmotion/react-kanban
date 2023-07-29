@@ -80,7 +80,7 @@ export default function AppHeader(props) {
             <PlusIcon className='header-button__icon header-button__icon--new'/>
             <div className="header-button__text--new-task">Add New Task</div>
           </button>
-          <EllipsisDropdown currentItem={props.currentBoard} confirmDelete={props.confirmDelete} />
+          <EllipsisDropdown currentItem={props.currentBoard} confirmDelete={props.confirmDelete} editItem={props.editItem} itemType={"board"} setModalOpen={props.setModalOpen}/>
 
           {/* <div className="edit-board-menu--wrapper" ref={boardOptionsWrapperRef}>
             <button className="button header-button header-button--edit-board" onClick={toggleBoardOptions}>

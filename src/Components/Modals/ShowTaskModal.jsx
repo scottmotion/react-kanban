@@ -133,7 +133,7 @@ export default function ShowTaskModal(props) {
       <div className={`${styles.modal} ${modalClassName}`}>
         <div className={styles.modalHeader}>
           <div className={styles.modalHeading}>{props.currentTask.title}</div>
-          <EllipsisDropdown currentItem={props.currentTask} confirmDelete={props.confirmDelete} />
+          <EllipsisDropdown currentItem={props.currentTask} confirmDelete={props.confirmDelete} editItem={props.editItem} itemType={"task"} setModalOpen={props.setModalOpen}/>
         </div>
         <div className={styles.modalContent}>
 

@@ -8,7 +8,6 @@ import Board from "./Components/Board/Board"
 
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
-import ConfirmDeleteBoardModal from "./Components/Modals/ConfirmDeleteBoardModal"
 import AddColumnModal from "./Components/Modals/AddColumnModal"
 import AddTaskModal from "./Components/Modals/AddTaskModal"
 import ShowTaskModal from "./Components/Modals/ShowTaskModal"
@@ -220,6 +219,10 @@ function App() {
     setModalOpen("")
   }
 
+  function updateTask(taskId) {
+    console.log("Update Task: ", taskId)
+  }
+
   //confirm before delete task
   function confirmDeleteTask(taskId) {
     setModalOpen("confirmDelete")
@@ -240,9 +243,6 @@ function App() {
 
 
 
-
-
-
   return (
     <>
       <AppHeader
@@ -252,6 +252,7 @@ function App() {
         columnCount={columnCount}
         // confirmDeleteBoard={confirmDeleteBoard}
         confirmDelete={confirmDeleteBoard}
+        editItem={updateBoard}
       />
       
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
@@ -299,14 +300,6 @@ function App() {
           deleteColumn={deleteColumn}
         />
       }
-      {(modalOpen === "confirmDeleteBoard") &&
-        <ConfirmDeleteBoardModal
-          darkMode={darkMode}
-          setModalOpen={setModalOpen}
-          currentBoardId={currentBoardId}
-          deleteBoard={deleteBoard}
-        />
-      }
       {(modalOpen === "addColumn") &&
         <AddColumnModal
           darkMode={darkMode}
@@ -334,6 +327,7 @@ function App() {
           addTask={addTask}
           currentTask={currentTask}
           confirmDelete={confirmDeleteTask}
+          editItem={updateTask}
         />
       }
       {(modalOpen === "confirmDelete") &&
