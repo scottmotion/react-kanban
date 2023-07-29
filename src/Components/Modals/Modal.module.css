@@ -163,9 +163,12 @@ textarea:focus {
 }
 
 .deleteBtn {
+  color: #fff;
+  background-color: #ff3e4e;
+}
+.deleteBtnCircle {
   color: var(--text-mediumGrey);
   background: none;
-  /* background-color: #ff3e4e; */
   padding: 0;
 }
 .deleteBtnIcon {

@@ -1,3 +1,4 @@
+import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
 import { useState } from "react";
 import styles from "./Modal.module.css"
 
@@ -28,7 +29,9 @@ export default function UpdateBoardModal(props) {
             id={column.id}
           />
         </label>
-        <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveColumn(e, index, column.id)}}>X</button>
+        <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => {handleRemoveColumn(e, index, column.id)}}>
+          <CrossIcon className={`${styles.deleteBtnIcon}`}/>
+        </button>
       </div>
     ))
   

@@ -95,7 +95,7 @@ export default function AddTaskModal(props) {
           onChange={(e) => handleChangeSubtask(e, index)}
         />
       </label>
-      <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveSubtask(e, index)}}>
+      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => {handleRemoveSubtask(e, index)}}>
         <CrossIcon className={`${styles.deleteBtnIcon}`}/>
       </button>
     </div>

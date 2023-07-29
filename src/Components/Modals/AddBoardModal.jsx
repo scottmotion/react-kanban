@@ -23,7 +23,7 @@ export default function AddBoardModal(props) {
           onChange={(e) => handleChangeColumn(e, index)}
         />
       </label>
-      <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveColumn(e, index)}}>
+      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => {handleRemoveColumn(e, index)}}>
         <CrossIcon className={`${styles.deleteBtnIcon}`}/>
       </button>
     </div>
