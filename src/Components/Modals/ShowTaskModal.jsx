@@ -13,10 +13,16 @@ export default function ShowTaskModal(props) {
   const taskRef = doc(boardsCollection, props.currentBoardId, "tasks", props.currentTask.id)
   // get boards from firebase
   useEffect(() => {
-    const unsubscribe = onSnapshot(taskRef, function(doc) {
-      // console.log("snapshot.data: ", doc.data())
-      setTask(doc.data())
-      setSubtasks(doc.data().subtasks)
+    const unsubscribe = onSnapshot(taskRef, function(snapshot) {
+      console.log("snapshot.id: ", snapshot.id)
+      console.log("snapshot.data: ", snapshot.data())
+      const tempTask = {
+        ...snapshot.data(),
+        id: snapshot.id
+        
+      }
+      setTask(tempTask)
+      setSubtasks(snapshot.data().subtasks)
     })
     return unsubscribe
   }, [])

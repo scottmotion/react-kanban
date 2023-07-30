@@ -267,6 +267,7 @@ function App() {
     setCurrentTaskId(taskId)
     setWillDeleteId({type: "task", id: taskId})
   }
+  console.log("willdeleteid: ", willDeleteId)
 
   // delete task
   async function deleteTask(taskId) {
