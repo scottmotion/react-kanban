@@ -1,5 +1,6 @@
 import EllipsisDropdown from "../Dropdowns/EllipsisDropdown";
 import { useState } from "react";
+
 import styles from "./Modal.module.css"
 
 export default function ShowTaskModal(props) {
@@ -22,12 +23,12 @@ export default function ShowTaskModal(props) {
     modalClassName += " light-mode"
   }
 
-  function handleChangeColumn(event) {
-    const {name, value} = event.target
-    setNewTask(prevNewTask => ({
-        ...prevNewTask,
-        [name]: value
-    }))
+  const handleChangeColumn = async (event) =>  {
+    const taskId = props.currentTask.id
+    const columnId = event.target.value
+
+    await props.changeTaskColumn(taskId,columnId)
+
   }
 
   // function handleNewSubtask(event) {
@@ -147,7 +148,7 @@ export default function ShowTaskModal(props) {
             <select
               className={`${styles.modalFormInput} ${styles.modalFormSelect}`}
               name="columnId"
-              value={newTask.columnId}
+              value={props.currentTask.columnId}
               onChange={handleChangeColumn}
             >
             {/* <option disabled value="defaultValue">Select Column</option> */}

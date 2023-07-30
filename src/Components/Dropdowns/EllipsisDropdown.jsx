@@ -45,7 +45,7 @@ export default function EllipsisDropdown(props) {
             props.setModalOpen("updateBoard")
         } else if (props.itemType ==="task") {
             setShowDropdown(false)
-            // props.setModalOpen("updateTask")
+            props.setModalOpen("updateTask")
             console.log("Update Task: ", props.currentItem.id)
         }
         setShowDropdown(false)

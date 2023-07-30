@@ -223,12 +223,16 @@ function App() {
     setModalOpen("")
   }
 
-  // function updateTask(taskId) {
-  //   console.log("Update Task: ", taskId)
-  // }
-
-
-
+  async function changeTaskColumn(taskId, columnId, boardId) {
+    let docRef
+    if (boardId) {
+      docRef = doc(boardsCollection, boardId, "tasks", taskId)
+    } else {
+      docRef = doc(boardsCollection, currentBoardId, "tasks", taskId)
+    }
+    return await updateDoc(docRef, {columnId: columnId})
+    // TODO: currentTask is still old task
+  }
 
   // update task
   async function updateTask(data, columnId) {
@@ -271,7 +275,7 @@ function App() {
     setModalOpen("")
     setCurrentTaskId(false)
     setWillDeleteId(false)
-    // TODO: recursively delete columns and tasks
+    // TODO: recursively reorder tasks
   }
 
 
@@ -362,6 +366,7 @@ function App() {
           currentTask={currentTask}
           confirmDelete={confirmDeleteTask}
           editItem={updateTask}
+          changeTaskColumn={changeTaskColumn}
         />
       }
       {(modalOpen === "updateTask") &&
