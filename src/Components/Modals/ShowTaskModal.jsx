@@ -1,20 +1,27 @@
 import EllipsisDropdown from "../Dropdowns/EllipsisDropdown";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { boardsCollection } from "../../firebase";
+import { doc, updateDoc, onSnapshot } from "firebase/firestore";
 
 import styles from "./Modal.module.css"
 
 export default function ShowTaskModal(props) {
 
-  const [newTask, setNewTask] = useState({
-    name: '',
-    description: '',
-    columnId: props.currentColumnId,
-  })
+  const [task, setTask] = useState({})
+  const [subtasks, setSubtasks] = useState([])
 
-  // const [newSubtasks, setNewSubtasks] = useState([{
-  //   name: '',
-  //   isCompleted: false
-  // }])
+  const taskRef = doc(boardsCollection, props.currentBoardId, "tasks", props.currentTask.id)
+  // get boards from firebase
+  useEffect(() => {
+    const unsubscribe = onSnapshot(taskRef, function(doc) {
+      console.log("snapshot.data: ", doc.data())
+      setTask(doc.data())
+      setSubtasks(doc.data().subtasks)
+    })
+    return unsubscribe
+  }, [])
+  console.log("task: ", task)
+  console.log("subtasks: ",subtasks)
 
   let modalClassName = "modal"
   if (props.darkMode) {
@@ -44,14 +51,34 @@ export default function ShowTaskModal(props) {
   // }
 
 
-  function handleSubtaskCheckbox(event, subtaskIndex) {
+  const handleSubtaskCheckbox = async (event, subtask, subtaskIndex) => {
     const subtaskId = subtaskIndex
     const checked = event.target.checked
+    const tempSubtask = {
+      ...subtask,
+      isCompleted: checked
+    }
+    const tempSubtasksArray = subtasks.map((s, index) => {
+      if (index === subtaskId) {
+        return tempSubtask;
+      } else {
+        return s;
+      }
+
+    })
+
     console.log("Checkbox clicked index: ", subtaskId)
     console.log("checked: ", checked)
-    // const tempSubtask = {
-    //   isCompleted: event.target.checked
-    // }
+    setSubtasks(subtasks.map((s, index) => {
+      if (index === subtaskId) {
+        return tempSubtask;
+      } else {
+        return s;
+      }
+
+    }))
+
+    return await updateDoc(taskRef, { subtasks : tempSubtasksArray } )
 
   }
 
@@ -95,7 +122,7 @@ export default function ShowTaskModal(props) {
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   ))
 
-  const newSubtaskInputs = props.currentTask.subtasks?.map((subtask, index) => (
+  const newSubtaskInputs = subtasks.map((subtask, index) => (
     <div className={styles.modalFormInputWrapper} key={index}>
 
       <label className={`${styles.modalFormLabel} ${styles.modalFormLabelCheckbox}`}>
@@ -105,7 +132,7 @@ export default function ShowTaskModal(props) {
           name="isCompleted"
           id={index}
           // value={subtask.isCompleted}
-          onChange={(e) => handleSubtaskCheckbox(e, index)}
+          onChange={(e) => handleSubtaskCheckbox(e, subtask, index)}
           checked={subtask.isCompleted}
         />
       </label>
@@ -133,12 +160,12 @@ export default function ShowTaskModal(props) {
       {/* <div className={styles.modal}> */}
       <div className={`${styles.modal} ${modalClassName}`}>
         <div className={styles.modalHeader}>
-          <div className={styles.modalHeading}>{props.currentTask.title}</div>
-          <EllipsisDropdown currentItem={props.currentTask} confirmDelete={props.confirmDelete} editItem={props.editItem} itemType={"task"} setModalOpen={props.setModalOpen}/>
+          <div className={styles.modalHeading}>{task.title}</div>
+          <EllipsisDropdown currentItem={task} confirmDelete={props.confirmDelete} editItem={props.editItem} itemType={"task"} setModalOpen={props.setModalOpen}/>
         </div>
         <div className={styles.modalContent}>
 
-          <div className={styles.taskDescription}>{props.currentTask.description}</div>
+          <div className={styles.taskDescription}>{task.description}</div>
 
           <div>Subtasks</div>
           {newSubtaskInputs}
@@ -148,7 +175,7 @@ export default function ShowTaskModal(props) {
             <select
               className={`${styles.modalFormInput} ${styles.modalFormSelect}`}
               name="columnId"
-              value={props.currentTask.columnId}
+              value={task.columnId}
               onChange={handleChangeColumn}
             >
             {/* <option disabled value="defaultValue">Select Column</option> */}

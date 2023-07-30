@@ -11,8 +11,8 @@ export default function TaskCard(props) {
     })
 
     function handleClick() {
-        console.log("task.id: ", props.task.id)
-        console.log("task: ", props.task)
+        // console.log("task.id: ", props.task.id)
+        // console.log("task: ", props.task)
         props.setCurrentColumnId(props.columnId)
         props.setCurrentTask(props.task)
         props.setModalOpen("showTask")
