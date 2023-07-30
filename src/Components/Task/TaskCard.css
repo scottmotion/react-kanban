@@ -18,10 +18,10 @@
 .task-card:hover {
   cursor: pointer;
 }
-.task-card:hover .task-card__title {
+.task-card:hover .task-card__name {
   color: var(--text-purple);
 }
-.task-card__title {
+.task-card__name {
   font-weight: var(--fw-700);
 }
 .task-card__subtasks {

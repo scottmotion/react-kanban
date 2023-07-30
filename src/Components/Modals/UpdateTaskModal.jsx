@@ -7,84 +7,20 @@ import styles from "./Modal.module.css"
 
 export default function UpdateTaskModal(props) {
 
-  const [newTask, setNewTask] = useState({
-    name: '',
-    description: '',
-    columnId: props.columns[0].id,
+  const [tempTask, setTempTask] = useState({
+    name: props.currentTask.name,
+    id: props.currentTask.id,
+    description: props.currentTask.description,
+    columnId: props.currentTask.columnId
   })
 
-  const [newSubtasks, setNewSubtasks] = useState([{
-    name: '',
-    isCompleted: false
-  }])
+  const [tempSubtasks, setTempSubtasks] = useState(props.currentTask.subtasks)
+  // console.log("tempColumns: ", tempColumns)
 
-  let modalClassName = "modal"
-  if (props.darkMode) {
-    modalClassName += " dark-mode"
-  } else {
-    modalClassName += " light-mode"
-  }
+  const [removedSubtasks, setRemovedSubtasks] = useState([])
+  // console.log("removedColumns: ", removedColumns)
 
-  function handleChange(event) {
-    const {name, value} = event.target
-    setNewTask(prevNewTask => ({
-        ...prevNewTask,
-        [name]: value
-    }))
-  }
-
-  function handleNewSubtask(event) {
-    event.preventDefault();
-    console.log("New Subtask Clicked")
-    setNewSubtasks([
-      ...newSubtasks,
-      {
-        name: '',
-        isCompleted: false
-      }
-    ]);
-  }
-
-  function handleChangeSubtask(event, subtaskIndex) {
-    const subtaskValue = event.target.value
-    const subtaskId = subtaskIndex
-    const tempSubtask = {
-      name: subtaskValue,
-      isCompleted: false
-    }
-    console.log(tempSubtask)
-
-    setNewSubtasks(newSubtasks.map((s, index) => {
-      if (index === subtaskId) {
-        return tempSubtask;
-      } else {
-        return s;
-      }
-    }));
-  }
-
-  function handleRemoveSubtask(event, subtaskIndex) {
-    event.preventDefault();
-    console.log("Remove Subtask Clicked: ", subtaskIndex)
-    setNewSubtasks(
-      newSubtasks.filter((s, index) =>
-        index !== subtaskIndex
-      )
-    );
-  }
-
-  const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
-    event.preventDefault();
-    if (newTask.name) {
-      props.addTask(newTask, newSubtasks)
-    }
-  }
-
-  const columnOptions = props.columns.map((column, index) => (
-    <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
-  ))
-
-  const newSubtaskInputs = newSubtasks.map((subtask, index) => (
+  const tempSubtaskInputs = tempSubtasks.map((subtask, index) => (
     <div className={styles.modalFormInputWrapper} key={index}>
       <label className={styles.modalFormLabel}>
         <input
@@ -103,6 +39,72 @@ export default function UpdateTaskModal(props) {
     </div>
   ))
 
+   const columnOptions = props.columns.map((column, index) => (
+    <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
+  )) 
+
+  let modalClassName = "modal"
+  if (props.darkMode) {
+    modalClassName += " dark-mode"
+  } else {
+    modalClassName += " light-mode"
+  }
+
+  function handleChange(event) {
+    const {name, value} = event.target
+    setTempTask(prevTempTask => ({
+        ...prevTempTask,
+        [name]: value
+    }))
+  }
+
+  function handleNewSubtask(event) {
+    event.preventDefault();
+    console.log("New Subtask Clicked")
+    setTempSubtasks([
+      ...tempSubtasks,
+      {
+        name: '',
+        isCompleted: false
+      }
+    ]);
+  }
+
+  function handleChangeSubtask(event, subtaskIndex) {
+    const subtaskValue = event.target.value
+    const subtaskId = subtaskIndex
+    const tempSubtask = {
+      name: subtaskValue
+    }
+    console.log(tempSubtask)
+
+    setTempSubtasks(tempSubtasks.map((s, index) => {
+      if (index === subtaskId) {
+        return ({...s, ...tempSubtask});
+      } else {
+        return s;
+      }
+    }));
+  }
+
+  function handleRemoveSubtask(event, subtaskIndex) {
+    event.preventDefault();
+    console.log("Remove Subtask Clicked: ", subtaskIndex)
+    setTempSubtasks(
+      tempSubtasks.filter((s, index) =>
+        index !== subtaskIndex
+      )
+    );
+  }
+
+  const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
+    event.preventDefault();
+    let tempData = {...tempTask, subtasks: tempSubtasks}
+    if (tempTask.name) {
+      props.editItem(tempData)
+    }
+  }
+
   return (
     <>
       <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
@@ -118,7 +120,7 @@ export default function UpdateTaskModal(props) {
                 placeholder="Task Name"
                 className={styles.modalFormInput}
                 name="name"
-                value={newTask.name}
+                value={tempTask.name}
                 onChange={handleChange}
               />
             </label>
@@ -129,14 +131,14 @@ export default function UpdateTaskModal(props) {
                 placeholder="e.g. It's always good to take a break. 15 minutes will recharge the batteries a little."
                 className={`${styles.modalFormInput} ${styles.modalFormTextarea}`}
                 name="description"
-                value={newTask.description}
+                value={tempTask.description}
                 onChange={handleChange}
               />
             </label>
 
             <fieldset className={styles.modalFormFieldset}>
               <legend className={styles.modalFormLegend}>Subtasks</legend>
-              {newSubtaskInputs}
+              {tempSubtaskInputs}
             </fieldset>
 
             <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewSubtask(e)}>+ Add New Subtask</button>
@@ -146,7 +148,7 @@ export default function UpdateTaskModal(props) {
               <select
                 className={`${styles.modalFormInput} ${styles.modalFormSelect}`}
                 name="columnId"
-                value={newTask.columnId}
+                value={tempTask.columnId}
                 onChange={handleChange}
               >
                 {/* <option disabled value="defaultValue">Select Column</option> */}
@@ -154,7 +156,7 @@ export default function UpdateTaskModal(props) {
               </select>
             </label>
 
-            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create Task</button>
+            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Save</button>
             {/* <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button> */}
           </form>
         </div>

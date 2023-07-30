@@ -20,7 +20,7 @@ export default function TaskCard(props) {
 
     return (
         <div className="task-card" onClick={handleClick}>
-            <div className="task-card__title">{props.task.title}</div>
+            <div className="task-card__name">{props.task.name}</div>
             <div className="task-card__subtasks">{completedCount} of {subtaskCount} subtasks</div>
         </div>
     )

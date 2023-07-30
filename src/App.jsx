@@ -211,7 +211,7 @@ function App() {
     const snapshot = await getCountFromServer(q);
     const taskCount = snapshot.data().count
     const newTask = {
-      title: task.name,
+      name: task.name,
       description: task.description,
       columnId: task.columnId,
       subtasks: subtasks,
@@ -235,31 +235,27 @@ function App() {
   }
 
   // update task
-  async function updateTask(data, columnId) {
-    // let docRef
+  async function updateTask(data, boardId) {
+    let docRef
 
-    // if (columnId) {
-    //   docRef = doc(db, "boards", currentBoardId, "columns", columnId, "tasks", data.id)
-    // } else {
-    //   docRef = doc(db, "boards", currentBoardId, "columns", currentColumnId, "tasks", data.id)
-    // }
+    if (boardId) {
+      docRef = doc(boardsCollection, boardId, "tasks", data.id)
+    } else {
+      docRef = doc(boardsCollection, currentBoardId, "tasks", data.id)
+    }
 
-    // const newData = {
-    //   name: data.name,
-    //   order: data.order,
-    //   updatedAt: Date.now()
-    // }
+    const newData = {
+      name: data.name,
+      description: data.description,
+      columnId: data.columnId,
+      subtasks: data.subtasks,
+      updatedAt: Date.now()
+    }
 
-    // return await updateDoc(docRef, newData)
-    return console.log("updateTask(data, columnId) ", data, columnId)
+    return await updateDoc(docRef, newData)
+    return console.log("updateTask(data) ", data)
 
   }
-
-
-
-
-
-
 
   //confirm before delete task
   function confirmDeleteTask(taskId) {
