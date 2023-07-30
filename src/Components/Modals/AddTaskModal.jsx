@@ -33,7 +33,7 @@ export default function AddTaskModal(props) {
 
   function handleNewSubtask(event) {
     event.preventDefault();
-    console.log("New Subtask Clicked")
+    // console.log("New Subtask Clicked")
     setNewSubtasks([
       ...newSubtasks,
       {
@@ -50,7 +50,7 @@ export default function AddTaskModal(props) {
       name: subtaskValue,
       isCompleted: false
     }
-    console.log(tempSubtask)
+    // console.log(tempSubtask)
 
     setNewSubtasks(newSubtasks.map((s, index) => {
       if (index === subtaskId) {
@@ -63,7 +63,7 @@ export default function AddTaskModal(props) {
 
   function handleRemoveSubtask(event, subtaskIndex) {
     event.preventDefault();
-    console.log("Remove Subtask Clicked: ", subtaskIndex)
+    // console.log("Remove Subtask Clicked: ", subtaskIndex)
     setNewSubtasks(
       newSubtasks.filter((s, index) =>
         index !== subtaskIndex

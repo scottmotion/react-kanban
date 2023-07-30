@@ -52,7 +52,7 @@ export default function UpdateBoardModal(props) {
 
     function handleNewColumn(event) {
       event.preventDefault();
-      console.log("New Column Clicked")
+      // console.log("New Column Clicked")
       setTempColumns([
         ...tempColumns,
         {
@@ -66,7 +66,7 @@ export default function UpdateBoardModal(props) {
       const columnValue = event.target.value
       const tempColumn = {name: columnValue}
 
-      console.log("handleChangeColumn: ", tempColumn)
+      // console.log("handleChangeColumn: ", tempColumn)
   
       setTempColumns(tempColumns.map((c, index) => {
         if (index === columnIndex) {

@@ -165,7 +165,7 @@ function App() {
       columnsCollection = collection(boardsCollection, currentBoardId, "columns" )
     }
     const newColumnRef = await addDoc(columnsCollection, newColumn)
-    console.log("newColumnRef: ", newColumnRef)
+    // console.log("newColumnRef: ", newColumnRef)
     setModalOpen("")
     return newColumnRef
   }

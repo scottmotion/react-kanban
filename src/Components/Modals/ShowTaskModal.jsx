@@ -14,14 +14,12 @@ export default function ShowTaskModal(props) {
   // get boards from firebase
   useEffect(() => {
     const unsubscribe = onSnapshot(taskRef, function(doc) {
-      console.log("snapshot.data: ", doc.data())
+      // console.log("snapshot.data: ", doc.data())
       setTask(doc.data())
       setSubtasks(doc.data().subtasks)
     })
     return unsubscribe
   }, [])
-  console.log("task: ", task)
-  console.log("subtasks: ",subtasks)
 
   let modalClassName = "modal"
   if (props.darkMode) {
@@ -67,8 +65,6 @@ export default function ShowTaskModal(props) {
 
     })
 
-    console.log("Checkbox clicked index: ", subtaskId)
-    console.log("checked: ", checked)
     setSubtasks(subtasks.map((s, index) => {
       if (index === subtaskId) {
         return tempSubtask;
@@ -171,7 +167,7 @@ export default function ShowTaskModal(props) {
           {newSubtaskInputs}
 
           <label className={styles.modalFormLabel}>
-            Column: {props.currentColumnId}
+            Column:
             <select
               className={`${styles.modalFormInput} ${styles.modalFormSelect}`}
               name="columnId"
