@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { onSnapshot, collection } from 'firebase/firestore'
-import { db } from '../../firebase'
+import { db, boardsCollection } from '../../firebase'
 import './Board.css'
 import Column from "../Columns/Column"
 import ColumnNew from '../Columns/ColumnNew'
@@ -9,7 +9,9 @@ export default function Board(props) {
   
   const [columns, setColumns] = useState([])
 
-  const columnsCollection = collection(db, "boards", props.currentBoard.id, "columns")
+  const columnsCollection = collection(boardsCollection, props.currentBoard.id, "columns")
+  const tasksCollection = collection(boardsCollection, props.currentBoard.id, "tasks")
+
 
   let sectionClassName = 'board__column-section'
   if (props.darkMode) {
@@ -43,6 +45,7 @@ export default function Board(props) {
       name={column.name}
       id={column.id}
       columnsCollection={columnsCollection}
+      tasksCollection={tasksCollection}
       setModalOpen={props.setModalOpen}
       setCurrentTask={props.setCurrentTask}
       setCurrentColumnId={props.setCurrentColumnId}

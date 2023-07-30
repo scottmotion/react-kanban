@@ -13,7 +13,7 @@ import AddTaskModal from "./Components/Modals/AddTaskModal"
 import ShowTaskModal from "./Components/Modals/ShowTaskModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 
-import { onSnapshot, addDoc, doc, deleteDoc, setDoc, updateDoc, collection } from "firebase/firestore"
+import { onSnapshot, addDoc, doc, deleteDoc, setDoc, updateDoc, collection, query, where, getCountFromServer } from "firebase/firestore"
 import { boardsCollection, db } from "./firebase"
 
 function App() {
@@ -113,9 +113,9 @@ function App() {
 
     let docRef
     if (boardId) {
-      docRef = doc(db, "boards", boardId)
+      docRef = doc(boardsCollection, boardId)
     } else {
-      docRef = doc(db, "boards", currentBoardId)
+      docRef = doc(boardsCollection, currentBoardId)
     }
 
     const newData = {
@@ -136,7 +136,7 @@ function App() {
 
   // delete board
   async function deleteBoard(boardId) {
-    const docRef = doc(db, "boards", boardId)
+    const docRef = doc(boardsCollection, boardId)
     await deleteDoc(docRef)
     setModalOpen("")
     setCurrentBoardId(false)
@@ -159,9 +159,9 @@ function App() {
     }
     let columnsCollection
     if (boardRef) {
-      columnsCollection = collection(db, "boards", boardRef.id, "columns" )
+      columnsCollection = collection(boardsCollection, boardRef.id, "columns" )
     } else {
-      columnsCollection = collection(db, "boards", currentBoardId, "columns" )
+      columnsCollection = collection(boardsCollection, currentBoardId, "columns" )
     }
     const newColumnRef = await addDoc(columnsCollection, newColumn)
     console.log("newColumnRef: ", newColumnRef)
@@ -175,9 +175,9 @@ function App() {
     let docRef
 
     if (boardId) {
-      docRef = doc(db, "boards", boardId, "columns", data.id)
+      docRef = doc(boardsCollection, boardId, "columns", data.id)
     } else {
-      docRef = doc(db, "boards", currentBoardId, "columns", data.id)
+      docRef = doc(boardsCollection, currentBoardId, "columns", data.id)
     }
 
     const newData = {
@@ -194,7 +194,7 @@ function App() {
   async function deleteColumn(boardId, columnId) {
     // console.log("deleteColumn(boardId, columnId) ", boardId, columnId)
 
-    const docRef = doc(db, "boards", boardId, "columns", columnId)
+    const docRef = doc(boardsCollection, boardId, "columns", columnId)
     await deleteDoc(docRef)
     setModalOpen("")
     // TODO: recursively delete tasks
@@ -205,16 +205,19 @@ function App() {
 
   // add new task
   async function addTask(task, subtasks) {
+    const tasksCollection = collection(boardsCollection, currentBoardId, "tasks" )
+    const q = query((tasksCollection), where("columnId", "==", task.columnId));
+    const snapshot = await getCountFromServer(q);
+    const taskCount = snapshot.data().count
     const newTask = {
       title: task.name,
       description: task.description,
-      status: task.columnId,
+      columnId: task.columnId,
       subtasks: subtasks,
       createdAt: Date.now(),
-      updatedAt: Date.now()
-      // order: (taskCount + 1)
+      updatedAt: Date.now(),
+      order: (taskCount)
     }
-    const tasksCollection = collection(boardsCollection, currentBoardId, "columns", task.columnId, "tasks" )
     await addDoc(tasksCollection, newTask)
     setModalOpen("")
   }
@@ -262,7 +265,7 @@ function App() {
 
   // delete task
   async function deleteTask(taskId) {
-    const docRef = doc(db, "boards", currentBoardId, "columns", currentColumnId, "tasks", taskId)
+    const docRef = doc(boardsCollection, currentBoardId, "tasks", taskId)
     await deleteDoc(docRef)
     setModalOpen("")
     setCurrentTaskId(false)
