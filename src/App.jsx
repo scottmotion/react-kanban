@@ -11,6 +11,7 @@ import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
 import AddColumnModal from "./Components/Modals/AddColumnModal"
 import AddTaskModal from "./Components/Modals/AddTaskModal"
 import ShowTaskModal from "./Components/Modals/ShowTaskModal"
+import UpdateTaskModal from "./Components/Modals/UpdateTaskModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, setDoc, updateDoc, collection, query, where, getCountFromServer } from "firebase/firestore"
@@ -326,7 +327,7 @@ function App() {
           darkMode={darkMode}
           setModalOpen={setModalOpen}
           currentBoard={currentBoard}
-          updateBoard={updateBoard}
+          editItem={updateBoard}
           columns={columns}
           addColumn={addColumn}
           updateColumn={updateColumn}
@@ -363,6 +364,20 @@ function App() {
           editItem={updateTask}
         />
       }
+      {(modalOpen === "updateTask") &&
+        <UpdateTaskModal
+          darkMode={darkMode}
+          setModalOpen={setModalOpen}
+          currentBoardId={currentBoardId}
+          columns={columns}
+          currentColumnId={currentColumnId}
+          // addTask={addTask}
+          currentTask={currentTask}
+          // confirmDelete={confirmDeleteTask}
+          editItem={updateTask}
+        />
+      }
+
       {(modalOpen === "confirmDelete") &&
         <ConfirmDeleteModal
           darkMode={darkMode}

@@ -101,13 +101,13 @@ export default function UpdateBoardModal(props) {
     const handleSubmit = async (event) => {
       // TODO:
       // create async chain
-      // send boardRef & tempBoard to props.updateBoard
+      // send boardRef & tempBoard to props.editItem
       // send boardRef and removedColumns to props.removeColumn
       // send boardRef and tempColumns to props.addColumn
       event.preventDefault();
 
       try{
-        let updateTempBoard = await props.updateBoard(tempBoard, tempBoard.id)
+        let updateTempBoard = await props.editItem(tempBoard, tempBoard.id)
 
         let deleteRemovedColumns = async () => {
           for (let columnId of removedColumns) {
