@@ -119,6 +119,10 @@ textarea:focus {
 .modalFormInput:disabled {
   color: var(--text-mediumGrey);
 }
+.lightMode .modalFormInput {
+  border: 1px solid var(--text-mediumGrey);
+}
+
 .modalFormTextarea {
   resize: vertical;
   height: 7rem;
@@ -129,7 +133,11 @@ textarea:focus {
   outline: none;
   border: 1px solid var(--text-white);
 }
-
+.lightMode .modalFormInput:focus,
+.lightMode .modalFormTextarea:focus {
+  outline: none;
+  border: 1px solid var(--border-dark);
+}
 .modalFormFieldset {
   display: flex;
   flex-direction: column;
