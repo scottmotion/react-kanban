@@ -29,12 +29,12 @@ export default function AddBoardModal(props) {
     </div>
   ))
 
-  let modalClassName = "modal"
-  if (props.darkMode) {
-    modalClassName += " dark-mode"
-  } else {
-    modalClassName += " light-mode"
-  }
+  // let modalClassName = "modal"
+  // if (props.darkMode) {
+  //   modalClassName += " dark-mode"
+  // } else {
+  //   modalClassName += " light-mode"
+  // }
 
   function handleChangeBoard(event) {
     const {value} = event.target
