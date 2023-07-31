@@ -8,7 +8,6 @@ import Board from "./Components/Board/Board"
 
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
-import AddColumnModal from "./Components/Modals/AddColumnModal"
 import AddTaskModal from "./Components/Modals/AddTaskModal"
 import ShowTaskModal from "./Components/Modals/ShowTaskModal"
 import UpdateTaskModal from "./Components/Modals/UpdateTaskModal"
@@ -333,14 +332,6 @@ function App() {
           addColumn={addColumn}
           updateColumn={updateColumn}
           deleteColumn={deleteColumn}
-        />
-      }
-      {(modalOpen === "addColumn") &&
-        <AddColumnModal
-          darkMode={darkMode}
-          setModalOpen={setModalOpen}
-          currentBoardId={currentBoardId}
-          addColumn={addColumn}
         />
       }
       {(modalOpen === "addTask") &&

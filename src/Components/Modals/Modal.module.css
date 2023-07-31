@@ -38,15 +38,20 @@ textarea:focus {
   gap: 1rem;
   width: 90vw;
   max-width: 25rem;
-  background-color: var(--bg-primary);
-  color: var(--text-white);
+  /* background-color: var(--bg-primary);
+  color: var(--text-white); */
   border-radius: 0.5rem;
   box-shadow: var(--box-shadow);
   padding: 1.5rem;
 }
 
-.modal.light-mode {
+.modal.darkMode {
+  background-color: var(--bg-primary);
+  color: var(--text-white);
+}
+.modal.lightMode {
   background-color: var(--bg-white);
+  color: var(--text-dark);
 }
 
 .modalHeader {

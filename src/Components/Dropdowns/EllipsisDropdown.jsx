@@ -1,7 +1,8 @@
 import { ReactComponent as VerticalEllipsisIcon } from "/src/assets/icons/icon-ellipsis-vertical.svg"
 import { useState, useRef, useEffect } from "react"
 
-import '../AppHeader/AppHeader.css'
+// import '../AppHeader/AppHeader.css'
+import './EllipsisDropdown.css'
 
 export default function EllipsisDropdown(props) {
 

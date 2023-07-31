@@ -130,7 +130,7 @@
   cursor: initial;
 }
 
-.header-button--edit-board {
+/* .header-button--edit-board {
   font-size: 1.7rem;
   cursor: pointer;
   background-color: transparent;
@@ -138,16 +138,16 @@
   border: none;
   border-radius: 1.5rem;
   vertical-align: middle;
-}
+} */
 
-.header-button__icon--edit {
+/* .header-button__icon--edit {
   border-radius: 100%;
   width: 2rem;
   height: 2rem;
   vertical-align: text-top;
-}
+} */
 
-.edit-board-menu--wrapper {
+/* .edit-board-menu--wrapper {
   position: relative;
 }
 .edit-board-menu {
@@ -190,4 +190,4 @@
 
 .edit-board-menu--edit:hover, .edit-board-menu--delete:hover {
   opacity: .7;
-}
+} */

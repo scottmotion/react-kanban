@@ -5,6 +5,8 @@ import styles from "./Modal.module.css"
 
 export default function AddTaskModal(props) {
 
+  const themeClass = props.darkMode ? styles.darkMode : styles.lightMode;
+
   const [newTask, setNewTask] = useState({
     name: '',
     description: '',
@@ -16,12 +18,12 @@ export default function AddTaskModal(props) {
     isCompleted: false
   }])
 
-  let modalClassName = "modal"
-  if (props.darkMode) {
-    modalClassName += " dark-mode"
-  } else {
-    modalClassName += " light-mode"
-  }
+  // let modalClassName = "modal"
+  // if (props.darkMode) {
+  //   modalClassName += " dark-mode"
+  // } else {
+  //   modalClassName += " light-mode"
+  // }
 
   function handleChange(event) {
     const {name, value} = event.target
@@ -104,7 +106,7 @@ export default function AddTaskModal(props) {
   return (
     <>
       <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
-      <div className={styles.modal}>
+      <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Add New Task</div>
         <div className={styles.modalContent}>
           <form className={styles.modalForm} onSubmit={handleSubmit} autoComplete="off">
