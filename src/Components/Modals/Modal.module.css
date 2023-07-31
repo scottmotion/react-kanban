@@ -12,8 +12,6 @@ textarea:focus {
 /* MODAL BACKDROP */
 /******************/
 .darkBG {
-  background-color: rgba(0, 0, 0, 0.2);
-  /* background-color: rgba(17, 0, 57, 0.2); */
   width: 100vw;
   height: 100vh;
   top: 50%;
@@ -21,6 +19,13 @@ textarea:focus {
   transform: translate(-50%, -50%);
   position: absolute;
   z-index: 999;
+}
+
+.darkBG.darkMode {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.darkBG.lightMode {
+  background-color: rgba(12, 0, 57, 0.2);
 }
 
 /*********/
