@@ -122,7 +122,7 @@ function App() {
       name: data.name,
       updatedAt: Date.now()
     }
-  
+    setModalOpen("")
     return await updateDoc(docRef, newData)
 
   }
@@ -218,8 +218,8 @@ function App() {
       updatedAt: Date.now(),
       order: (taskCount)
     }
-    await addDoc(tasksCollection, newTask)
     setModalOpen("")
+    return await addDoc(tasksCollection, newTask)
   }
 
   async function changeTaskColumn(taskId, columnId, boardId) {
@@ -250,10 +250,9 @@ function App() {
       subtasks: data.subtasks,
       updatedAt: Date.now()
     }
-
+    
+    setModalOpen("")
     return await updateDoc(docRef, newData)
-    return console.log("updateTask(data) ", data)
-
   }
 
   //confirm before delete task
