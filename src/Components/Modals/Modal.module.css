@@ -45,6 +45,10 @@ textarea:focus {
   padding: 1.5rem;
 }
 
+.modal.light-mode {
+  background-color: var(--bg-white);
+}
+
 .modalHeader {
   display: flex;
   flex-direction: row;
