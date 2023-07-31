@@ -9,6 +9,13 @@ export default function ShowTaskModal(props) {
 
   const themeClass = props.darkMode ? styles.darkMode : styles.lightMode;
 
+  let modalClassName
+  if (props.darkMode) {
+    modalClassName = "dark-mode"
+  } else {
+    modalClassName = "light-mode"
+  }
+
   const [task, setTask] = useState({})
   const [subtasks, setSubtasks] = useState([])
 
@@ -29,12 +36,7 @@ export default function ShowTaskModal(props) {
     return unsubscribe
   }, [])
 
-  // let modalClassName = "modal"
-  // if (props.darkMode) {
-  //   modalClassName += " dark-mode"
-  // } else {
-  //   modalClassName += " light-mode"
-  // }
+
 
   const handleChangeColumn = async (event) =>  {
     const taskId = props.currentTask.id
@@ -162,7 +164,7 @@ export default function ShowTaskModal(props) {
     <>
       <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
       {/* <div className={styles.modal}> */}
-      <div className={`${styles.modal} ${themeClass}`}>
+      <div className={`${styles.modal} ${themeClass} ${modalClassName}`}>
         <div className={styles.modalHeader}>
           <div className={styles.modalHeading}>{task.name}</div>
           <EllipsisDropdown currentItem={task} confirmDelete={props.confirmDelete} editItem={props.editItem} itemType={"task"} setModalOpen={props.setModalOpen}/>

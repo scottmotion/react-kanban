@@ -33,7 +33,7 @@
     z-index: 99;
 }
 
-.header.light-mode .edit-board-menu {
+.light-mode .edit-board-menu {
     background-color: var(--bg-veryLightBlue);
 }
 
