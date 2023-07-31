@@ -86,7 +86,7 @@ function App() {
   useEffect(() => {
     if (!currentBoardId) {
       setCurrentBoardId(boards[0]?.id)
-      console.log("currentBoardId: ", currentBoardId)
+      // console.log("currentBoardId: ", currentBoardId)
     }
   }, [boards, currentBoardId])
 
@@ -261,7 +261,7 @@ function App() {
     setCurrentTaskId(taskId)
     setWillDeleteId({type: "task", id: taskId})
   }
-  console.log("willdeleteid: ", willDeleteId)
+  // console.log("willdeleteid: ", willDeleteId)
 
   // delete task
   async function deleteTask(taskId) {

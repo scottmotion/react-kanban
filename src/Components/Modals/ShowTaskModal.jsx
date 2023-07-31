@@ -23,8 +23,8 @@ export default function ShowTaskModal(props) {
   // get boards from firebase
   useEffect(() => {
     const unsubscribe = onSnapshot(taskRef, function(snapshot) {
-      console.log("snapshot.id: ", snapshot.id)
-      console.log("snapshot.data: ", snapshot.data())
+      // console.log("snapshot.id: ", snapshot.id)
+      // console.log("snapshot.data: ", snapshot.data())
       const tempTask = {
         ...snapshot.data(),
         id: snapshot.id

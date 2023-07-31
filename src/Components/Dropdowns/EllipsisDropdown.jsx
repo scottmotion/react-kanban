@@ -47,13 +47,13 @@ export default function EllipsisDropdown(props) {
         } else if (props.itemType ==="task") {
             setShowDropdown(false)
             props.setModalOpen("updateTask")
-            console.log("Update Task: ", props.currentItem.id)
+            // console.log("Update Task: ", props.currentItem.id)
         }
         setShowDropdown(false)
     }
 
     function handleClickDelete() {
-        console.log("Delete Item: ", props.currentItem)
+        // console.log("Delete Item: ", props.currentItem)
         if (props.currentItem) {
             setShowDropdown(false)
             props.confirmDelete(props.currentItem.id)

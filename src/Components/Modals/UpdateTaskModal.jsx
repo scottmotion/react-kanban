@@ -62,7 +62,7 @@ export default function UpdateTaskModal(props) {
 
   function handleNewSubtask(event) {
     event.preventDefault();
-    console.log("New Subtask Clicked")
+    // console.log("New Subtask Clicked")
     setTempSubtasks([
       ...tempSubtasks,
       {
@@ -78,7 +78,7 @@ export default function UpdateTaskModal(props) {
     const tempSubtask = {
       name: subtaskValue
     }
-    console.log(tempSubtask)
+    // console.log(tempSubtask)
 
     setTempSubtasks(tempSubtasks.map((s, index) => {
       if (index === subtaskId) {
@@ -91,7 +91,7 @@ export default function UpdateTaskModal(props) {
 
   function handleRemoveSubtask(event, subtaskIndex) {
     event.preventDefault();
-    console.log("Remove Subtask Clicked: ", subtaskIndex)
+    // console.log("Remove Subtask Clicked: ", subtaskIndex)
     setTempSubtasks(
       tempSubtasks.filter((s, index) =>
         index !== subtaskIndex
