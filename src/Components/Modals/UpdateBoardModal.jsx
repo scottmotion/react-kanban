@@ -137,7 +137,7 @@ export default function UpdateBoardModal(props) {
 
   return (
     <>
-      <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
       <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Edit Board</div>
         <div className={styles.modalContent}>

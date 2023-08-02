@@ -109,7 +109,7 @@ export default function UpdateTaskModal(props) {
 
   return (
     <>
-      <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
       <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Edit Task</div>
         <div className={styles.modalContent}>

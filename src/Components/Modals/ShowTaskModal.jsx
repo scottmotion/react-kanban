@@ -162,7 +162,7 @@ export default function ShowTaskModal(props) {
 
   return (
     <>
-      <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
       {/* <div className={styles.modal}> */}
       <div className={`${styles.modal} ${themeClass} ${modalClassName}`}>
         <div className={styles.modalHeader}>

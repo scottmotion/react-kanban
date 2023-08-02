@@ -15,7 +15,7 @@ export default function ConfirmDeleteModal(props) {
   
   return (
     <>
-      <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
       <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Delete {props.willDeleteId.type}</div>
         <div className={styles.modalContent}>

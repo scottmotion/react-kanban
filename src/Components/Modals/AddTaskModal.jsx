@@ -105,7 +105,7 @@ export default function AddTaskModal(props) {
 
   return (
     <>
-      <div className={styles.darkBG} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
       <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Add New Task</div>
         <div className={styles.modalContent}>
