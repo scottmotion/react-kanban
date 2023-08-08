@@ -13,7 +13,7 @@ import ShowTaskModal from "./Components/Modals/ShowTaskModal"
 import UpdateTaskModal from "./Components/Modals/UpdateTaskModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 
-import { onSnapshot, addDoc, doc, deleteDoc, setDoc, updateDoc, collection, query, where, getCountFromServer } from "firebase/firestore"
+import { onSnapshot, addDoc, doc, deleteDoc, updateDoc, collection, query, where, getCountFromServer } from "firebase/firestore"
 import { boardsCollection, db } from "./firebase"
 
 function App() {
