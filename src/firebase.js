@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAkBafSn3g8LnR4gQUZcS_WhgVQZ_w3D-I",
-  authDomain: "react-kanban-37add.firebaseapp.com",
-  projectId: "react-kanban-37add",
-  storageBucket: "react-kanban-37add.appspot.com",
-  messagingSenderId: "666593534499",
-  appId: "1:666593534499:web:9baae7efd58f2dda65c796"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
