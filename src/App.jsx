@@ -199,6 +199,7 @@ function App() {
     setModalOpen("")
     // TODO: recursively delete tasks
   }
+
   //////////////////////
   // TASKS CRUD
   //////////////////////
@@ -272,9 +273,6 @@ function App() {
     setWillDeleteId(false)
     // TODO: recursively reorder tasks
   }
-
-
-
 
   return (
     <>
