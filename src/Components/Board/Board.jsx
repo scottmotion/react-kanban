@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { onSnapshot, collection } from 'firebase/firestore'
-import { db, boardsCollection } from '../../firebase'
+import { boardsCollection } from '../../firebase'
 import './Board.css'
 import Column from "../Columns/Column"
 import ColumnNew from '../Columns/ColumnNew'

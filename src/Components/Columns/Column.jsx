@@ -1,33 +1,15 @@
 import { useState, useEffect } from 'react'
-import { onSnapshot, collection, query, where } from 'firebase/firestore'
-import { db, boardsCollection } from '../../firebase'
+import { onSnapshot, query, where } from 'firebase/firestore'
 import TaskCard from '../Task/TaskCard'
 import './Column.css'
 
 export default function Column(props) {
     const [tasks, setTasks] = useState([])
-    // const columnsCollection = props.columnsCollection
     const tasksCollection = props.tasksCollection
 
     //////////////////////
     // TASKS GET & SET
     //////////////////////
-
-    // useEffect(() => {
-    //     const unsubscribe = onSnapshot(tasksCollection, function(snapshot) {
-    //         // Sync up our local notes array with the snapshot data
-    //         const tasksArr = snapshot.docs.map(doc => ({
-    //             ...doc.data(),
-    //             id: doc.id
-    //         }))
-    //         // const sortedTasks = tasksArr.sort((a,b) => a.order - b.order)
-    //         // setTasks(sortedTasks)
-    //         setTasks(tasksArr)
-    //         // console.log("Task count: ", tasksArr.length)
-    //         // props.setTaskCount(tasksArr.length)
-    //     })
-    //     return unsubscribe
-    // }, [props.id])
 
     const q = query((tasksCollection), where("columnId", "==", props.id));
     useEffect(() => {
@@ -39,14 +21,10 @@ export default function Column(props) {
             }))
             const sortedTasks = tasksArr.sort((a,b) => a.order - b.order)
             setTasks(sortedTasks)
-            // setTasks(tasksArr)
-            // console.log("Task count: ", tasksArr.length)
-            // props.setTaskCount(tasksArr.length)
         })
         return unsubscribe
     }, [props.id])
 
-    
     const taskElements = tasks.map((task, index) => (
         <TaskCard
           key={task.id}
@@ -59,7 +37,6 @@ export default function Column(props) {
         />
     ))
     
-
     return (
         <div className="board__column-single--wrapper" id={props.id}>
 

@@ -1,6 +1,5 @@
 import './Column.css'
 
-// setModalOpen={props.setModalOpen}
 export default function ColumnNew(props) {
     return (
         <div className="board__column-single--wrapper">

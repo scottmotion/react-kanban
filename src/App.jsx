@@ -14,7 +14,7 @@ import UpdateTaskModal from "./Components/Modals/UpdateTaskModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, updateDoc, collection, query, where, getCountFromServer } from "firebase/firestore"
-import { boardsCollection, db } from "./firebase"
+import { boardsCollection } from "./firebase"
 
 function App() {
   const [sidebarVisible, setSidebarVisible] = useState(true)
