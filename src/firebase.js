@@ -15,4 +15,4 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 const boardsCollection = collection(db, "boardsNew")
 
-export { boardsCollection}
+export { boardsCollection }
