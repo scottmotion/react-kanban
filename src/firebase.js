@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 import { getFirestore, collection } from "firebase/firestore"
 
@@ -12,6 +13,17 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+// App Chck debug token for use on localhost only
+self.FIREBASE_APPCHECK_DEBUG_TOKEN = import.meta.env.DEV.VITE_FIREBASE_APPCHECK_DEBUG_TOKEN;
+// Pass your reCAPTCHA v3 site key (public key) to activate()
+const appCheck = initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_SITE_KEY),
+
+  // Optional argument. If true, the SDK automatically refreshes App Check tokens as needed.
+  isTokenAutoRefreshEnabled: true
+});
+
 const db = getFirestore(app)
 const boardsCollection = collection(db, "boardsNew")
 
