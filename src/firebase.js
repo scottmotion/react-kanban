@@ -15,7 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // App Chck debug token for use on localhost only
-// DO NOT EXPOSE TO PROD
 self.FIREBASE_APPCHECK_DEBUG_TOKEN = import.meta.env.DEV.VITE_FIREBASE_APPCHECK_DEBUG_TOKEN;
 // Pass your reCAPTCHA v3 site key (public key) to activate(). Make sure this
 // key is the counterpart to the secret key you set in the Firebase console.
