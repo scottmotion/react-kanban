@@ -122,6 +122,14 @@ textarea:focus {
 .lightMode .modalFormInput {
   border: 1px solid var(--text-mediumGrey);
 }
+.modalFormInput.inputReadOnly {
+  border: 1px solid transparent;
+  border-radius: 0;
+  background-color: var(--bg-veryDarkGrey);
+}
+.lightMode .modalFormInput.inputReadOnly {
+  background-color: var(--bg-veryLightBlue);
+}
 
 .modalFormTextarea {
   resize: vertical;

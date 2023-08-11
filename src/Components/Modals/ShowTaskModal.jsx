@@ -148,7 +148,7 @@ export default function ShowTaskModal(props) {
         <input
           type="text"
           placeholder="Subtask Name"
-          className={styles.modalFormInput}
+          className={`${styles.modalFormInput} ${styles.inputReadOnly}`}
           name="subtaskName"
           id={index}
           value={subtask.name}
