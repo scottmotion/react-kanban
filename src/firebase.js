@@ -15,6 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // App Check debug token for use on localhost only
+// TODO: create development environment
 self.FIREBASE_APPCHECK_DEBUG_TOKEN = import.meta.env.VITE_FIREBASE_APPCHECK_DEBUG_TOKEN;
 
 // console.log("self.FIREBASE_APPCHECK_DEBUG_TOKEN: ", self.FIREBASE_APPCHECK_DEBUG_TOKEN)
