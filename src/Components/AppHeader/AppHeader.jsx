@@ -1,5 +1,6 @@
 import { ReactComponent as PlusIcon } from "/src/assets/icons/icon-plus.svg"
 import EllipsisDropdown from "../Dropdowns/EllipsisDropdown"
+import BoardsDropdown from "../Dropdowns/BoardsDropdown"
 import { useState, useRef, useEffect } from "react"
 import './AppHeader.css'
 
@@ -74,6 +75,9 @@ export default function AppHeader(props) {
       <div className="header__app-brand"><img className="header__app-logo" /></div>
       <div className="header__nav">
         <h1 className="header__board-title">{loading ? null : props.currentBoard.name}</h1>
+
+        <BoardsDropdown boards={props.boards} currentBoard={props.currentBoard} setCurrentBoardId={props.setCurrentBoardId} />
+
         <div className="header__button-wrapper">
           <button className="button header-button header-button--new-task" onClick={handleNewTask} disabled={props.columnCount <= 0}>
             <PlusIcon className='header-button__icon header-button__icon--new'/>
