@@ -17,10 +17,8 @@ export default function UpdateTaskModal(props) {
   })
 
   const [tempSubtasks, setTempSubtasks] = useState(props.currentTask.subtasks)
-  // console.log("tempColumns: ", tempColumns)
 
   const [removedSubtasks, setRemovedSubtasks] = useState([])
-  // console.log("removedColumns: ", removedColumns)
 
   const tempSubtaskInputs = tempSubtasks.map((subtask, index) => (
     <div className={styles.modalFormInputWrapper} key={index}>
@@ -45,13 +43,6 @@ export default function UpdateTaskModal(props) {
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   )) 
 
-  // let modalClassName = "modal"
-  // if (props.darkMode) {
-  //   modalClassName += " dark-mode"
-  // } else {
-  //   modalClassName += " light-mode"
-  // }
-
   function handleChange(event) {
     const {name, value} = event.target
     setTempTask(prevTempTask => ({
@@ -62,7 +53,6 @@ export default function UpdateTaskModal(props) {
 
   function handleNewSubtask(event) {
     event.preventDefault();
-    // console.log("New Subtask Clicked")
     setTempSubtasks([
       ...tempSubtasks,
       {
@@ -78,7 +68,6 @@ export default function UpdateTaskModal(props) {
     const tempSubtask = {
       name: subtaskValue
     }
-    // console.log(tempSubtask)
 
     setTempSubtasks(tempSubtasks.map((s, index) => {
       if (index === subtaskId) {
@@ -91,7 +80,6 @@ export default function UpdateTaskModal(props) {
 
   function handleRemoveSubtask(event, subtaskIndex) {
     event.preventDefault();
-    // console.log("Remove Subtask Clicked: ", subtaskIndex)
     setTempSubtasks(
       tempSubtasks.filter((s, index) =>
         index !== subtaskIndex
@@ -153,13 +141,11 @@ export default function UpdateTaskModal(props) {
                 value={tempTask.columnId}
                 onChange={handleChange}
               >
-                {/* <option disabled value="defaultValue">Select Column</option> */}
                 {columnOptions}
               </select>
             </label>
 
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Save</button>
-            {/* <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button> */}
           </form>
         </div>
       </div>
