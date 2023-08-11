@@ -23,8 +23,6 @@ export default function ShowTaskModal(props) {
   // get boards from firebase
   useEffect(() => {
     const unsubscribe = onSnapshot(taskRef, function(snapshot) {
-      // console.log("snapshot.id: ", snapshot.id)
-      // console.log("snapshot.data: ", snapshot.data())
       const tempTask = {
         ...snapshot.data(),
         id: snapshot.id
@@ -37,7 +35,6 @@ export default function ShowTaskModal(props) {
   }, [])
 
 
-
   const handleChangeColumn = async (event) =>  {
     const taskId = props.currentTask.id
     const columnId = event.target.value
@@ -45,19 +42,6 @@ export default function ShowTaskModal(props) {
     await props.changeTaskColumn(taskId,columnId)
 
   }
-
-  // function handleNewSubtask(event) {
-  //   event.preventDefault();
-  //   console.log("New Subtask Clicked")
-  //   setNewSubtasks([
-  //     ...newSubtasks,
-  //     {
-  //       name: '',
-  //       isCompleted: false
-  //     }
-  //   ]);
-  // }
-
 
   const handleSubtaskCheckbox = async (event, subtask, subtaskIndex) => {
     const subtaskId = subtaskIndex
@@ -88,42 +72,6 @@ export default function ShowTaskModal(props) {
 
   }
 
-
-  // function handleChangeSubtask(event, subtaskIndex) {
-  //   const subtaskValue = event.target.value
-  //   const subtaskId = subtaskIndex
-  //   const tempSubtask = {
-  //     name: subtaskValue,
-  //     isCompleted: false
-  //   }
-  //   console.log(tempSubtask)
-
-  //   setNewSubtasks(newSubtasks.map((s, index) => {
-  //     if (index === subtaskId) {
-  //       return tempSubtask;
-  //     } else {
-  //       return s;
-  //     }
-  //   }));
-  // }
-
-  // function handleRemoveSubtask(event, subtaskIndex) {
-  //   event.preventDefault();
-  //   console.log("Remove Subtask Clicked: ", subtaskIndex)
-  //   setNewSubtasks(
-  //     newSubtasks.filter((s, index) =>
-  //       index !== subtaskIndex
-  //     )
-  //   );
-  // }
-
-  // const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
-  //   event.preventDefault();
-  //   if (newTask.name) {
-  //     props.addTask(newTask, newSubtasks)
-  //   }
-  // }
-
   const columnOptions = props.columns.map((column, index) => (
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   ))
@@ -143,7 +91,6 @@ export default function ShowTaskModal(props) {
         />
       </label>
 
-
       <label className={styles.modalFormLabel}>
         <input
           type="text"
@@ -152,18 +99,15 @@ export default function ShowTaskModal(props) {
           name="subtaskName"
           id={index}
           value={subtask.name}
-          // onChange={(e) => handleChangeSubtask(e, index)}
           disabled
         />
       </label>
-      {/* <button className={`${styles.btn} ${styles.deleteBtn}`} onClick={(e) => {handleRemoveSubtask(e, index)}}>X</button> */}
     </div>
   ))
 
   return (
     <>
       <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
-      {/* <div className={styles.modal}> */}
       <div className={`${styles.modal} ${themeClass} ${modalClassName}`}>
         <div className={styles.modalHeader}>
           <div className={styles.modalHeading}>{task.name}</div>
@@ -184,7 +128,6 @@ export default function ShowTaskModal(props) {
               value={task.columnId}
               onChange={handleChangeColumn}
             >
-            {/* <option disabled value="defaultValue">Select Column</option> */}
             {columnOptions}
             </select>
           </label>
