@@ -18,13 +18,6 @@ export default function AddTaskModal(props) {
     isCompleted: false
   }])
 
-  // let modalClassName = "modal"
-  // if (props.darkMode) {
-  //   modalClassName += " dark-mode"
-  // } else {
-  //   modalClassName += " light-mode"
-  // }
-
   function handleChange(event) {
     const {name, value} = event.target
     setNewTask(prevNewTask => ({
@@ -35,7 +28,6 @@ export default function AddTaskModal(props) {
 
   function handleNewSubtask(event) {
     event.preventDefault();
-    // console.log("New Subtask Clicked")
     setNewSubtasks([
       ...newSubtasks,
       {
@@ -52,7 +44,6 @@ export default function AddTaskModal(props) {
       name: subtaskValue,
       isCompleted: false
     }
-    // console.log(tempSubtask)
 
     setNewSubtasks(newSubtasks.map((s, index) => {
       if (index === subtaskId) {
@@ -65,7 +56,6 @@ export default function AddTaskModal(props) {
 
   function handleRemoveSubtask(event, subtaskIndex) {
     event.preventDefault();
-    // console.log("Remove Subtask Clicked: ", subtaskIndex)
     setNewSubtasks(
       newSubtasks.filter((s, index) =>
         index !== subtaskIndex
@@ -149,13 +139,11 @@ export default function AddTaskModal(props) {
                 value={newTask.columnId}
                 onChange={handleChange}
               >
-                {/* <option disabled value="defaultValue">Select Column</option> */}
                 {columnOptions}
               </select>
             </label>
 
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create Task</button>
-            {/* <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button> */}
           </form>
         </div>
       </div>
