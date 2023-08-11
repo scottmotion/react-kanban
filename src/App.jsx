@@ -280,8 +280,8 @@ function App() {
         darkMode={darkMode}
         setModalOpen={setModalOpen}
         currentBoard={currentBoard}
+        columns={columns}
         columnCount={columnCount}
-        // confirmDeleteBoard={confirmDeleteBoard}
         confirmDelete={confirmDeleteBoard}
         editItem={updateBoard}
       />
