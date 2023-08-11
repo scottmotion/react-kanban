@@ -75,11 +75,18 @@
   padding: 1rem;
 }
 .header__board-title {
+  display: none;
   font-size: 1.125rem;
   font-weight: var(--fw-700);
   margin: 0;
   white-space: nowrap;
 }
+@media screen and (min-width: 768px) {
+  .header__board-title {
+    display: initial;
+  }
+}
+
 .header__button-wrapper {
   display: flex;
   flex-direction: row;
