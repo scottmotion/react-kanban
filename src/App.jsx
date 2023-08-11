@@ -86,7 +86,6 @@ function App() {
   useEffect(() => {
     if (!currentBoardId) {
       setCurrentBoardId(boards[0]?.id)
-      // console.log("currentBoardId: ", currentBoardId)
     }
   }, [boards, currentBoardId])
 
@@ -109,7 +108,6 @@ function App() {
   
   // update board
   async function updateBoard(data, boardId) {
-    // console.log("updateBoard(data, boardId) ", data, boardId)
 
     let docRef
     if (boardId) {
@@ -164,14 +162,12 @@ function App() {
       columnsCollection = collection(boardsCollection, currentBoardId, "columns" )
     }
     const newColumnRef = await addDoc(columnsCollection, newColumn)
-    // console.log("newColumnRef: ", newColumnRef)
     setModalOpen("")
     return newColumnRef
   }
 
   // update column
   async function updateColumn(data, boardId) {
-    // console.log("updateColumn(data, boardId) ", data, boardId)
     let docRef
 
     if (boardId) {
@@ -189,10 +185,8 @@ function App() {
     return await updateDoc(docRef, newData)
   }
 
-
   // delete column
   async function deleteColumn(boardId, columnId) {
-    // console.log("deleteColumn(boardId, columnId) ", boardId, columnId)
 
     const docRef = doc(boardsCollection, boardId, "columns", columnId)
     await deleteDoc(docRef)
@@ -262,7 +256,6 @@ function App() {
     setCurrentTaskId(taskId)
     setWillDeleteId({type: "task", id: taskId})
   }
-  // console.log("willdeleteid: ", willDeleteId)
 
   // delete task
   async function deleteTask(taskId) {
@@ -363,9 +356,7 @@ function App() {
           currentBoardId={currentBoardId}
           columns={columns}
           currentColumnId={currentColumnId}
-          // addTask={addTask}
           currentTask={currentTask}
-          // confirmDelete={confirmDeleteTask}
           editItem={updateTask}
         />
       }
