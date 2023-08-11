@@ -12,11 +12,8 @@ export default function UpdateBoardModal(props) {
   })
 
   const [tempColumns, setTempColumns] = useState(props.columns)
-  // console.log("tempColumns: ", tempColumns)
 
   const [removedColumns, setRemovedColumns] = useState([])
-  // console.log("removedColumns: ", removedColumns)
-
 
   const tempColumnInputs = tempColumns.map((column, index) => (
     <div className={styles.modalFormInputWrapper} key={index}>
@@ -36,13 +33,6 @@ export default function UpdateBoardModal(props) {
       </button>
     </div>
   ))
-  
-  // let modalClassName = "modal"
-  // if (props.darkMode) {
-  //   modalClassName += " dark-mode"
-  // } else {
-  //   modalClassName += " light-mode"
-  // }
 
   function handleChange(event) {
     const {value} = event.target
@@ -54,7 +44,6 @@ export default function UpdateBoardModal(props) {
 
   function handleNewColumn(event) {
     event.preventDefault();
-    // console.log("New Column Clicked")
     setTempColumns([
       ...tempColumns,
       {
@@ -68,8 +57,6 @@ export default function UpdateBoardModal(props) {
     const columnValue = event.target.value
     const tempColumn = {name: columnValue}
 
-    // console.log("handleChangeColumn: ", tempColumn)
-
     setTempColumns(tempColumns.map((c, index) => {
       if (index === columnIndex) {
         return ({...c, ...tempColumn}); 
@@ -81,7 +68,6 @@ export default function UpdateBoardModal(props) {
 
   function handleRemoveColumn(event, columnIndex, columnId) {
     event.preventDefault();
-    // console.log("Remove Column Clicked: ", columnIndex, " : ", columnId)
     if (columnId) {
       setRemovedColumns([
         ...removedColumns,
@@ -101,11 +87,6 @@ export default function UpdateBoardModal(props) {
   }
 
   const handleSubmit = async (event) => {
-    // TODO:
-    // create async chain
-    // send boardRef & tempBoard to props.editItem
-    // send boardRef and removedColumns to props.removeColumn
-    // send boardRef and tempColumns to props.addColumn
     event.preventDefault();
 
     try{
@@ -163,7 +144,6 @@ export default function UpdateBoardModal(props) {
             }
             <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>+ Add New Column</button>
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Save</button>
-            {/* <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button> */}
           </form>
         </div>
       </div>
