@@ -41,7 +41,6 @@ export default function AddBoardModal(props) {
 
   function handleNewColumn(event) {
     event.preventDefault();
-    // console.log("New Column Clicked")
     setNewColumns([
       ...newColumns,
       {
@@ -54,8 +53,6 @@ export default function AddBoardModal(props) {
   function handleChangeColumn(event, columnIndex) {
     const columnValue = event.target.value
     const tempColumn = {name: columnValue}
-
-    // console.log("tempColumn: ", tempColumn)
 
     setNewColumns(newColumns.map((c, index) => {
       if (index === columnIndex) {
@@ -71,7 +68,6 @@ export default function AddBoardModal(props) {
 
   function handleRemoveColumn(event, columnIndex) {
     event.preventDefault();
-    // console.log("Remove Column Clicked: ", columnIndex)
 
     const filteredColumns = newColumns.filter((c, index) =>
       index !== columnIndex
@@ -95,7 +91,6 @@ export default function AddBoardModal(props) {
         // add each new column
         newColumns.forEach(async (column, index) => {
           const newColumnRef = await props.addColumn(column, index, newBoardRef)
-          // console.log("this newColumnRef: ", newColumnRef)
         })
       }
     }
@@ -131,7 +126,6 @@ export default function AddBoardModal(props) {
 
             <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>+ Add New Column</button>
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create Board</button>
-            {/* <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button> */}
           </form>
         </div>
       </div>
