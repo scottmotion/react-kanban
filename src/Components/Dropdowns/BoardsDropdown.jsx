@@ -16,7 +16,7 @@ export default function BoardsDropdown(props) {
             <select
                 className="dropdownSelect"
                 name="board"
-                value={props.currentBoard?.name}
+                value={props.currentBoard.name}
                 onChange={handleChangeProject}
             >
                 {projectsDropdownOptions}
