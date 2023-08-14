@@ -1,7 +1,6 @@
-import { ReactComponent as BoardIcon } from "/src/assets/icons/icon-board.svg"
 import './Sidebar.css'
 import SidebarButton from "./SidebarButton"
-import NewBoardButton from "../Buttons/NewBoardButton"
+import NewBoardButton from "./NewBoardButton"
 import HideSidebarButton from "./HideSidebarButton"
 import ThemeToggle from "./ThemeToggle"
 
@@ -13,7 +12,7 @@ export default function Sidebar(props) {
       <SidebarButton
         key={board.id}
         board={board}
-        active={board.id === props.currentBoardId ? "true" : "false" }
+        active={board.id === props.currentBoardId ? "true" : "false"}
         onClick={() => props.setCurrentBoardId(board.id)}
       />
     ))
@@ -43,10 +42,10 @@ export default function Sidebar(props) {
 
       <div className="sidebar__options-wrapper">
 
-        <ThemeToggle darkMode={props.darkMode} toggleDarkMode={props.toggleDarkMode}/>
+        <ThemeToggle darkMode={props.darkMode} toggleDarkMode={props.toggleDarkMode} />
 
-        <HideSidebarButton onClick={props.hideSidebar}/>
-        
+        <HideSidebarButton onClick={props.hideSidebar} />
+
       </div>
 
     </nav>
