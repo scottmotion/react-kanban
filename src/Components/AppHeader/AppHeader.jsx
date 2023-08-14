@@ -86,11 +86,7 @@ export default function AppHeader(props) {
         }
 
         <div className="header__button-wrapper">
-          <NewTaskButton handleNewTask={handleNewTask} columnCount={props.columnCount}/>
-          {/* <button className="button header-button header-button--new-task" onClick={handleNewTask} disabled={props.columnCount <= 0}>
-            <PlusIcon className='header-button__icon header-button__icon--new'/>
-            <div className="header-button__text--new-task">Add New Task</div>
-          </button> */}
+          <NewTaskButton handleNewTask={handleNewTask} columnCount={props.columnCount} disabled={props.columnCount <= 0}/>
           <EllipsisDropdown currentItem={props.currentBoard} confirmDelete={props.confirmDelete} editItem={props.editItem} itemType={"board"} setModalOpen={props.setModalOpen}/>
         </div>
 
