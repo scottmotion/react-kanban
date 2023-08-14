@@ -15,7 +15,7 @@
 
 ### Links
 
-- Live Site URL: [https://www.scottwinn.dev/demos/react-kanban/](https://www.scottwinn.dev/demos/react-kanban/)
+- Live Site URL: [https://www.scottwinn.dev/projects/react-kanban/](https://www.scottwinn.dev/projects/react-kanban/)
 
 ## Author
 
