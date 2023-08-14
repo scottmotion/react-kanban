@@ -29,7 +29,7 @@ function App() {
   const [currentColumnId, setCurrentColumnId] = useState("")
 
   const [currentTask, setCurrentTask] = useState({})
-  const [currentTaskId, setCurrentTaskId] = useState("")
+  // const [currentTaskId, setCurrentTaskId] = useState("")
 
   const [willDeleteId, setWillDeleteId] = useState({type: "", id: ""})
 
@@ -253,7 +253,7 @@ function App() {
   //confirm before delete task
   function confirmDeleteTask(taskId) {
     setModalOpen("confirmDelete")
-    setCurrentTaskId(taskId)
+    // setCurrentTaskId(taskId)
     setWillDeleteId({type: "task", id: taskId})
   }
 
@@ -262,7 +262,7 @@ function App() {
     const docRef = doc(boardsCollection, currentBoardId, "tasks", taskId)
     await deleteDoc(docRef)
     setModalOpen("")
-    setCurrentTaskId(false)
+    // setCurrentTaskId(false)
     setWillDeleteId(false)
     // TODO: recursively reorder tasks
   }
