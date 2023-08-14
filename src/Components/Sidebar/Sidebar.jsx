@@ -1,10 +1,8 @@
 import { ReactComponent as BoardIcon } from "/src/assets/icons/icon-board.svg"
-import { ReactComponent as LightModeIcon } from "/src/assets/icons/icon-light-mode.svg"
-import { ReactComponent as DarkModeIcon } from "/src/assets/icons/icon-dark-mode.svg"
-import { ReactComponent as HideIcon } from "/src/assets/icons/icon-hide.svg"
 import './Sidebar.css'
 import SidebarButton from "./SidebarButton"
 import HideSidebarButton from "./HideSidebarButton"
+import ThemeToggle from "./ThemeToggle"
 
 export default function Sidebar(props) {
 
@@ -20,18 +18,16 @@ export default function Sidebar(props) {
     ))
 
   let navClassName = 'nav section sidebar'
+
   if (props.sidebarVisible) {
     navClassName += ' animate-sidebarOpen'
   } else {
     navClassName += ' animate-sidebarClose'
   }
 
-  let toggleIndicatorClass = "theme-switcher__toggle-indicator"
   if (props.darkMode) {
-    toggleIndicatorClass += " dark-mode"
     navClassName += " dark-mode"
   } else {
-    toggleIndicatorClass += " light-mode"
     navClassName += " light-mode"
   }
 
@@ -49,12 +45,7 @@ export default function Sidebar(props) {
 
       <div className="sidebar__options-wrapper">
 
-        <div className="theme-switcher">
-          <LightModeIcon className='theme-switcher__icon theme-switcher__icon--light'/>
-          <button className="button theme-switcher__toggle" type="button" role="switch" onClick={props.toggleDarkMode}></button>
-          <span className={toggleIndicatorClass} data-state="checked" onClick={props.toggleDarkMode}></span>
-          <DarkModeIcon className='theme-switcher__icon theme-switcher__icon--dark'/>
-        </div>
+        <ThemeToggle darkMode={props.darkMode} toggleDarkMode={props.toggleDarkMode}/>
 
         <HideSidebarButton onClick={props.hideSidebar}/>
         
