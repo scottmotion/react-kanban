@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react"
 // import '../AppHeader/AppHeader.css'
 import './EllipsisDropdown.css'
 
-export default function EllipsisDropdown(props) {
+export default function EllipsisDropdown({currentItem, confirmDelete, itemType, setModalOpen}) {
 
     const [showDropdown, setShowDropdown] = useState(false)
 
@@ -41,22 +41,22 @@ export default function EllipsisDropdown(props) {
 
     // button handlers
     function handleClickEdit() {
-        if (props.itemType === "board") {
+        if (itemType === "board") {
             setShowDropdown(false)
-            props.setModalOpen("updateBoard")
-        } else if (props.itemType ==="task") {
+            setModalOpen("updateBoard")
+        } else if (itemType ==="task") {
             setShowDropdown(false)
-            props.setModalOpen("updateTask")
-            // console.log("Update Task: ", props.currentItem.id)
+            setModalOpen("updateTask")
+            // console.log("Update Task: ", currentItem.id)
         }
         setShowDropdown(false)
     }
 
     function handleClickDelete() {
-        // console.log("Delete Item: ", props.currentItem)
-        if (props.currentItem) {
+        // console.log("Delete Item: ", currentItem)
+        if (currentItem) {
             setShowDropdown(false)
-            props.confirmDelete(props.currentItem.id)
+            confirmDelete(currentItem.id)
         }
     }
 
@@ -66,8 +66,8 @@ export default function EllipsisDropdown(props) {
                 <VerticalEllipsisIcon className='header-button__icon header-button__icon--edit'/>
             </button>
             <div className={optionsClassName}>
-                <div className="button edit-board-menu--edit" onClick={handleClickEdit}>Edit {props.itemType}</div>
-                <div className="button edit-board-menu--delete" onClick={handleClickDelete}>Delete {props.itemType}</div>
+                <div className="button edit-board-menu--edit" onClick={handleClickEdit}>Edit {itemType}</div>
+                <div className="button edit-board-menu--delete" onClick={handleClickDelete}>Delete {itemType}</div>
             </div>
         </div>
     )
