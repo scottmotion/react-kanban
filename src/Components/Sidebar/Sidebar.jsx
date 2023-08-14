@@ -57,10 +57,6 @@ export default function Sidebar(props) {
         </div>
 
         <HideSidebarButton onClick={props.hideSidebar}/>
-        {/* <button className="button sidebar-button sidebar-button--hide-sidebar" onClick={props.hideSidebar}>
-          <HideIcon className='sidebar-button__icon sidebar-button__icon--hide'/>
-          Hide Sidebar
-        </button> */}
         
       </div>
 
