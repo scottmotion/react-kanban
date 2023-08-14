@@ -29,10 +29,8 @@ function App() {
   const [currentColumnId, setCurrentColumnId] = useState("")
 
   const [currentTask, setCurrentTask] = useState({})
-  // const [currentTaskId, setCurrentTaskId] = useState("")
 
   const [willDeleteId, setWillDeleteId] = useState({type: "", id: ""})
-
 
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
 
@@ -59,11 +57,6 @@ function App() {
   // GENERAL CRUD
   //////////////////////
 
-  //confirm before delete
-  function confirmDelete(itemId) {
-    // setModalOpen("confirmDeleteBoard")
-    // setCurrentBoardId(boardId)
-  }
 
   //////////////////////
   // BOARDS GET & SET
