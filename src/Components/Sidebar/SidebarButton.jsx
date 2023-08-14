@@ -1,4 +1,5 @@
 import { ReactComponent as BoardIcon } from "/src/assets/icons/icon-board.svg";
+import './SidebarButton.css'
 
 export default function SidebarButton(props) {
 

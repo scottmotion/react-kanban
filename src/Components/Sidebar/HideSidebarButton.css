@@ -1,0 +1,38 @@
+/* sidebar hide button */
+.sidebar-button.sidebar-button--hide-sidebar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: var(--fw-400);
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--text-mediumGrey);
+    border: none;
+    padding: 0.75rem 0rem 0.75rem 1rem;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+    .sidebar-button.sidebar-button--hide-sidebar {
+        padding: 0.75rem 0rem 0.75rem 2rem;
+    }
+}
+
+.button__icon--hide {
+    margin-right: .75rem;
+}
+
+@keyframes buttonHide {
+    0% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.animate-buttonHide {
+    animation: buttonHide .5s cubic-bezier(.16, 1, .3, 1) both;
+}

@@ -4,6 +4,7 @@ import { ReactComponent as DarkModeIcon } from "/src/assets/icons/icon-dark-mode
 import { ReactComponent as HideIcon } from "/src/assets/icons/icon-hide.svg"
 import './Sidebar.css'
 import SidebarButton from "./SidebarButton"
+import HideSidebarButton from "./HideSidebarButton"
 
 export default function Sidebar(props) {
 
@@ -55,10 +56,11 @@ export default function Sidebar(props) {
           <DarkModeIcon className='theme-switcher__icon theme-switcher__icon--dark'/>
         </div>
 
-        <button className="button sidebar-button sidebar-button--hide-sidebar" onClick={props.hideSidebar}>
+        <HideSidebarButton onClick={props.hideSidebar}/>
+        {/* <button className="button sidebar-button sidebar-button--hide-sidebar" onClick={props.hideSidebar}>
           <HideIcon className='sidebar-button__icon sidebar-button__icon--hide'/>
           Hide Sidebar
-        </button>
+        </button> */}
         
       </div>
 
