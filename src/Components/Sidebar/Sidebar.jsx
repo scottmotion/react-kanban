@@ -1,6 +1,7 @@
 import { ReactComponent as BoardIcon } from "/src/assets/icons/icon-board.svg"
 import './Sidebar.css'
 import SidebarButton from "./SidebarButton"
+import NewBoardButton from "../Buttons/NewBoardButton"
 import HideSidebarButton from "./HideSidebarButton"
 import ThemeToggle from "./ThemeToggle"
 
@@ -37,10 +38,7 @@ export default function Sidebar(props) {
       <div className="sidebar__nav-wrapper">
         <div className="sidebar__heading">All Boards</div>
         {boardButtonElements}
-        <button className="button sidebar-button sidebar-button--new-board" onClick={() => props.setModalOpen("addBoard")}>
-          <BoardIcon className='sidebar-button__icon sidebar-button__icon--board'/>
-          <div className="sidebar-button__text">+ New Board</div>
-        </button>
+        <NewBoardButton onClick={() => props.setModalOpen("addBoard")} />
       </div>
 
       <div className="sidebar__options-wrapper">
