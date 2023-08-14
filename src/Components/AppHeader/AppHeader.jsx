@@ -1,13 +1,9 @@
-import { ReactComponent as PlusIcon } from "/src/assets/icons/icon-plus.svg"
 import BoardsDropdown from "../Dropdowns/BoardsDropdown"
 import NewTaskButton from "../Buttons/NewTaskButton"
 import EllipsisDropdown from "../Dropdowns/EllipsisDropdown"
-import { useState, useRef, useEffect } from "react"
 import './AppHeader.css'
 
 export default function AppHeader(props) {
-
-  const [showBoardOptions, setShowBoardOptions] = useState(false)
 
   // check if there is a currentBoard before rendering child that needs currentBoard as prop
   const loading = !props.currentBoard;
@@ -18,52 +14,6 @@ export default function AppHeader(props) {
   } else {
     headerClassName += " light-mode"
   }
-
-  let boardOptionsClassName = "edit-board-menu"
-  if (showBoardOptions) {
-    boardOptionsClassName += " show"
-  } else {
-    boardOptionsClassName += " hide"
-  }
-  function toggleBoardOptions() {
-    setShowBoardOptions(!showBoardOptions)
-  }
-
-  /**
-   * Hook that fires on clicks outside of the passed ref
-   */
-  function boardOptionsClickOutside(ref) {
-    useEffect(() => {
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setShowBoardOptions(false)
-        }
-      }
-      // Bind the event listener
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
-  const boardOptionsWrapperRef = useRef(null);
-  boardOptionsClickOutside(boardOptionsWrapperRef);
-
-  // button handlers
-  // function handleEditBoard() {
-  //   if (props.currentBoard) {
-  //     setShowBoardOptions(false)
-  //     props.setModalOpen("updateBoard")
-  //   }
-  // }
-
-  // function handleDeleteBoard() {
-  //   if (props.currentBoard) {
-  //     setShowBoardOptions(false)
-  //     props.confirmDeleteBoard(props.currentBoard.id)
-  //   }
-  // }
 
   function handleNewTask() {
     if (props.currentBoard) {
