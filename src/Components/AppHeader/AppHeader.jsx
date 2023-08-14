@@ -5,6 +5,8 @@ import './AppHeader.css'
 
 export default function AppHeader(props) {
 
+// (darkMode, setModalOpen, boards, currentBoard, currentBoardId, setCurrentBoardId, columnCount, confirmDelete, editItem)
+
   // check if there is a currentBoard before rendering child that needs currentBoard as prop
   const loading = !props.currentBoard;
   

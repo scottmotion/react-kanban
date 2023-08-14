@@ -1,14 +1,14 @@
 import './BoardsDropdown.css'
 
-export default function BoardsDropdown(props) {
+export default function BoardsDropdown({boards, currentBoard, setCurrentBoardId}) {
 
-    const boardsDropdownOptions = props.boards.map((board, index) => (
+    const boardsDropdownOptions = boards.map((board, index) => (
         <option className="dropdownOption" key={index} value={board.id}>{board.name}</option>
     )) 
 
     function handleChangeBoard(event) {
     const {value} = event.target
-    props.setCurrentBoardId(value)
+    setCurrentBoardId(value)
     }
 
     return (
@@ -16,7 +16,7 @@ export default function BoardsDropdown(props) {
             <select
                 className="dropdownSelect"
                 name="board"
-                value={props.currentBoard.name}
+                value={currentBoard.name}
                 onChange={handleChangeBoard}
             >
                 {boardsDropdownOptions}
