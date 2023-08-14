@@ -1,0 +1,46 @@
+/* New Task Button */
+.button--new-task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--bg-purple);
+    color: var(--text-white);
+    border: none;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    border-radius: 1.5rem;
+}
+
+.button--new-task:hover {
+    background-color: var(--bg-lightPurple);
+}
+
+.button--new-task:disabled {
+    background-color: var(--bg-secondary);
+    color: var(--text-mediumGrey);
+    cursor: initial;
+}
+
+@media screen and (min-width: 768px) {
+    .button--new-task {
+        padding: 0.75rem 2rem 0.75rem 2rem;
+    }
+}
+
+.button__icon--new {
+    border-radius: 100%;
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: text-top;
+}
+
+.button__text--new-task {
+    display: none;
+    font-weight: var(--fw-700);
+}
+
+@media screen and (min-width: 768px) {
+    .button__text--new-task {
+        display: initial;
+    }
+}
