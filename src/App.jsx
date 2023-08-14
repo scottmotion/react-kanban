@@ -5,6 +5,7 @@ import AppHeader from './Components/AppHeader/AppHeader'
 import BoardWrapper from './Components/Board/BoardWrapper'
 import Sidebar from './Components/Sidebar/Sidebar'
 import Board from "./Components/Board/Board"
+import BoardsDropdown from "./Components/Dropdowns/BoardsDropdown"
 
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
@@ -272,7 +273,9 @@ function App() {
         columnCount={columnCount}
         confirmDelete={confirmDeleteBoard}
         editItem={updateBoard}
-      />
+      >
+        <BoardsDropdown boards={boards} currentBoard={currentBoard} currentBoardId={currentBoardId} setCurrentBoardId={setCurrentBoardId} />
+      </AppHeader>
       
       <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
         <Sidebar

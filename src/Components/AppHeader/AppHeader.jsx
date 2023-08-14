@@ -34,7 +34,8 @@ export default function AppHeader(props) {
         ?
         null
         : 
-        <BoardsDropdown boards={props.boards} currentBoard={props.currentBoard} setCurrentBoardId={props.setCurrentBoardId} />
+        // <BoardsDropdown boards={props.boards} currentBoard={props.currentBoard} setCurrentBoardId={props.setCurrentBoardId} />
+        props.children
         }
 
         <div className="header__button-wrapper">
