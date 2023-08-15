@@ -2,16 +2,16 @@ import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
 import { useState } from "react";
 import styles from "./Modal.module.css"
 
-export default function UpdateBoardModal(props) {
+export default function UpdateBoardModal({ darkMode, setModalOpen, currentBoard, editItem, columns, addColumn, updateColumn, deleteColumn }) {
 
-  const themeClass = props.darkMode ? styles.darkMode : styles.lightMode;
+  const themeClass = darkMode ? styles.darkMode : styles.lightMode;
 
   const [tempBoard, setTempBoard] = useState({
-    name: props.currentBoard.name,
-    id: props.currentBoard.id
+    name: currentBoard.name,
+    id: currentBoard.id
   })
 
-  const [tempColumns, setTempColumns] = useState(props.columns)
+  const [tempColumns, setTempColumns] = useState(columns)
 
   const [removedColumns, setRemovedColumns] = useState([])
 
@@ -28,14 +28,14 @@ export default function UpdateBoardModal(props) {
           id={column.id}
         />
       </label>
-      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => {handleRemoveColumn(e, index, column.id)}}>
-        <CrossIcon className={`${styles.deleteBtnIcon}`}/>
+      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveColumn(e, index, column.id) }}>
+        <CrossIcon className={`${styles.deleteBtnIcon}`} />
       </button>
     </div>
   ))
 
   function handleChange(event) {
-    const {value} = event.target
+    const { value } = event.target
     setTempBoard(prevTempBoard => ({
       ...prevTempBoard,
       name: value
@@ -55,11 +55,11 @@ export default function UpdateBoardModal(props) {
 
   function handleChangeColumn(event, columnIndex) {
     const columnValue = event.target.value
-    const tempColumn = {name: columnValue}
+    const tempColumn = { name: columnValue }
 
     setTempColumns(tempColumns.map((c, index) => {
       if (index === columnIndex) {
-        return ({...c, ...tempColumn}); 
+        return ({ ...c, ...tempColumn });
       } else {
         return c;
       }
@@ -72,7 +72,7 @@ export default function UpdateBoardModal(props) {
       setRemovedColumns([
         ...removedColumns,
         columnId
-      ])        
+      ])
     }
     const filteredColumns = tempColumns.filter((c, index) =>
       index !== columnIndex
@@ -89,36 +89,36 @@ export default function UpdateBoardModal(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try{
-      let updateTempBoard = await props.editItem(tempBoard, tempBoard.id)
+    try {
+      let updateTempBoard = await editItem(tempBoard, tempBoard.id)
 
       let deleteRemovedColumns = async () => {
         for (let columnId of removedColumns) {
-          await props.deleteColumn(tempBoard.id, columnId)
+          await deleteColumn(tempBoard.id, columnId)
         }
       }
 
       let updateTempColumns = async () => {
         tempColumns.forEach(async (col) => {
           if (col.id) {
-            await props.updateColumn(col, tempBoard.id)
+            await updateColumn(col, tempBoard.id)
           } else {
-            await props.addColumn(col, col.order, tempBoard)
+            await addColumn(col, col.order, tempBoard)
           }
         })
       }
 
       return await updateTempColumns(deleteRemovedColumns(updateTempBoard))
 
-    } catch(e) {
-        return e;
+    } catch (e) {
+      return e;
     }
 
   }
 
   return (
     <>
-      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => setModalOpen("")} />
       <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Edit Board</div>
         <div className={styles.modalContent}>
@@ -137,10 +137,10 @@ export default function UpdateBoardModal(props) {
 
             {tempColumns.length > 0
               ? <fieldset className={styles.modalFormFieldset}>
-                  <legend className={styles.modalFormLegend}>Columns</legend>
-                  {tempColumnInputs}
-                </fieldset> 
-              : ""          
+                <legend className={styles.modalFormLegend}>Columns</legend>
+                {tempColumnInputs}
+              </fieldset>
+              : ""
             }
             <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>+ Add New Column</button>
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Save</button>

@@ -5,20 +5,20 @@ import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
 
 import styles from "./Modal.module.css"
 
-export default function UpdateTaskModal(props) {
+export default function UpdateTaskModal({darkMode, setModalOpen, columns, currentTask, editItem}) {
 
-  const themeClass = props.darkMode ? styles.darkMode : styles.lightMode;
+  const themeClass = darkMode ? styles.darkMode : styles.lightMode;
 
   const [tempTask, setTempTask] = useState({
-    name: props.currentTask.name,
-    id: props.currentTask.id,
-    description: props.currentTask.description,
-    columnId: props.currentTask.columnId
+    name: currentTask.name,
+    id: currentTask.id,
+    description: currentTask.description,
+    columnId: currentTask.columnId
   })
 
-  const [tempSubtasks, setTempSubtasks] = useState(props.currentTask.subtasks)
+  const [tempSubtasks, setTempSubtasks] = useState(currentTask.subtasks)
 
-  const [removedSubtasks, setRemovedSubtasks] = useState([])
+  // const [removedSubtasks, setRemovedSubtasks] = useState([])
 
   const tempSubtaskInputs = tempSubtasks.map((subtask, index) => (
     <div className={styles.modalFormInputWrapper} key={index}>
@@ -39,7 +39,7 @@ export default function UpdateTaskModal(props) {
     </div>
   ))
 
-   const columnOptions = props.columns.map((column, index) => (
+   const columnOptions = columns.map((column, index) => (
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   )) 
 
@@ -91,13 +91,13 @@ export default function UpdateTaskModal(props) {
     event.preventDefault();
     let tempData = {...tempTask, subtasks: tempSubtasks}
     if (tempTask.name) {
-      props.editItem(tempData)
+      editItem(tempData)
     }
   }
 
   return (
     <>
-      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => setModalOpen("")} />
       <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Edit Task</div>
         <div className={styles.modalContent}>

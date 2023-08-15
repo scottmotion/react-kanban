@@ -1,27 +1,27 @@
 import styles from "./Modal.module.css"
 
-export default function ConfirmDeleteModal(props) {
+export default function ConfirmDeleteModal({ darkMode, setModalOpen, willDeleteId, deleteBoard, deleteTask }) {
 
-  const themeClass = props.darkMode ? styles.darkMode : styles.lightMode;
+  const themeClass = darkMode ? styles.darkMode : styles.lightMode;
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (props.willDeleteId.type === "board") {
-      props.deleteBoard(props.willDeleteId.id)
-    } else if (props.willDeleteId.type === "task") {
-      props.deleteTask(props.willDeleteId.id)
+    if (willDeleteId.type === "board") {
+      deleteBoard(willDeleteId.id)
+    } else if (willDeleteId.type === "task") {
+      deleteTask(willDeleteId.id)
     }
   }
-  
+
   return (
     <>
-      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => setModalOpen("")} />
       <div className={`${styles.modal} ${themeClass}`}>
-        <div className={styles.modalHeading}>Delete {props.willDeleteId.type}</div>
+        <div className={styles.modalHeading}>Delete {willDeleteId.type}</div>
         <div className={styles.modalContent}>
           <form className={styles.modalForm} onSubmit={handleSubmit} autoComplete="off">
-              <button className={`${styles.btn} ${styles.deleteBtn}`} type="submit">Delete</button>
-              <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => {e.preventDefault(); props.setModalOpen("")}}>Cancel</button>
+            <button className={`${styles.btn} ${styles.deleteBtn}`} type="submit">Delete</button>
+            <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={(e) => { e.preventDefault(); setModalOpen("") }}>Cancel</button>
           </form>
         </div>
       </div>

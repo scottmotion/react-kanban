@@ -3,14 +3,14 @@ import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
 
 import styles from "./Modal.module.css"
 
-export default function AddTaskModal(props) {
+export default function AddTaskModal({ darkMode, setModalOpen, columns, addTask }) {
 
-  const themeClass = props.darkMode ? styles.darkMode : styles.lightMode;
+  const themeClass = darkMode ? styles.darkMode : styles.lightMode;
 
   const [newTask, setNewTask] = useState({
     name: '',
     description: '',
-    columnId: props.columns[0].id,
+    columnId: columns[0].id,
   })
 
   const [newSubtasks, setNewSubtasks] = useState([{
@@ -19,10 +19,10 @@ export default function AddTaskModal(props) {
   }])
 
   function handleChange(event) {
-    const {name, value} = event.target
+    const { name, value } = event.target
     setNewTask(prevNewTask => ({
-        ...prevNewTask,
-        [name]: value
+      ...prevNewTask,
+      [name]: value
     }))
   }
 
@@ -66,11 +66,11 @@ export default function AddTaskModal(props) {
   const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
     event.preventDefault();
     if (newTask.name) {
-      props.addTask(newTask, newSubtasks)
+      addTask(newTask, newSubtasks)
     }
   }
 
-  const columnOptions = props.columns.map((column, index) => (
+  const columnOptions = columns.map((column, index) => (
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   ))
 
@@ -87,15 +87,15 @@ export default function AddTaskModal(props) {
           onChange={(e) => handleChangeSubtask(e, index)}
         />
       </label>
-      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => {handleRemoveSubtask(e, index)}}>
-        <CrossIcon className={`${styles.deleteBtnIcon}`}/>
+      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveSubtask(e, index) }}>
+        <CrossIcon className={`${styles.deleteBtnIcon}`} />
       </button>
     </div>
   ))
 
   return (
     <>
-      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => setModalOpen("")} />
       <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Add New Task</div>
         <div className={styles.modalContent}>

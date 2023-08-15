@@ -3,12 +3,12 @@ import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
 import { useState } from "react";
 import styles from "./Modal.module.css"
 
-export default function AddBoardModal(props) {
+export default function AddBoardModal({ darkMode, setModalOpen, addBoard, addColumn }) {
 
-  const themeClass = props.darkMode ? styles.darkMode : styles.lightMode;
+  const themeClass = darkMode ? styles.darkMode : styles.lightMode;
 
   const [newBoard, setNewBoard] = useState({
-      name: ""
+    name: ""
   })
 
   const [newColumns, setNewColumns] = useState([])
@@ -25,17 +25,17 @@ export default function AddBoardModal(props) {
           onChange={(e) => handleChangeColumn(e, index)}
         />
       </label>
-      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => {handleRemoveColumn(e, index)}}>
-        <CrossIcon className={`${styles.deleteBtnIcon}`}/>
+      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveColumn(e, index) }}>
+        <CrossIcon className={`${styles.deleteBtnIcon}`} />
       </button>
     </div>
   ))
 
   function handleChangeBoard(event) {
-    const {value} = event.target
+    const { value } = event.target
     setNewBoard(prevNewBoard => ({
-        ...prevNewBoard,
-        name: value
+      ...prevNewBoard,
+      name: value
     }))
   }
 
@@ -52,14 +52,14 @@ export default function AddBoardModal(props) {
 
   function handleChangeColumn(event, columnIndex) {
     const columnValue = event.target.value
-    const tempColumn = {name: columnValue}
+    const tempColumn = { name: columnValue }
 
     setNewColumns(newColumns.map((c, index) => {
       if (index === columnIndex) {
         return ({
           ...c,
           ...tempColumn
-        }); 
+        });
       } else {
         return c;
       }
@@ -86,11 +86,11 @@ export default function AddBoardModal(props) {
     event.preventDefault();
     if (newBoard.name) {
       // add the board and get firebase ref
-      const newBoardRef = await props.addBoard(newBoard)
+      const newBoardRef = await addBoard(newBoard)
       if (newColumns.length > 0) {
         // add each new column
         newColumns.forEach(async (column, index) => {
-          const newColumnRef = await props.addColumn(column, index, newBoardRef)
+          const newColumnRef = await addColumn(column, index, newBoardRef)
         })
       }
     }
@@ -98,7 +98,7 @@ export default function AddBoardModal(props) {
 
   return (
     <>
-      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => setModalOpen("")} />
       <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Add New Board</div>
         <div className={styles.modalContent}>
@@ -107,21 +107,21 @@ export default function AddBoardModal(props) {
             <label className={styles.modalFormLabel}>
               Board Name
               <input
-                  type="text"
-                  placeholder="Board Name"
-                  className={styles.modalFormInput}
-                  name="boardName"
-                  value={newBoard.name}
-                  onChange={handleChangeBoard}
+                type="text"
+                placeholder="Board Name"
+                className={styles.modalFormInput}
+                name="boardName"
+                value={newBoard.name}
+                onChange={handleChangeBoard}
               />
             </label>
 
             {newColumns.length > 0
               ? <fieldset className={styles.modalFormFieldset}>
-                  <legend className={styles.modalFormLegend}>Columns</legend>
-                  {newColumnInputs}
-                </fieldset> 
-              : ""          
+                <legend className={styles.modalFormLegend}>Columns</legend>
+                {newColumnInputs}
+              </fieldset>
+              : ""
             }
 
             <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>+ Add New Column</button>

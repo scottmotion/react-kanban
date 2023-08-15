@@ -5,12 +5,12 @@ import { doc, updateDoc, onSnapshot } from "firebase/firestore";
 
 import styles from "./Modal.module.css"
 
-export default function ShowTaskModal(props) {
+export default function ShowTaskModal({ darkMode, setModalOpen, currentBoardId, columns, currentTask, confirmDelete, editItem, changeTaskColumn }) {
 
-  const themeClass = props.darkMode ? styles.darkMode : styles.lightMode;
+  const themeClass = darkMode ? styles.darkMode : styles.lightMode;
 
   let modalClassName
-  if (props.darkMode) {
+  if (darkMode) {
     modalClassName = "dark-mode"
   } else {
     modalClassName = "light-mode"
@@ -19,14 +19,14 @@ export default function ShowTaskModal(props) {
   const [task, setTask] = useState({})
   const [subtasks, setSubtasks] = useState([])
 
-  const taskRef = doc(boardsCollection, props.currentBoardId, "tasks", props.currentTask.id)
+  const taskRef = doc(boardsCollection, currentBoardId, "tasks", currentTask.id)
   // get boards from firebase
   useEffect(() => {
-    const unsubscribe = onSnapshot(taskRef, function(snapshot) {
+    const unsubscribe = onSnapshot(taskRef, function (snapshot) {
       const tempTask = {
         ...snapshot.data(),
         id: snapshot.id
-        
+
       }
       setTask(tempTask)
       setSubtasks(snapshot.data().subtasks)
@@ -35,11 +35,11 @@ export default function ShowTaskModal(props) {
   }, [])
 
 
-  const handleChangeColumn = async (event) =>  {
-    const taskId = props.currentTask.id
+  const handleChangeColumn = async (event) => {
+    const taskId = currentTask.id
     const columnId = event.target.value
 
-    await props.changeTaskColumn(taskId,columnId)
+    await changeTaskColumn(taskId, columnId)
 
   }
 
@@ -68,11 +68,11 @@ export default function ShowTaskModal(props) {
 
     }))
 
-    return await updateDoc(taskRef, { subtasks : tempSubtasksArray } )
+    return await updateDoc(taskRef, { subtasks: tempSubtasksArray })
 
   }
 
-  const columnOptions = props.columns.map((column, index) => (
+  const columnOptions = columns.map((column, index) => (
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   ))
 
@@ -85,7 +85,6 @@ export default function ShowTaskModal(props) {
           className={styles.modalFormInput}
           name="isCompleted"
           id={index}
-          // value={subtask.isCompleted}
           onChange={(e) => handleSubtaskCheckbox(e, subtask, index)}
           checked={subtask.isCompleted}
         />
@@ -107,11 +106,11 @@ export default function ShowTaskModal(props) {
 
   return (
     <>
-      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => props.setModalOpen("")} />
+      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => setModalOpen("")} />
       <div className={`${styles.modal} ${themeClass} ${modalClassName}`}>
         <div className={styles.modalHeader}>
           <div className={styles.modalHeading}>{task.name}</div>
-          <EllipsisDropdown currentItem={task} confirmDelete={props.confirmDelete} editItem={props.editItem} itemType={"task"} setModalOpen={props.setModalOpen}/>
+          <EllipsisDropdown currentItem={task} confirmDelete={confirmDelete} editItem={editItem} itemType={"task"} setModalOpen={setModalOpen} />
         </div>
         <div className={styles.modalContent}>
 
@@ -128,7 +127,7 @@ export default function ShowTaskModal(props) {
               value={task.columnId}
               onChange={handleChangeColumn}
             >
-            {columnOptions}
+              {columnOptions}
             </select>
           </label>
 

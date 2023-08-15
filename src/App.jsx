@@ -330,7 +330,6 @@ function App() {
         <AddTaskModal
           darkMode={darkMode}
           setModalOpen={setModalOpen}
-          currentBoardId={currentBoardId}
           columns={columns}
           addTask={addTask}
         />
@@ -341,8 +340,6 @@ function App() {
           setModalOpen={setModalOpen}
           currentBoardId={currentBoardId}
           columns={columns}
-          currentColumnId={currentColumnId}
-          addTask={addTask}
           currentTask={currentTask}
           confirmDelete={confirmDeleteTask}
           editItem={updateTask}
@@ -353,9 +350,7 @@ function App() {
         <UpdateTaskModal
           darkMode={darkMode}
           setModalOpen={setModalOpen}
-          currentBoardId={currentBoardId}
           columns={columns}
-          currentColumnId={currentColumnId}
           currentTask={currentTask}
           editItem={updateTask}
         />
