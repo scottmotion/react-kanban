@@ -4,11 +4,11 @@ import './AppHeader.css'
 
 export default function AppHeader(props) {
 
-// (darkMode, setModalOpen, boards, currentBoard, currentBoardId, setCurrentBoardId, columnCount, confirmDelete, editItem)
+  // (darkMode, setModalOpen, boards, currentBoard, currentBoardId, setCurrentBoardId, columnCount, confirmDelete, editItem)
 
   // check if there is a currentBoard before rendering child that needs currentBoard as prop
   const loading = !props.currentBoard;
-  
+
   let headerClassName = "header"
   if (props.darkMode) {
     headerClassName += " dark-mode"
@@ -30,16 +30,16 @@ export default function AppHeader(props) {
         <h1 className="header__board-title">{loading ? null : props.currentBoard.name}</h1>
 
         {loading
-        ?
-        null
-        : 
-        // <BoardsDropdown boards={props.boards} currentBoard={props.currentBoard} setCurrentBoardId={props.setCurrentBoardId} />
-        props.children
+          ?
+          null
+          :
+          // <BoardsDropdown boards={props.boards} currentBoard={props.currentBoard} setCurrentBoardId={props.setCurrentBoardId} />
+          props.children
         }
 
         <div className="header__button-wrapper">
-          <NewTaskButton handleNewTask={handleNewTask} disabled={props.columnCount <= 0}/>
-          <EllipsisDropdown currentItem={props.currentBoard} confirmDelete={props.confirmDelete} itemType={"board"} setModalOpen={props.setModalOpen}/>
+          <NewTaskButton handleNewTask={handleNewTask} disabled={props.columnCount <= 0} />
+          <EllipsisDropdown currentItem={props.currentBoard} confirmDelete={props.confirmDelete} itemType={"board"} setModalOpen={props.setModalOpen} />
         </div>
 
       </div>
