@@ -1,11 +1,11 @@
 import { ReactComponent as ShowIcon } from "/src/assets/icons/icon-show.svg"
 import './ShowSidebar.css'
 
-export default function ShowSidebar(props) {
+export default function ShowSidebar({showSidebar, sidebarVisible}) {
 
   let buttonClassName = 'button button--show-sidebar'
   let buttonDisabled = ''
-  if (props.sidebarVisible) {
+  if (sidebarVisible) {
     buttonClassName += ' animate-buttonHide'
     buttonDisabled = 'disabled'
   } else {
@@ -14,7 +14,7 @@ export default function ShowSidebar(props) {
   }
   
   return (
-    <button className={buttonClassName} onClick={props.showSidebar} disabled={buttonDisabled}>
+    <button className={buttonClassName} onClick={showSidebar} disabled={buttonDisabled}>
         <ShowIcon className="button__icon--show" stroke="currentColor"/>
     </button>
   )
