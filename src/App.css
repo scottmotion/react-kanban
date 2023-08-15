@@ -17,6 +17,7 @@
   --border-light: hsl(221 69% 94%);
 
   --scrollbar-dark: hsl(235 12% 19%);
+  --scrollbar-medium: hsl(235 12% 30%);
   --scrollbar-light: hsla(235, 12%, 19%, 0.1);
 
   --text-purple: hsl(242 48% 58%);
