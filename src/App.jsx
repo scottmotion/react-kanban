@@ -339,6 +339,7 @@ function App() {
           currentBoardId={currentBoardId}
           columns={columns}
           currentTask={currentTask}
+          setCurrentTask={setCurrentTask}
           confirmDelete={confirmDeleteTask}
           editItem={updateTask}
           changeTaskColumn={changeTaskColumn}

@@ -5,7 +5,7 @@ import { doc, updateDoc, onSnapshot } from "firebase/firestore";
 
 import styles from "./Modal.module.css"
 
-export default function ShowTaskModal({ darkMode, setModalOpen, currentBoardId, columns, currentTask, confirmDelete, editItem, changeTaskColumn }) {
+export default function ShowTaskModal({ darkMode, setModalOpen, currentBoardId, columns, currentTask, setCurrentTask, confirmDelete, editItem, changeTaskColumn }) {
 
   const themeClass = darkMode ? styles.darkMode : styles.lightMode;
 
@@ -29,7 +29,8 @@ export default function ShowTaskModal({ darkMode, setModalOpen, currentBoardId, 
 
       }
       setTask(tempTask)
-      console.log("TempTask: ", tempTask)
+      setCurrentTask(tempTask)
+      // console.log("TempTask: ", tempTask)
       setSubtasks(snapshot.data().subtasks)
     })
     return unsubscribe
