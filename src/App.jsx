@@ -24,13 +24,13 @@ function App() {
 
   const [boards, setBoards] = useState([])
   const [currentBoardId, setCurrentBoardId] = useState(boards[0]?.id)
-  
+
   const [columns, setColumns] = useState([])
   const [columnCount, setColumnCount] = useState(0)
 
   const [currentTask, setCurrentTask] = useState({})
 
-  const [willDeleteId, setWillDeleteId] = useState({type: "", id: ""})
+  const [willDeleteId, setWillDeleteId] = useState({ type: "", id: "" })
 
   const currentBoard = boards.find(board => board.id === currentBoardId) || boards[0]
 
@@ -38,9 +38,9 @@ function App() {
   const loading = !currentBoardId;
 
   // supress animation until first load
-  setTimeout(function(){
-    document.body.className="loaded";
-  },1000);
+  setTimeout(function () {
+    document.body.className = "loaded";
+  }, 1000);
 
   function toggleDarkMode() {
     setDarkMode(prevMode => !prevMode)
@@ -64,12 +64,12 @@ function App() {
 
   // get boards from firebase
   useEffect(() => {
-    const unsubscribe = onSnapshot(boardsCollection, function(snapshot) {
+    const unsubscribe = onSnapshot(boardsCollection, function (snapshot) {
       const boardsArr = snapshot.docs.map(doc => ({
-          ...doc.data(),
-          id: doc.id
+        ...doc.data(),
+        id: doc.id
       }))
-      const sortedBoards = boardsArr.sort((a,b) => b.updatedAt - a.updatedAt)
+      const sortedBoards = boardsArr.sort((a, b) => b.updatedAt - a.updatedAt)
       setBoards(sortedBoards)
     })
     return unsubscribe
@@ -98,7 +98,7 @@ function App() {
     setModalOpen("")
     return newBoardRef
   }
-  
+
   // update board
   async function updateBoard(data, boardId) {
 
@@ -122,7 +122,7 @@ function App() {
   function confirmDeleteBoard(boardId) {
     setModalOpen("confirmDelete")
     setCurrentBoardId(boardId)
-    setWillDeleteId({type: "board", id: boardId})
+    setWillDeleteId({ type: "board", id: boardId })
   }
 
   // delete board
@@ -150,9 +150,9 @@ function App() {
     }
     let columnsCollection
     if (boardRef) {
-      columnsCollection = collection(boardsCollection, boardRef.id, "columns" )
+      columnsCollection = collection(boardsCollection, boardRef.id, "columns")
     } else {
-      columnsCollection = collection(boardsCollection, currentBoardId, "columns" )
+      columnsCollection = collection(boardsCollection, currentBoardId, "columns")
     }
     const newColumnRef = await addDoc(columnsCollection, newColumn)
     setModalOpen("")
@@ -193,7 +193,7 @@ function App() {
 
   // add new task
   async function addTask(task, subtasks) {
-    const tasksCollection = collection(boardsCollection, currentBoardId, "tasks" )
+    const tasksCollection = collection(boardsCollection, currentBoardId, "tasks")
     const q = query((tasksCollection), where("columnId", "==", task.columnId));
     const snapshot = await getCountFromServer(q);
     const taskCount = snapshot.data().count
@@ -217,7 +217,7 @@ function App() {
     } else {
       docRef = doc(boardsCollection, currentBoardId, "tasks", taskId)
     }
-    return await updateDoc(docRef, {columnId: columnId})
+    return await updateDoc(docRef, { columnId: columnId })
     // TODO: currentTask is still old task
   }
 
@@ -238,7 +238,7 @@ function App() {
       subtasks: data.subtasks,
       updatedAt: Date.now()
     }
-    
+
     setModalOpen("")
     return await updateDoc(docRef, newData)
   }
@@ -247,7 +247,7 @@ function App() {
   function confirmDeleteTask(taskId) {
     setModalOpen("confirmDelete")
     // setCurrentTaskId(taskId)
-    setWillDeleteId({type: "task", id: taskId})
+    setWillDeleteId({ type: "task", id: taskId })
   }
 
   // delete task
@@ -275,7 +275,7 @@ function App() {
           setCurrentBoardId={setCurrentBoardId}
         />
       </AppHeader>
-      
+
       <BoardWrapper
         sidebarVisible={sidebarVisible}
         showSidebar={showSidebar}
@@ -294,16 +294,16 @@ function App() {
         {loading
           ? null
           : <Board
-              darkMode={darkMode}
-              setModalOpen={setModalOpen}
-              currentBoard={currentBoard}
-              setColumns={setColumns}
-              setColumnCount={setColumnCount}
-              setCurrentTask={setCurrentTask}
-            />
+            darkMode={darkMode}
+            setModalOpen={setModalOpen}
+            currentBoard={currentBoard}
+            setColumns={setColumns}
+            setColumnCount={setColumnCount}
+            setCurrentTask={setCurrentTask}
+          />
         }
       </BoardWrapper>
-      
+
       {(modalOpen === "addBoard") &&
         <AddBoardModal
           darkMode={darkMode}
