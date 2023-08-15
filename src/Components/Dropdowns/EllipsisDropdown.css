@@ -54,6 +54,7 @@
     white-space: nowrap;
     cursor: pointer;
     text-transform: capitalize;
+    opacity: .7;
 }
 
 .edit-board-menu--delete {
@@ -61,9 +62,10 @@
     white-space: nowrap;
     cursor: pointer;
     text-transform: capitalize;
+    opacity: .7;
 }
 
 .edit-board-menu--edit:hover,
 .edit-board-menu--delete:hover {
-    opacity: .7;
+    opacity: 1;
 }
