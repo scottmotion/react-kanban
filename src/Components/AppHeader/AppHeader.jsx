@@ -1,4 +1,3 @@
-import BoardsDropdown from "../Dropdowns/BoardsDropdown"
 import NewTaskButton from "../Buttons/NewTaskButton"
 import EllipsisDropdown from "../Dropdowns/EllipsisDropdown"
 import './AppHeader.css'
