@@ -17,7 +17,14 @@ import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 import { onSnapshot, addDoc, doc, deleteDoc, updateDoc, collection, query, where, getCountFromServer } from "firebase/firestore"
 import { boardsCollection } from "./firebase"
 
+import { createContext } from 'react';
+
+export const ThemeContext = createContext('dark');
+
 function App() {
+
+  const [theme, setTheme] = useState('dark');
+
   const [sidebarVisible, setSidebarVisible] = useState(true)
   const [darkMode, setDarkMode] = useState(true)
   const [modalOpen, setModalOpen] = useState("")
@@ -44,6 +51,11 @@ function App() {
 
   function toggleDarkMode() {
     setDarkMode(prevMode => !prevMode)
+    if (theme === 'dark') {
+      setTheme('light')
+    } else if (theme ==='light') {
+      setTheme('dark')
+    }
   }
 
   function hideSidebar() {
@@ -262,6 +274,7 @@ function App() {
 
   return (
     <>
+    <ThemeContext.Provider value={theme}>
       <AppHeader
         darkMode={darkMode}
         setModalOpen={setModalOpen}
@@ -285,6 +298,7 @@ function App() {
           sidebarVisible={sidebarVisible}
           hideSidebar={hideSidebar}
           darkMode={darkMode}
+          setTheme={setTheme}
           toggleDarkMode={toggleDarkMode}
           setModalOpen={setModalOpen}
           boards={boards}
@@ -364,7 +378,7 @@ function App() {
           deleteTask={deleteTask}
         />
       }
-
+    </ThemeContext.Provider>
     </>
   )
 }

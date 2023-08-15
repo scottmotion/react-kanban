@@ -1,18 +1,30 @@
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
 import NewTaskButton from "../Buttons/NewTaskButton"
 import EllipsisDropdown from "../Dropdowns/EllipsisDropdown"
 import './AppHeader.css'
 
 export default function AppHeader({ children, darkMode, setModalOpen, currentBoard, columnCount, confirmDelete }) {
 
+  const theme = useContext(ThemeContext);
+  console.log("AppHeader theme: ", theme)
   // check if there is a currentBoard before rendering child that needs currentBoard as prop
   const loading = !currentBoard;
 
+  // let headerClassName = "header"
+  // if (darkMode) {
+  //   headerClassName += " dark-mode"
+  // } else {
+  //   headerClassName += " light-mode"
+  // }
+
   let headerClassName = "header"
-  if (darkMode) {
+  if (theme === 'dark') {
     headerClassName += " dark-mode"
-  } else {
+  } else if (theme === 'light') {
     headerClassName += " light-mode"
   }
+
 
   function handleNewTask() {
     if (currentBoard) {
