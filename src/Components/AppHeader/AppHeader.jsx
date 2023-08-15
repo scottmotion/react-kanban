@@ -7,7 +7,7 @@ import './AppHeader.css'
 export default function AppHeader({ children, darkMode, setModalOpen, currentBoard, columnCount, confirmDelete }) {
 
   const theme = useContext(ThemeContext);
-  console.log("AppHeader theme: ", theme)
+  // console.log("AppHeader theme: ", theme)
   // check if there is a currentBoard before rendering child that needs currentBoard as prop
   const loading = !currentBoard;
 

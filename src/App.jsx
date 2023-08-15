@@ -4,6 +4,7 @@ import './App.css'
 import AppHeader from './Components/AppHeader/AppHeader'
 import BoardWrapper from './Components/Board/BoardWrapper'
 import Sidebar from './Components/Sidebar/Sidebar'
+import ThemeToggle from "./Components/Sidebar/ThemeToggle"
 import Board from "./Components/Board/Board"
 import BoardsDropdown from "./Components/Dropdowns/BoardsDropdown"
 
@@ -299,12 +300,16 @@ function App() {
           hideSidebar={hideSidebar}
           darkMode={darkMode}
           setTheme={setTheme}
-          toggleDarkMode={toggleDarkMode}
           setModalOpen={setModalOpen}
           boards={boards}
           currentBoardId={currentBoardId}
           setCurrentBoardId={setCurrentBoardId}
-        />
+        >
+          <ThemeToggle
+            darkMode={darkMode}
+            toggleDarkMode={toggleDarkMode}
+          />
+        </Sidebar>
         {loading
           ? null
           : <Board

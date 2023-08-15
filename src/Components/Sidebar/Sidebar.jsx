@@ -1,10 +1,13 @@
+import { useContext } from 'react'
+import { ThemeContext } from '../../App'
 import './Sidebar.css'
 import SidebarButton from "./SidebarButton"
 import NewBoardButton from "./NewBoardButton"
 import HideSidebarButton from "./HideSidebarButton"
-import ThemeToggle from "./ThemeToggle"
 
-export default function Sidebar({ sidebarVisible, hideSidebar, darkMode, toggleDarkMode, setModalOpen, boards, currentBoardId, setCurrentBoardId }) {
+export default function Sidebar({ children, sidebarVisible, hideSidebar, darkMode, setModalOpen, boards, currentBoardId, setCurrentBoardId }) {
+  const theme = useContext(ThemeContext);
+  console.log("AppHeader theme: ", theme)
 
   const boardButtonElements = [].concat(boards)
     // .sort((a,b) => b.updatedAt - a.updatedAt)
@@ -25,9 +28,9 @@ export default function Sidebar({ sidebarVisible, hideSidebar, darkMode, toggleD
     navClassName += ' animate-sidebarClose'
   }
 
-  if (darkMode) {
+  if (theme === 'dark') {
     navClassName += " dark-mode"
-  } else {
+  } else if (theme === 'light') {
     navClassName += " light-mode"
   }
 
@@ -42,7 +45,7 @@ export default function Sidebar({ sidebarVisible, hideSidebar, darkMode, toggleD
 
       <div className="sidebar__options-wrapper">
 
-        <ThemeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        {children}
 
         <HideSidebarButton onClick={hideSidebar} />
 
