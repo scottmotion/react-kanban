@@ -3,6 +3,11 @@
 /*********/
 /* RESET */
 /*********/
+input,
+select {
+  width: 100%;
+}
+
 input:focus,
 textarea:focus {
   outline: none;
@@ -132,9 +137,32 @@ textarea:focus {
 }
 
 .modalFormTextarea {
-  resize: vertical;
-  height: 7rem;
+  resize: none;
+  height: 7.1rem;
 }
+
+
+/* modal form textarea scrollbar */
+.modalFormTextarea::-webkit-scrollbar {
+  width: 1rem;
+}
+
+.modalFormTextarea::-webkit-scrollbar-thumb {
+  border-left: .25rem solid rgba(0, 0, 0, 0);
+  border-right: .25rem solid rgba(0, 0, 0, 0);
+  border-top: .25rem solid rgba(0, 0, 0, 0);
+  border-bottom: .25rem solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: .5rem;
+  /* background-color: red; */
+}
+.modal.darkMode .modalFormTextarea::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-medium);
+}
+.modal.lightMode .modalFormTextarea::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-light);
+}
+
 
 .modalFormInput:focus,
 .modalFormTextarea:focus {

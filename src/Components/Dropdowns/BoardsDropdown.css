@@ -25,6 +25,7 @@ input:focus {
   background-color: inherit;
   border: none;
   padding: 0.5rem;
+  width: 100%;
 }
 .dropdownSelect:disabled {
   color: var(--text-mediumGrey);
