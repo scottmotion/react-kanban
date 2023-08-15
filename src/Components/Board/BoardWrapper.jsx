@@ -1,16 +1,16 @@
 import ShowSidebar from "./ShowSidebar"
 import './BoardWrapper.css'
 
-export default function BoardWrapper(props) {
+export default function BoardWrapper({children, sidebarVisible, showSidebar, darkMode}) {
 
   let mainClassName = 'main board-wrapper'
-  if (props.sidebarVisible) {
+  if (sidebarVisible) {
     mainClassName += ' animate-boardThin'
   } else {
     mainClassName += ' animate-boardWide'
   }
 
-  if (props.darkMode) {
+  if (darkMode) {
     mainClassName += " dark-mode"
   } else {
     mainClassName += " light-mode"
@@ -19,8 +19,8 @@ export default function BoardWrapper(props) {
   return (
     <>
       <main className={mainClassName}>
-        {props.children}
-        <ShowSidebar showSidebar={props.showSidebar} sidebarVisible={props.sidebarVisible}/>
+        {children}
+        <ShowSidebar showSidebar={showSidebar} sidebarVisible={sidebarVisible}/>
       </main>
     </>
   )

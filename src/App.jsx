@@ -270,10 +270,18 @@ function App() {
         columnCount={columnCount}
         confirmDelete={confirmDeleteBoard}
       >
-        <BoardsDropdown boards={boards} currentBoard={currentBoard} currentBoardId={currentBoardId} setCurrentBoardId={setCurrentBoardId} />
+        <BoardsDropdown
+          boards={boards}
+          currentBoardId={currentBoardId}
+          setCurrentBoardId={setCurrentBoardId}
+        />
       </AppHeader>
       
-      <BoardWrapper sidebarVisible={sidebarVisible} showSidebar={showSidebar} darkMode={darkMode}>
+      <BoardWrapper
+        sidebarVisible={sidebarVisible}
+        showSidebar={showSidebar}
+        darkMode={darkMode}
+      >
         <Sidebar
           sidebarVisible={sidebarVisible}
           hideSidebar={hideSidebar}

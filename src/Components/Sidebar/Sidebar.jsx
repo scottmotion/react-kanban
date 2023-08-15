@@ -4,28 +4,28 @@ import NewBoardButton from "./NewBoardButton"
 import HideSidebarButton from "./HideSidebarButton"
 import ThemeToggle from "./ThemeToggle"
 
-export default function Sidebar(props) {
+export default function Sidebar({ sidebarVisible, hideSidebar, darkMode, toggleDarkMode, setModalOpen, boards, currentBoardId, setCurrentBoardId }) {
 
-  const boardButtonElements = [].concat(props.boards)
+  const boardButtonElements = [].concat(boards)
     // .sort((a,b) => b.updatedAt - a.updatedAt)
     .map((board) => (
       <SidebarButton
         key={board.id}
         board={board}
-        active={board.id === props.currentBoardId ? "true" : "false"}
-        onClick={() => props.setCurrentBoardId(board.id)}
+        active={board.id === currentBoardId ? "true" : "false"}
+        onClick={() => setCurrentBoardId(board.id)}
       />
     ))
 
   let navClassName = 'nav section sidebar'
 
-  if (props.sidebarVisible) {
+  if (sidebarVisible) {
     navClassName += ' animate-sidebarOpen'
   } else {
     navClassName += ' animate-sidebarClose'
   }
 
-  if (props.darkMode) {
+  if (darkMode) {
     navClassName += " dark-mode"
   } else {
     navClassName += " light-mode"
@@ -37,14 +37,14 @@ export default function Sidebar(props) {
       <div className="sidebar__nav-wrapper">
         <div className="sidebar__heading">All Boards</div>
         {boardButtonElements}
-        <NewBoardButton onClick={() => props.setModalOpen("addBoard")} />
+        <NewBoardButton onClick={() => setModalOpen("addBoard")} />
       </div>
 
       <div className="sidebar__options-wrapper">
 
-        <ThemeToggle darkMode={props.darkMode} toggleDarkMode={props.toggleDarkMode} />
+        <ThemeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-        <HideSidebarButton onClick={props.hideSidebar} />
+        <HideSidebarButton onClick={hideSidebar} />
 
       </div>
 

@@ -2,10 +2,7 @@ import NewTaskButton from "../Buttons/NewTaskButton"
 import EllipsisDropdown from "../Dropdowns/EllipsisDropdown"
 import './AppHeader.css'
 
-// export default function AppHeader(props) {
-export default function AppHeader({children, darkMode, setModalOpen, currentBoard, columnCount, confirmDelete}) {
-
-  // (darkMode, setModalOpen, boards, currentBoard, currentBoardId, setCurrentBoardId, columnCount, confirmDelete, editItem)
+export default function AppHeader({ children, darkMode, setModalOpen, currentBoard, columnCount, confirmDelete }) {
 
   // check if there is a currentBoard before rendering child that needs currentBoard as prop
   const loading = !currentBoard;
