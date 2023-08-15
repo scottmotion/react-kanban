@@ -266,13 +266,9 @@ function App() {
       <AppHeader
         darkMode={darkMode}
         setModalOpen={setModalOpen}
-        boards={boards}
         currentBoard={currentBoard}
-        currentBoardId={currentBoardId}
-        setCurrentBoardId={setCurrentBoardId}
         columnCount={columnCount}
         confirmDelete={confirmDeleteBoard}
-        editItem={updateBoard}
       >
         <BoardsDropdown boards={boards} currentBoard={currentBoard} currentBoardId={currentBoardId} setCurrentBoardId={setCurrentBoardId} />
       </AppHeader>
