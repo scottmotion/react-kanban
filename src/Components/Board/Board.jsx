@@ -5,7 +5,7 @@ import './Board.css'
 import Column from "../Columns/Column"
 import ColumnNew from '../Columns/ColumnNew'
 
-export default function Board({ darkMode, setModalOpen, currentBoard, setColumns, setColumnCount, setCurrentColumnId, setCurrentTask }) {
+export default function Board({ darkMode, setModalOpen, currentBoard, setColumns, setColumnCount, setCurrentTask }) {
 
   const [currentColumns, setCurrentColumns] = useState([])
 
@@ -46,7 +46,6 @@ export default function Board({ darkMode, setModalOpen, currentBoard, setColumns
       tasksCollection={tasksCollection}
       setModalOpen={setModalOpen}
       setCurrentTask={setCurrentTask}
-      setCurrentColumnId={setCurrentColumnId}
     />
   ))
 

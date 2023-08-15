@@ -1,6 +1,6 @@
 import './TaskCard.css'
 
-export default function TaskCard({ task, columnId, setModalOpen, setCurrentColumnId, setCurrentTask }) {
+export default function TaskCard({ task, setModalOpen, setCurrentTask }) {
 
     const subtaskCount = task.subtasks?.length || 0
     let completedCount = 0
@@ -11,7 +11,6 @@ export default function TaskCard({ task, columnId, setModalOpen, setCurrentColum
     })
 
     function handleClick() {
-        setCurrentColumnId(columnId)
         setCurrentTask(task)
         setModalOpen("showTask")
     }

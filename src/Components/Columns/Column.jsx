@@ -3,7 +3,7 @@ import { onSnapshot, query, where } from 'firebase/firestore'
 import TaskCard from '../Task/TaskCard'
 import './Column.css'
 
-export default function Column({ columnName, columnId, tasksCollection, setModalOpen, setCurrentTask, setCurrentColumnId }) {
+export default function Column({ columnName, columnId, tasksCollection, setModalOpen, setCurrentTask }) {
 
     const [tasks, setTasks] = useState([])
 
@@ -29,9 +29,7 @@ export default function Column({ columnName, columnId, tasksCollection, setModal
         <TaskCard
             key={task.id}
             task={task}
-            columnId={columnId}
             setModalOpen={setModalOpen}
-            setCurrentColumnId={setCurrentColumnId}
             setCurrentTask={setCurrentTask}
         />
     ))

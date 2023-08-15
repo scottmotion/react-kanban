@@ -29,6 +29,7 @@ export default function ShowTaskModal({ darkMode, setModalOpen, currentBoardId, 
 
       }
       setTask(tempTask)
+      console.log("TempTask: ", tempTask)
       setSubtasks(snapshot.data().subtasks)
     })
     return unsubscribe
