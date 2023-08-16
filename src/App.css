@@ -26,6 +26,10 @@
   --text-dark: hsl(237 100% 4%);
   --text-danger: hsl(0 78% 63%);
 
+  --indicator-blue: rgb(73 196 229);
+  --indicator-purple: rgb(132 113 242);
+  --indicator-green: rgb(103 226 174);
+
   --box-shadow: rgba(54, 78, 126, 0.1) 0px 4px 6px 0px;
 
   /* sidebar width */
