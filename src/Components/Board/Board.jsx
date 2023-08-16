@@ -1,11 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { onSnapshot, collection } from 'firebase/firestore'
 import { boardsCollection } from '../../firebase'
+import { ThemeContext } from '../../App'
 import './Board.css'
 import Column from "../Columns/Column"
 import ColumnNew from '../Columns/ColumnNew'
 
-export default function Board({ darkMode, setModalOpen, currentBoard, setColumns, setColumnCount, setCurrentTask }) {
+export default function Board({ setModalOpen, currentBoard, setColumns, setColumnCount, setCurrentTask }) {
+
+  const theme = useContext(ThemeContext);
 
   const [currentColumns, setCurrentColumns] = useState([])
 
@@ -13,9 +16,10 @@ export default function Board({ darkMode, setModalOpen, currentBoard, setColumns
   const tasksCollection = collection(boardsCollection, currentBoard.id, "tasks")
 
   let sectionClassName = 'board__column-section'
-  if (darkMode) {
+
+  if (theme === 'dark') {
     sectionClassName += " dark-mode"
-  } else {
+  } else if (theme === 'light') {
     sectionClassName += " light-mode"
   }
 

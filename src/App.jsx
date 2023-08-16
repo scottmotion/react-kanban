@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, createContext } from "react"
 
 import './App.css'
 import AppHeader from './Components/AppHeader/AppHeader'
@@ -17,8 +17,6 @@ import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
 
 import { onSnapshot, addDoc, doc, deleteDoc, updateDoc, collection, query, where, getCountFromServer } from "firebase/firestore"
 import { boardsCollection } from "./firebase"
-
-import { createContext } from 'react';
 
 export const ThemeContext = createContext('dark');
 
@@ -277,7 +275,6 @@ function App() {
     <>
     <ThemeContext.Provider value={theme}>
       <AppHeader
-        darkMode={darkMode}
         setModalOpen={setModalOpen}
         currentBoard={currentBoard}
         columnCount={columnCount}
@@ -293,7 +290,6 @@ function App() {
       <BoardWrapper
         sidebarVisible={sidebarVisible}
         showSidebar={showSidebar}
-        darkMode={darkMode}
       >
         <Sidebar
           sidebarVisible={sidebarVisible}
@@ -310,7 +306,6 @@ function App() {
         {loading
           ? null
           : <Board
-            darkMode={darkMode}
             setModalOpen={setModalOpen}
             currentBoard={currentBoard}
             setColumns={setColumns}

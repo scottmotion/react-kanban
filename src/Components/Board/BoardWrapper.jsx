@@ -1,7 +1,11 @@
+import { useContext } from "react"
+import { ThemeContext } from "../../App"
 import ShowSidebar from "./ShowSidebar"
 import './BoardWrapper.css'
 
-export default function BoardWrapper({children, sidebarVisible, showSidebar, darkMode}) {
+export default function BoardWrapper({ children, sidebarVisible, showSidebar }) {
+
+  const theme = useContext(ThemeContext);
 
   let mainClassName = 'main board-wrapper'
   if (sidebarVisible) {
@@ -10,9 +14,9 @@ export default function BoardWrapper({children, sidebarVisible, showSidebar, dar
     mainClassName += ' animate-boardWide'
   }
 
-  if (darkMode) {
+  if (theme === 'dark') {
     mainClassName += " dark-mode"
-  } else {
+  } else if (theme === 'light') {
     mainClassName += " light-mode"
   }
 
@@ -20,9 +24,8 @@ export default function BoardWrapper({children, sidebarVisible, showSidebar, dar
     <>
       <main className={mainClassName}>
         {children}
-        <ShowSidebar showSidebar={showSidebar} sidebarVisible={sidebarVisible}/>
+        <ShowSidebar showSidebar={showSidebar} sidebarVisible={sidebarVisible} />
       </main>
     </>
   )
 }
-  
