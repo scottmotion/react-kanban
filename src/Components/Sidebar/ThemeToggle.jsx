@@ -17,10 +17,10 @@ export default function ThemeToggle({ toggleTheme }) {
 
   return (
     <div className="theme-switcher">
-      <LightModeIcon className='theme-switcher__icon theme-switcher__icon--light' />
-      <button className="button theme-switcher__toggle" type="button" role="switch" onClick={toggleTheme}></button>
-      <span className={toggleIndicatorClass} data-state="checked" onClick={toggleTheme}></span>
-      <DarkModeIcon className='theme-switcher__icon theme-switcher__icon--dark' />
+      <LightModeIcon className='theme-switcher__icon theme-switcher__icon--light' onClick={(e) => toggleTheme(e, 'light')}/>
+      <button className="button theme-switcher__toggle" type="button" role="switch" onClick={(e) => toggleTheme(e)}></button>
+      <span className={toggleIndicatorClass} data-state="checked" onClick={(e) => toggleTheme(e)}></span>
+      <DarkModeIcon className='theme-switcher__icon theme-switcher__icon--dark' onClick={(e) => toggleTheme(e, 'dark')}/>
     </div>
   )
 }

@@ -46,12 +46,19 @@ function App() {
     document.body.className = "loaded";
   }, 1000);
 
-  function toggleTheme() {
-    if (theme === 'dark') {
+  function toggleTheme(e, mode) {
+    e.stopPropagation();
+    if (mode) {
+      // console.log("mode: ", mode)
+      setTheme(mode)
+    } else {
+          if (theme === 'dark') {
       setTheme('light')
     } else if (theme === 'light') {
       setTheme('dark')
     }
+    }
+
   }
 
   function hideSidebar() {
