@@ -49,7 +49,7 @@ function App() {
   function toggleTheme() {
     if (theme === 'dark') {
       setTheme('light')
-    } else if (theme ==='light') {
+    } else if (theme === 'light') {
       setTheme('dark')
     }
   }
@@ -270,103 +270,103 @@ function App() {
 
   return (
     <>
-    <ThemeContext.Provider value={theme}>
-      <AppHeader
-        setModalOpen={setModalOpen}
-        currentBoard={currentBoard}
-        columnCount={columnCount}
-        confirmDelete={confirmDeleteBoard}
-      >
-        <BoardsDropdown
-          boards={boards}
-          currentBoardId={currentBoardId}
-          setCurrentBoardId={setCurrentBoardId}
-        />
-      </AppHeader>
-
-      <BoardWrapper
-        sidebarVisible={sidebarVisible}
-        showSidebar={showSidebar}
-      >
-        <Sidebar
-          sidebarVisible={sidebarVisible}
-          hideSidebar={hideSidebar}
-          setModalOpen={setModalOpen}
-          boards={boards}
-          currentBoardId={currentBoardId}
-          setCurrentBoardId={setCurrentBoardId}
-        >
-          <ThemeToggle
-            toggleTheme={toggleTheme}
-          />
-        </Sidebar>
-        {loading
-          ? null
-          : <Board
-            setModalOpen={setModalOpen}
-            currentBoard={currentBoard}
-            setColumns={setColumns}
-            setColumnCount={setColumnCount}
-            setCurrentTask={setCurrentTask}
-          />
-        }
-      </BoardWrapper>
-
-      {(modalOpen === "addBoard") &&
-        <AddBoardModal
-          setModalOpen={setModalOpen}
-          addBoard={addBoard}
-          addColumn={addColumn}
-        />
-      }
-      {(modalOpen === "updateBoard") &&
-        <UpdateBoardModal
+      <ThemeContext.Provider value={theme}>
+        <AppHeader
           setModalOpen={setModalOpen}
           currentBoard={currentBoard}
-          editItem={updateBoard}
-          columns={columns}
-          addColumn={addColumn}
-          updateColumn={updateColumn}
-          deleteColumn={deleteColumn}
-        />
-      }
-      {(modalOpen === "addTask") &&
-        <AddTaskModal
-          setModalOpen={setModalOpen}
-          columns={columns}
-          addTask={addTask}
-        />
-      }
-      {(modalOpen === "showTask") &&
-        <ShowTaskModal
-          setModalOpen={setModalOpen}
-          currentBoardId={currentBoardId}
-          columns={columns}
-          currentTask={currentTask}
-          setCurrentTask={setCurrentTask}
-          confirmDelete={confirmDeleteTask}
-          editItem={updateTask}
-          changeTaskColumn={changeTaskColumn}
-        />
-      }
-      {(modalOpen === "updateTask") &&
-        <UpdateTaskModal
-          setModalOpen={setModalOpen}
-          columns={columns}
-          currentTask={currentTask}
-          editItem={updateTask}
-        />
-      }
+          columnCount={columnCount}
+          confirmDelete={confirmDeleteBoard}
+        >
+          <BoardsDropdown
+            boards={boards}
+            currentBoardId={currentBoardId}
+            setCurrentBoardId={setCurrentBoardId}
+          />
+        </AppHeader>
 
-      {(modalOpen === "confirmDelete") &&
-        <ConfirmDeleteModal
-          setModalOpen={setModalOpen}
-          willDeleteId={willDeleteId}
-          deleteBoard={deleteBoard}
-          deleteTask={deleteTask}
-        />
-      }
-    </ThemeContext.Provider>
+        <BoardWrapper
+          sidebarVisible={sidebarVisible}
+          showSidebar={showSidebar}
+        >
+          <Sidebar
+            sidebarVisible={sidebarVisible}
+            hideSidebar={hideSidebar}
+            setModalOpen={setModalOpen}
+            boards={boards}
+            currentBoardId={currentBoardId}
+            setCurrentBoardId={setCurrentBoardId}
+          >
+            <ThemeToggle
+              toggleTheme={toggleTheme}
+            />
+          </Sidebar>
+          {loading
+            ? null
+            : <Board
+              setModalOpen={setModalOpen}
+              currentBoard={currentBoard}
+              setColumns={setColumns}
+              setColumnCount={setColumnCount}
+              setCurrentTask={setCurrentTask}
+            />
+          }
+        </BoardWrapper>
+
+        {(modalOpen === "addBoard") &&
+          <AddBoardModal
+            setModalOpen={setModalOpen}
+            addBoard={addBoard}
+            addColumn={addColumn}
+          />
+        }
+        {(modalOpen === "updateBoard") &&
+          <UpdateBoardModal
+            setModalOpen={setModalOpen}
+            currentBoard={currentBoard}
+            editItem={updateBoard}
+            columns={columns}
+            addColumn={addColumn}
+            updateColumn={updateColumn}
+            deleteColumn={deleteColumn}
+          />
+        }
+        {(modalOpen === "addTask") &&
+          <AddTaskModal
+            setModalOpen={setModalOpen}
+            columns={columns}
+            addTask={addTask}
+          />
+        }
+        {(modalOpen === "showTask") &&
+          <ShowTaskModal
+            setModalOpen={setModalOpen}
+            currentBoardId={currentBoardId}
+            columns={columns}
+            currentTask={currentTask}
+            setCurrentTask={setCurrentTask}
+            confirmDelete={confirmDeleteTask}
+            editItem={updateTask}
+            changeTaskColumn={changeTaskColumn}
+          />
+        }
+        {(modalOpen === "updateTask") &&
+          <UpdateTaskModal
+            setModalOpen={setModalOpen}
+            columns={columns}
+            currentTask={currentTask}
+            editItem={updateTask}
+          />
+        }
+
+        {(modalOpen === "confirmDelete") &&
+          <ConfirmDeleteModal
+            setModalOpen={setModalOpen}
+            willDeleteId={willDeleteId}
+            deleteBoard={deleteBoard}
+            deleteTask={deleteTask}
+          />
+        }
+      </ThemeContext.Provider>
     </>
   )
 }
