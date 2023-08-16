@@ -1,4 +1,6 @@
 import { useState, useEffect, createContext } from "react"
+import { onSnapshot, addDoc, doc, deleteDoc, updateDoc, collection, query, where, getCountFromServer } from "firebase/firestore"
+import { boardsCollection } from "./firebase"
 
 import './App.css'
 import AppHeader from './Components/AppHeader/AppHeader'
@@ -14,9 +16,6 @@ import AddTaskModal from "./Components/Modals/AddTaskModal"
 import ShowTaskModal from "./Components/Modals/ShowTaskModal"
 import UpdateTaskModal from "./Components/Modals/UpdateTaskModal"
 import ConfirmDeleteModal from "./Components/Modals/ConfirmDeleteModal"
-
-import { onSnapshot, addDoc, doc, deleteDoc, updateDoc, collection, query, where, getCountFromServer } from "firebase/firestore"
-import { boardsCollection } from "./firebase"
 
 export const ThemeContext = createContext('dark');
 
