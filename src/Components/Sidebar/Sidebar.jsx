@@ -5,9 +5,9 @@ import SidebarButton from "./SidebarButton"
 import NewBoardButton from "./NewBoardButton"
 import HideSidebarButton from "./HideSidebarButton"
 
-export default function Sidebar({ children, sidebarVisible, hideSidebar, darkMode, setModalOpen, boards, currentBoardId, setCurrentBoardId }) {
+export default function Sidebar({ children, sidebarVisible, hideSidebar, setModalOpen, boards, currentBoardId, setCurrentBoardId }) {
   const theme = useContext(ThemeContext);
-  console.log("AppHeader theme: ", theme)
+  // console.log("AppHeader theme: ", theme)
 
   const boardButtonElements = [].concat(boards)
     // .sort((a,b) => b.updatedAt - a.updatedAt)

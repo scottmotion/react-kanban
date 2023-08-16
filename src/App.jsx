@@ -298,15 +298,12 @@ function App() {
         <Sidebar
           sidebarVisible={sidebarVisible}
           hideSidebar={hideSidebar}
-          darkMode={darkMode}
-          setTheme={setTheme}
           setModalOpen={setModalOpen}
           boards={boards}
           currentBoardId={currentBoardId}
           setCurrentBoardId={setCurrentBoardId}
         >
           <ThemeToggle
-            darkMode={darkMode}
             toggleDarkMode={toggleDarkMode}
           />
         </Sidebar>
