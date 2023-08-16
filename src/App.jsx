@@ -25,7 +25,6 @@ function App() {
   const [theme, setTheme] = useState('dark');
 
   const [sidebarVisible, setSidebarVisible] = useState(true)
-  const [darkMode, setDarkMode] = useState(true)
   const [modalOpen, setModalOpen] = useState("")
 
   const [boards, setBoards] = useState([])
@@ -48,8 +47,7 @@ function App() {
     document.body.className = "loaded";
   }, 1000);
 
-  function toggleDarkMode() {
-    setDarkMode(prevMode => !prevMode)
+  function toggleTheme() {
     if (theme === 'dark') {
       setTheme('light')
     } else if (theme ==='light') {
@@ -300,7 +298,7 @@ function App() {
           setCurrentBoardId={setCurrentBoardId}
         >
           <ThemeToggle
-            toggleDarkMode={toggleDarkMode}
+            toggleTheme={toggleTheme}
           />
         </Sidebar>
         {loading
@@ -317,7 +315,6 @@ function App() {
 
       {(modalOpen === "addBoard") &&
         <AddBoardModal
-          darkMode={darkMode}
           setModalOpen={setModalOpen}
           addBoard={addBoard}
           addColumn={addColumn}
@@ -325,7 +322,6 @@ function App() {
       }
       {(modalOpen === "updateBoard") &&
         <UpdateBoardModal
-          darkMode={darkMode}
           setModalOpen={setModalOpen}
           currentBoard={currentBoard}
           editItem={updateBoard}
@@ -337,7 +333,6 @@ function App() {
       }
       {(modalOpen === "addTask") &&
         <AddTaskModal
-          darkMode={darkMode}
           setModalOpen={setModalOpen}
           columns={columns}
           addTask={addTask}
@@ -345,7 +340,6 @@ function App() {
       }
       {(modalOpen === "showTask") &&
         <ShowTaskModal
-          darkMode={darkMode}
           setModalOpen={setModalOpen}
           currentBoardId={currentBoardId}
           columns={columns}
@@ -358,7 +352,6 @@ function App() {
       }
       {(modalOpen === "updateTask") &&
         <UpdateTaskModal
-          darkMode={darkMode}
           setModalOpen={setModalOpen}
           columns={columns}
           currentTask={currentTask}
@@ -368,7 +361,6 @@ function App() {
 
       {(modalOpen === "confirmDelete") &&
         <ConfirmDeleteModal
-          darkMode={darkMode}
           setModalOpen={setModalOpen}
           willDeleteId={willDeleteId}
           deleteBoard={deleteBoard}

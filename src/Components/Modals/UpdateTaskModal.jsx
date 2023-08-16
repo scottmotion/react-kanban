@@ -1,13 +1,15 @@
 // TODO: See UpdateBoardModal.jsx for example
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ThemeContext } from "../../App";
 import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
 
 import styles from "./Modal.module.css"
 
-export default function UpdateTaskModal({darkMode, setModalOpen, columns, currentTask, editItem}) {
+export default function UpdateTaskModal({ setModalOpen, columns, currentTask, editItem }) {
 
-  const themeClass = darkMode ? styles.darkMode : styles.lightMode;
+  const theme = useContext(ThemeContext);
+  const themeClass = (theme === 'dark') ? styles.darkMode : styles.lightMode;
 
   const [tempTask, setTempTask] = useState({
     name: currentTask.name,
@@ -33,21 +35,21 @@ export default function UpdateTaskModal({darkMode, setModalOpen, columns, curren
           onChange={(e) => handleChangeSubtask(e, index)}
         />
       </label>
-      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => {handleRemoveSubtask(e, index)}}>
-        <CrossIcon className={`${styles.deleteBtnIcon}`}/>
+      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveSubtask(e, index) }}>
+        <CrossIcon className={`${styles.deleteBtnIcon}`} />
       </button>
     </div>
   ))
 
-   const columnOptions = columns.map((column, index) => (
+  const columnOptions = columns.map((column, index) => (
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
-  )) 
+  ))
 
   function handleChange(event) {
-    const {name, value} = event.target
+    const { name, value } = event.target
     setTempTask(prevTempTask => ({
-        ...prevTempTask,
-        [name]: value
+      ...prevTempTask,
+      [name]: value
     }))
   }
 
@@ -71,7 +73,7 @@ export default function UpdateTaskModal({darkMode, setModalOpen, columns, curren
 
     setTempSubtasks(tempSubtasks.map((s, index) => {
       if (index === subtaskId) {
-        return ({...s, ...tempSubtask});
+        return ({ ...s, ...tempSubtask });
       } else {
         return s;
       }
@@ -89,7 +91,7 @@ export default function UpdateTaskModal({darkMode, setModalOpen, columns, curren
 
   const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
     event.preventDefault();
-    let tempData = {...tempTask, subtasks: tempSubtasks}
+    let tempData = { ...tempTask, subtasks: tempSubtasks }
     if (tempTask.name) {
       editItem(tempData)
     }

@@ -4,7 +4,7 @@ import { ReactComponent as LightModeIcon } from "/src/assets/icons/icon-light-mo
 import { ReactComponent as DarkModeIcon } from "/src/assets/icons/icon-dark-mode.svg"
 import './ThemeToggle.css'
 
-export default function ThemeToggle({ toggleDarkMode }) {
+export default function ThemeToggle({ toggleTheme }) {
   const theme = useContext(ThemeContext);
 
   let toggleIndicatorClass = "theme-switcher__toggle-indicator"
@@ -18,8 +18,8 @@ export default function ThemeToggle({ toggleDarkMode }) {
   return (
     <div className="theme-switcher">
       <LightModeIcon className='theme-switcher__icon theme-switcher__icon--light' />
-      <button className="button theme-switcher__toggle" type="button" role="switch" onClick={toggleDarkMode}></button>
-      <span className={toggleIndicatorClass} data-state="checked" onClick={toggleDarkMode}></span>
+      <button className="button theme-switcher__toggle" type="button" role="switch" onClick={toggleTheme}></button>
+      <span className={toggleIndicatorClass} data-state="checked" onClick={toggleTheme}></span>
       <DarkModeIcon className='theme-switcher__icon theme-switcher__icon--dark' />
     </div>
   )

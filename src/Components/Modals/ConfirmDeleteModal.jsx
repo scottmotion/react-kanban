@@ -1,8 +1,11 @@
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
 import styles from "./Modal.module.css"
 
-export default function ConfirmDeleteModal({ darkMode, setModalOpen, willDeleteId, deleteBoard, deleteTask }) {
+export default function ConfirmDeleteModal({ setModalOpen, willDeleteId, deleteBoard, deleteTask }) {
 
-  const themeClass = darkMode ? styles.darkMode : styles.lightMode;
+  const theme = useContext(ThemeContext);
+  const themeClass = (theme === 'dark') ? styles.darkMode : styles.lightMode;
 
   const handleSubmit = (event) => {
     event.preventDefault();

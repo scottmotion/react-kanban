@@ -1,20 +1,23 @@
 import EllipsisDropdown from "../Dropdowns/EllipsisDropdown";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "../../App";
 import { boardsCollection } from "../../firebase";
 import { doc, updateDoc, onSnapshot } from "firebase/firestore";
 
 import styles from "./Modal.module.css"
 
-export default function ShowTaskModal({ darkMode, setModalOpen, currentBoardId, columns, currentTask, setCurrentTask, confirmDelete, editItem, changeTaskColumn }) {
+export default function ShowTaskModal({ setModalOpen, currentBoardId, columns, currentTask, setCurrentTask, confirmDelete, editItem, changeTaskColumn }) {
 
-  const themeClass = darkMode ? styles.darkMode : styles.lightMode;
+  const theme = useContext(ThemeContext);
+  const themeClass = (theme === 'dark') ? styles.darkMode : styles.lightMode;
 
   let modalClassName
-  if (darkMode) {
-    modalClassName = "dark-mode"
-  } else {
-    modalClassName = "light-mode"
+  if (theme === 'dark') {
+    modalClassName += " dark-mode"
+  } else if (theme === 'light') {
+    modalClassName += " light-mode"
   }
+
 
   const [task, setTask] = useState({})
   const [subtasks, setSubtasks] = useState([])

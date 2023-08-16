@@ -1,11 +1,12 @@
+import { useState, useContext } from "react";
+import { ThemeContext } from "../../App";
 import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
-
-import { useState } from "react";
 import styles from "./Modal.module.css"
 
-export default function AddBoardModal({ darkMode, setModalOpen, addBoard, addColumn }) {
+export default function AddBoardModal({ setModalOpen, addBoard, addColumn }) {
 
-  const themeClass = darkMode ? styles.darkMode : styles.lightMode;
+  const theme = useContext(ThemeContext);
+  const themeClass = (theme === 'dark') ? styles.darkMode : styles.lightMode;
 
   const [newBoard, setNewBoard] = useState({
     name: ""
