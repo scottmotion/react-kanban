@@ -3,7 +3,7 @@ import { ReactComponent as ChevronDownIcon } from "/src/assets/icons/icon-chevro
 
 import './MobileBoardsDropdown.css'
 
-export default function MobileBoardsDropdown({ boards, currentBoardId, setCurrentBoardId }) {
+export default function MobileBoardsDropdown({ children, boards, currentBoardId, setCurrentBoardId }) {
 
     const [showDropdown, setShowDropdown] = useState(false)
 
@@ -50,12 +50,14 @@ export default function MobileBoardsDropdown({ boards, currentBoardId, setCurren
     }, [currentBoardId])
 
     const boardsDropdownOptions = boards.map((board, index) => (
-        <div className="button boards-dropdown__option" key={index} value={board.id}>{board.name}</div>
+        <div className="button boards-dropdown__option" key={index} data-id={board.id} onClick={handleChangeBoard}>{board.name}</div>
     ))
 
     function handleChangeBoard(event) {
-        const { value } = event.target
+        const value = event.target.dataset.id
+        console.log("value: ", value)
         setCurrentBoardId(value)
+        setShowDropdown(false)
     }
 
     return (
@@ -81,9 +83,8 @@ export default function MobileBoardsDropdown({ boards, currentBoardId, setCurren
                 </button>
                 <div className={optionsClassName}>
                     {boardsDropdownOptions}
-                    <div className="button edit-board-menu--delete">Theme Toggle</div>
+                    {children}
                 </div>
-
             </div>
 
 

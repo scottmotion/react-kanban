@@ -293,7 +293,11 @@ function App() {
             boards={boards}
             currentBoardId={currentBoardId}
             setCurrentBoardId={setCurrentBoardId}
-          />
+          >
+            <ThemeToggle
+              toggleTheme={toggleTheme}
+            />
+          </MobileBoardsDropdown>
         </AppHeader>
 
         <BoardWrapper

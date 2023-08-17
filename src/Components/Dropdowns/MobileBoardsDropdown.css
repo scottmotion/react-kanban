@@ -1,62 +1,14 @@
-/*********/
-/* RESET */
-/*********/
-select, input,
-input:focus {
-  outline: none;
-}
-
-.dropdownLabel {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    /* width: 100%; */
-}
-
-.dropdownOption {
-    color: initial;
-}
-
-.dropdownSelect {
-  font-size: 1.125rem;
-  font-weight: var(--fw-700);
-  margin: 0;
-  white-space: nowrap;
-  background-color: inherit;
-  border: none;
-  padding: 0.5rem;
-  width: 100%;
-}
-.dropdownSelect:disabled {
-  color: var(--text-mediumGrey);
-}
-.lightMode .dropdownSelect {
-  border: 1px solid var(--text-mediumGrey);
-}
-
-@media screen and (min-width: 768px) {
-  .dropdownLabel {
-    display: none;
-  }
-}
-
-
-
 .boards-dropdown--wrapper {
   position: relative;
 }
-
 
 .button--select-board {
   display: flex;
   flex-direction: row;
   align-items: center;
   cursor: pointer;
-  /* background-color: var(--bg-purple); */
   color: var(--text-white);
   border: none;
-  /* padding: 0.25rem 1rem 0.25rem 1rem; */
-  /* border-radius: 1.5rem; */
 
   background-color: inherit;
   font-size: 1.125rem;
@@ -67,11 +19,18 @@ input:focus {
   width: 100%;
   gap: 0.5rem
 }
+.light-mode .button--select-board {
+  color: var(--text-dark);
+}
 
 .button__text--select-board {
   /* display: none; */
   font-weight: var(--fw-700);
 }
+/* .light-mode .button__text--select-board {
+  color: var(--text-dark);
+} */
+
 
 /* @media screen and (min-width: 768px) {
   .button__text--select-board {
@@ -90,7 +49,7 @@ input:focus {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  padding: 1rem 3rem 1rem 1rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: rgba(54, 78, 126, 0.1) 0px 4px 6px 0px;
   position: absolute;
@@ -126,4 +85,9 @@ input:focus {
 
 .boards-dropdown__option:hover {
   opacity: 1;
+}
+
+
+.boards-dropdown--wrapper .theme-switcher {
+  margin: 0;
 }
