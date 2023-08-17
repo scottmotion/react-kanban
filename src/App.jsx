@@ -284,11 +284,11 @@ function App() {
           columnCount={columnCount}
           confirmDelete={confirmDeleteBoard}
         >
-          <BoardsDropdown
+          {/* <BoardsDropdown
             boards={boards}
             currentBoardId={currentBoardId}
             setCurrentBoardId={setCurrentBoardId}
-          />
+          /> */}
           <MobileBoardsDropdown
             boards={boards}
             currentBoardId={currentBoardId}
