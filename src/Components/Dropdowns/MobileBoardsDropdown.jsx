@@ -11,13 +11,13 @@ export default function MobileBoardsDropdown({ children, boards, currentBoardId,
 
     let optionsClassName = "boards-dropdown-menu"
     if (showDropdown) {
-      optionsClassName += " show"
+        optionsClassName += " show"
     } else {
-      optionsClassName += " hide"
+        optionsClassName += " hide"
     }
 
     function toggleDropdown() {
-        console.log("toggle dropdown")
+        // console.log("toggle dropdown")
         setShowDropdown(!showDropdown)
     }
 
@@ -26,17 +26,17 @@ export default function MobileBoardsDropdown({ children, boards, currentBoardId,
      */
     function dropdownClickOutside(ref) {
         useEffect(() => {
-        function handleClickOutside(event) {
-            if (ref.current && !ref.current.contains(event.target)) {
-            setShowDropdown(false)
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setShowDropdown(false)
+                }
             }
-        }
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
+            // Bind the event listener
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                // Unbind the event listener on clean up
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
         }, [ref]);
     }
     const dropdownWrapperRef = useRef(null);
@@ -55,40 +55,24 @@ export default function MobileBoardsDropdown({ children, boards, currentBoardId,
 
     function handleChangeBoard(event) {
         const value = event.target.dataset.id
-        console.log("value: ", value)
+        // console.log("value: ", value)
         setCurrentBoardId(value)
         setShowDropdown(false)
     }
 
     return (
-        <>
-            {/* <label className="dropdownLabel">
-                <select
-                    className="dropdownSelect"
-                    name="board"
-                    value={currentBoard.id}
-                    onChange={handleChangeBoard}
-                >
-                    {boardsDropdownOptions}
-                </select>
-            </label> */}
 
+        <div className="boards-dropdown--wrapper" ref={dropdownWrapperRef}>
 
-
-            <div className="boards-dropdown--wrapper" ref={dropdownWrapperRef}>
-
-                <button className="button button--select-board" onClick={toggleDropdown}>
-                    <div className="button__text--select-board">{currentBoard.name}</div>
-                    <ChevronDownIcon className='button__icon button__icon--chevron-down' />
-                </button>
-                <div className={optionsClassName}>
-                    {boardsDropdownOptions}
-                    {children}
-                </div>
+            <button className="button button--select-board" onClick={toggleDropdown}>
+                <div className="button__text--select-board">{currentBoard.name}</div>
+                <ChevronDownIcon className='button__icon button__icon--chevron-down' />
+            </button>
+            <div className={optionsClassName}>
+                {boardsDropdownOptions}
+                {children}
             </div>
-
-
-        </>
+        </div>
 
     )
 }
