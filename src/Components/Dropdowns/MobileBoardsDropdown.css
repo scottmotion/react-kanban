@@ -42,6 +42,11 @@ input:focus {
 
 
 
+.boards-dropdown--wrapper {
+  position: relative;
+}
+
+
 .button--select-board {
   display: flex;
   flex-direction: row;
@@ -60,6 +65,7 @@ input:focus {
   white-space: nowrap;
   padding: 0.5rem;
   width: 100%;
+  gap: 0.5rem
 }
 
 .button__text--select-board {
@@ -78,4 +84,46 @@ input:focus {
   width: 1.5rem;
   height: 1.5rem;
   /* vertical-align: text-top; */
+}
+
+.boards-dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1rem 3rem 1rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(54, 78, 126, 0.1) 0px 4px 6px 0px;
+  position: absolute;
+  top: 3.5rem;
+  left: .5rem;
+  z-index: 99;
+}
+
+.light-mode .boards-dropdown-menu {
+  background-color: var(--bg-veryLightBlue);
+}
+
+.dark-mode .boards-dropdown-menu {
+  background-color: var(--bg-secondary);
+}
+
+.boards-dropdown-menu.show {
+  visibility: visible;
+}
+
+.boards-dropdown-menu.hide {
+  visibility: hidden;
+}
+
+
+.boards-dropdown__option {
+  color: var(--text-mediumGrey);
+  white-space: nowrap;
+  cursor: pointer;
+  text-transform: capitalize;
+  opacity: .7;
+}
+
+.boards-dropdown__option:hover {
+  opacity: 1;
 }
