@@ -39,3 +39,43 @@ input:focus {
     display: none;
   }
 }
+
+
+
+.button--select-board {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  /* background-color: var(--bg-purple); */
+  color: var(--text-white);
+  border: none;
+  /* padding: 0.25rem 1rem 0.25rem 1rem; */
+  /* border-radius: 1.5rem; */
+
+  background-color: inherit;
+  font-size: 1.125rem;
+  font-weight: var(--fw-700);
+  margin: 0;
+  white-space: nowrap;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.button__text--select-board {
+  /* display: none; */
+  font-weight: var(--fw-700);
+}
+
+/* @media screen and (min-width: 768px) {
+  .button__text--select-board {
+      display: initial;
+  }
+} */
+
+.button__icon--chevron-down {
+  border-radius: 100%;
+  width: 1.5rem;
+  height: 1.5rem;
+  /* vertical-align: text-top; */
+}

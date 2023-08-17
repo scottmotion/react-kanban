@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ReactComponent as ChevronDownIcon } from "/src/assets/icons/icon-chevron-down.svg"
 
 import './MobileBoardsDropdown.css'
 
@@ -20,15 +21,26 @@ export default function MobileBoardsDropdown({ boards, currentBoardId, setCurren
     }
 
     return (
-        <label className="dropdownLabel">
-            <select
-                className="dropdownSelect"
-                name="board"
-                value={currentBoard.id}
-                onChange={handleChangeBoard}
-            >
-                {boardsDropdownOptions}
-            </select>
-        </label>
+        <>
+            {/* <label className="dropdownLabel">
+                <select
+                    className="dropdownSelect"
+                    name="board"
+                    value={currentBoard.id}
+                    onChange={handleChangeBoard}
+                >
+                    {boardsDropdownOptions}
+                </select>
+            </label> */}
+
+
+
+
+            <button className="button button--select-board">
+                <div className="button__text--select-board">Boards</div>
+                <ChevronDownIcon className='button__icon button__icon--chevron-down' />
+            </button>
+        </>
+
     )
 }

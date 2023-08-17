@@ -9,7 +9,7 @@ import Sidebar from './Components/Sidebar/Sidebar'
 import ThemeToggle from "./Components/Sidebar/ThemeToggle"
 import Board from "./Components/Board/Board"
 import BoardsDropdown from "./Components/Dropdowns/BoardsDropdown"
-
+import MobileBoardsDropdown from "./Components/Dropdowns/MobileBoardsDropdown"
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
 import AddTaskModal from "./Components/Modals/AddTaskModal"
@@ -52,11 +52,11 @@ function App() {
       // console.log("mode: ", mode)
       setTheme(mode)
     } else {
-          if (theme === 'dark') {
-      setTheme('light')
-    } else if (theme === 'light') {
-      setTheme('dark')
-    }
+      if (theme === 'dark') {
+        setTheme('light')
+      } else if (theme === 'light') {
+        setTheme('dark')
+      }
     }
 
   }
@@ -285,6 +285,11 @@ function App() {
           confirmDelete={confirmDeleteBoard}
         >
           <BoardsDropdown
+            boards={boards}
+            currentBoardId={currentBoardId}
+            setCurrentBoardId={setCurrentBoardId}
+          />
+          <MobileBoardsDropdown
             boards={boards}
             currentBoardId={currentBoardId}
             setCurrentBoardId={setCurrentBoardId}
