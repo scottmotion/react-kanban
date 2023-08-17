@@ -1,6 +1,11 @@
 .boards-dropdown--wrapper {
   position: relative;
 }
+@media screen and (min-width: 768px) {
+  .boards-dropdown--wrapper {
+    display: none;
+  }
+}
 
 .button--select-board {
   display: flex;
