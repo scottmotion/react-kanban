@@ -58,9 +58,14 @@
   border-radius: 0.5rem;
   box-shadow: rgba(54, 78, 126, 0.1) 0px 4px 6px 0px;
   position: absolute;
-  top: 3.5rem;
+  top: 2.75rem;
   left: .5rem;
   z-index: 99;
+}
+@media screen and (min-width: 768px) {
+  .boards-dropdown-menu {
+    top: 3.5rem;
+  }
 }
 
 .light-mode .boards-dropdown-menu {
