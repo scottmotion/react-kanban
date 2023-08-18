@@ -135,7 +135,7 @@ export default function ShowTaskModal({ setModalOpen, currentBoardId, columns, c
               {columnOptions}
             </select>
           </label>
-          <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={() => setModalOpen('')}>Cancel</button>
+          <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={() => setModalOpen('')}>Close</button>
 
         </div>
       </div>
