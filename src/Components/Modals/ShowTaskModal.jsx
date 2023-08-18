@@ -81,31 +81,20 @@ export default function ShowTaskModal({ setModalOpen, currentBoardId, columns, c
     <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
   ))
 
-  const newSubtaskInputs = subtasks.map((subtask, index) => (
-    <div className={styles.modalFormInputWrapper} key={index}>
+  const subtaskElements = subtasks.map((subtask, index) => (
+    <div className={styles.modalFormCheckboxWrapper} key={index}>
 
       <label className={`${styles.modalFormLabel} ${styles.modalFormLabelCheckbox}`}>
         <input
           type="checkbox"
-          className={styles.modalFormInput}
+          className={styles.modalFormCheckbox}
           name="isCompleted"
           id={index}
           onChange={(e) => handleSubtaskCheckbox(e, subtask, index)}
           checked={subtask.isCompleted}
         />
       </label>
-
-      <label className={styles.modalFormLabel}>
-        <input
-          type="text"
-          placeholder="Subtask Name"
-          className={`${styles.modalFormInput} ${styles.inputReadOnly}`}
-          name="subtaskName"
-          id={index}
-          value={subtask.name}
-          disabled
-        />
-      </label>
+      <p className={`${styles.subTaskText} ${subtask.isCompleted ? styles.subTaskChecked : ''}`}>{subtask.name}</p>
     </div>
   ))
 
@@ -122,7 +111,7 @@ export default function ShowTaskModal({ setModalOpen, currentBoardId, columns, c
           <div className={styles.taskDescription}>{task.description}</div>
 
           <div>Subtasks</div>
-          {newSubtaskInputs}
+          {subtaskElements}
 
           <label className={styles.modalFormLabel}>
             Column:

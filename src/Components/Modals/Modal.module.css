@@ -91,6 +91,20 @@ textarea:focus {
 .taskDescription {
   color: var(--text-mediumGrey);
 }
+.subTaskText {
+  /* border: 1px solid var(--border-dark); */
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  /* border-radius: 0; */
+  /* background-color: var(--bg-veryDarkGrey); */
+  color: var(--text-mediumGrey);
+  /* padding: 0.5rem; */
+  width: 100%;
+}
+
+.subTaskText.subTaskChecked {
+  text-decoration: line-through;
+}
 
 
 /*********/
@@ -112,7 +126,8 @@ textarea:focus {
 .modalFormInputWrapper {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
+  align-items: baseline;
   gap: 0.5rem;
 }
 
@@ -142,12 +157,10 @@ textarea:focus {
   height: 7.1rem;
 }
 
-
 /* modal form textarea scrollbar */
 .modalFormTextarea::-webkit-scrollbar {
   width: 1rem;
 }
-
 .modalFormTextarea::-webkit-scrollbar-thumb {
   border-left: .25rem solid rgba(0, 0, 0, 0);
   border-right: .25rem solid rgba(0, 0, 0, 0);
@@ -191,9 +204,58 @@ textarea:focus {
   color: initial;
 }
 
+.modalFormCheckboxWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  /* border-radius: 0; */
+  background-color: var(--bg-veryDarkGrey);
+  color: var(--text-mediumGrey);
+  padding: 0.5rem;
+  width: 100%;
+}
+.lightMode .modalFormCheckboxWrapper {
+  background-color: var(--bg-veryLightBlue);
+}
 .modalFormLabelCheckbox {
   width: unset;
-  vertical-align: middle;
+}
+.modalFormCheckbox {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--bg-primary);
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+.lightMode .modalFormCheckbox {
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-dark);
+}
+.modalFormCheckbox:checked {
+  background-color: var(--bg-purple);
+}
+.modalFormCheckbox::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--text-white); /*check color*/
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.modalFormCheckbox:checked::before {
+  transform: scale(1);
 }
 
 /***********/
@@ -214,6 +276,9 @@ textarea:focus {
 }
 .addBtn:hover {
   background-color: var(--bg-veryLightBlue);
+}
+.lightMode .addBtn {
+  border-color: var(--text-mediumGrey);  
 }
 
 .lightMode .addBtn:hover {
@@ -253,6 +318,9 @@ textarea:focus {
 }
 .cancelBtn:hover {
   background-color: var(--bg-veryDarkGrey);
+}
+.lightMode .cancelBtn {
+  border-color: var(--text-mediumGrey);
 }
 .lightMode .cancelBtn:hover {
   background-color: var(--bg-veryLightBlue);
