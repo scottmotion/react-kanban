@@ -5,6 +5,9 @@
   align-items: stretch;
   background-color: var(--bg-primary);
   height: 4rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 @media screen and (min-width: 768px) {
   .header {
@@ -73,6 +76,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  min-width: 0;
+  gap: 1rem;
 }
 .header__board-title {
   display: none;
@@ -80,6 +85,8 @@
   font-weight: var(--fw-700);
   margin: 0;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media screen and (min-width: 768px) {
   .header__board-title {
@@ -91,6 +98,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 1rem;
   gap: 1rem;
+  flex-shrink: 0;
 }

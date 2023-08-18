@@ -9,7 +9,7 @@ import Sidebar from './Components/Sidebar/Sidebar'
 import ThemeToggle from "./Components/Sidebar/ThemeToggle"
 import Board from "./Components/Board/Board"
 import BoardsDropdown from "./Components/Dropdowns/BoardsDropdown"
-
+import MobileBoardsDropdown from "./Components/Dropdowns/MobileBoardsDropdown"
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
 import AddTaskModal from "./Components/Modals/AddTaskModal"
@@ -43,7 +43,7 @@ function App() {
 
   // supress animation until first load
   setTimeout(function () {
-    document.body.className = "loaded";
+    document.body.classList.remove("preload");
   }, 1000);
 
   function toggleTheme(e, mode) {
@@ -52,13 +52,12 @@ function App() {
       // console.log("mode: ", mode)
       setTheme(mode)
     } else {
-          if (theme === 'dark') {
-      setTheme('light')
-    } else if (theme === 'light') {
-      setTheme('dark')
+      if (theme === 'dark') {
+        setTheme('light')
+      } else if (theme === 'light') {
+        setTheme('dark')
+      }
     }
-    }
-
   }
 
   function hideSidebar() {
@@ -67,6 +66,15 @@ function App() {
   function showSidebar() {
     setSidebarVisible(true)
   }
+
+  // hide overflow on body when modal is open
+  useEffect(() => {
+    if (modalOpen === '') {
+      document.body.classList.remove('overflow-hidden')
+    } else {
+      document.body.classList.add("overflow-hidden");
+    }
+  }, [modalOpen])
 
   //////////////////////
   // GENERAL CRUD
@@ -284,11 +292,20 @@ function App() {
           columnCount={columnCount}
           confirmDelete={confirmDeleteBoard}
         >
-          <BoardsDropdown
+          {/* <BoardsDropdown
             boards={boards}
             currentBoardId={currentBoardId}
             setCurrentBoardId={setCurrentBoardId}
-          />
+          /> */}
+          <MobileBoardsDropdown
+            boards={boards}
+            currentBoardId={currentBoardId}
+            setCurrentBoardId={setCurrentBoardId}
+          >
+            <ThemeToggle
+              toggleTheme={toggleTheme}
+            />
+          </MobileBoardsDropdown>
         </AppHeader>
 
         <BoardWrapper
