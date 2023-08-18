@@ -127,6 +127,7 @@ export default function AddBoardModal({ setModalOpen, addBoard, addColumn }) {
 
             <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>+ Add New Column</button>
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create Board</button>
+            <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={() => setModalOpen('')}>Cancel</button>
           </form>
         </div>
       </div>

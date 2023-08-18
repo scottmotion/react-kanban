@@ -146,6 +146,7 @@ export default function UpdateBoardModal({ setModalOpen, currentBoard, editItem,
             }
             <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>+ Add New Column</button>
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Save</button>
+            <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={() => setModalOpen('')}>Cancel</button>
           </form>
         </div>
       </div>

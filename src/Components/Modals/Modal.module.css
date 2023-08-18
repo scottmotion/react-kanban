@@ -212,6 +212,14 @@ textarea:focus {
   background-color: var(--bg-white);
   border: 1px solid var(--border-dark);
 }
+.addBtn:hover {
+  background-color: var(--bg-veryLightBlue);
+}
+
+.lightMode .addBtn:hover {
+  background-color: var(--bg-veryLightBlue);
+}
+
 
 .saveBtn {
   color: var(--text-white);
@@ -239,9 +247,17 @@ textarea:focus {
 
 .cancelBtn {
   color: var(--text-purple);
-  background-color: var(--bg-white);
+  background-color: inherit;
+  /* background-color: var(--bg-white); */
   border: 1px solid var(--border-dark);
 }
+.cancelBtn:hover {
+  background-color: var(--bg-veryDarkGrey);
+}
+.lightMode .cancelBtn:hover {
+  background-color: var(--bg-veryLightBlue);
+}
+
 
 /* .deleteBtn {
   border-radius: 100%;

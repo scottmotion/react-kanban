@@ -146,6 +146,7 @@ export default function AddTaskModal({ setModalOpen, columns, addTask }) {
             </label>
 
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create Task</button>
+            <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={() => setModalOpen('')}>Cancel</button>
           </form>
         </div>
       </div>

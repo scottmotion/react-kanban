@@ -148,6 +148,7 @@ export default function UpdateTaskModal({ setModalOpen, columns, currentTask, ed
             </label>
 
             <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Save</button>
+            <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={() => setModalOpen('')}>Cancel</button>
           </form>
         </div>
       </div>
