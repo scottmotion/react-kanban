@@ -109,6 +109,10 @@ body.preload *{
   transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
 }
 
+.overflow-hidden {
+  overflow-y: hidden;
+}
+
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

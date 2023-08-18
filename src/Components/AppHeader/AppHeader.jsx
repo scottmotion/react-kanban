@@ -20,6 +20,7 @@ export default function AppHeader({ children, setModalOpen, currentBoard, column
 
   function handleNewTask() {
     if (currentBoard) {
+      // document.body.classList.add("overflow-hidden");
       setModalOpen("addTask")
     }
   }

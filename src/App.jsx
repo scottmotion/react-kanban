@@ -43,7 +43,7 @@ function App() {
 
   // supress animation until first load
   setTimeout(function () {
-    document.body.className = "loaded";
+    document.body.classList.remove("preload");
   }, 1000);
 
   function toggleTheme(e, mode) {
@@ -58,7 +58,6 @@ function App() {
         setTheme('dark')
       }
     }
-
   }
 
   function hideSidebar() {
@@ -67,6 +66,15 @@ function App() {
   function showSidebar() {
     setSidebarVisible(true)
   }
+
+  // hide overflow on body when modal is open
+  useEffect(() => {
+    if (modalOpen === '') {
+      document.body.classList.remove('overflow-hidden')
+    } else {
+      document.body.classList.add("overflow-hidden");
+    }
+  }, [modalOpen])
 
   //////////////////////
   // GENERAL CRUD
