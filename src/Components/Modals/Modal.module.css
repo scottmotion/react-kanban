@@ -97,13 +97,14 @@ textarea:focus {
   border-radius: 0.5rem;
   /* border-radius: 0; */
   /* background-color: var(--bg-veryDarkGrey); */
-  color: var(--text-mediumGrey);
+  /* color: var(--text-mediumGrey); */
   /* padding: 0.5rem; */
   width: 100%;
 }
 
 .subTaskText.subTaskChecked {
   text-decoration: line-through;
+  color: var(--text-mediumGrey);
 }
 
 
@@ -213,7 +214,7 @@ textarea:focus {
   border-radius: 0.5rem;
   /* border-radius: 0; */
   background-color: var(--bg-veryDarkGrey);
-  color: var(--text-mediumGrey);
+  /* color: var(--text-mediumGrey); */
   padding: 0.5rem;
   width: 100%;
 }
