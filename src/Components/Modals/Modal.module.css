@@ -49,8 +49,9 @@ textarea:focus {
   gap: 1rem;
   width: 92vw;
   max-width: 25rem;
-  /* background-color: var(--bg-primary);
-  color: var(--text-white); */
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+
   border-radius: 0.5rem;
   box-shadow: var(--box-shadow);
   padding: 1.5rem;
@@ -240,10 +241,11 @@ textarea:focus {
 }
 .lightMode .modalFormCheckbox {
   background-color: var(--bg-white);
-  border: 1px solid var(--border-dark);
+  border: 1px solid var(--text-mediumGrey);
 }
 .modalFormCheckbox:checked {
   background-color: var(--bg-purple);
+  border: 1px solid transparent;
 }
 .modalFormCheckbox::before {
   content: "";
