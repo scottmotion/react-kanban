@@ -66,6 +66,28 @@ textarea:focus {
   color: var(--text-dark);
 }
 
+/* modal form textarea scrollbar */
+.modal::-webkit-scrollbar {
+  width: 1rem;
+}
+.modal::-webkit-scrollbar-thumb {
+  border-left: .25rem solid rgba(0, 0, 0, 0);
+  border-right: .25rem solid rgba(0, 0, 0, 0);
+  border-top: .25rem solid rgba(0, 0, 0, 0);
+  border-bottom: .25rem solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: .5rem;
+  /* background-color: red; */
+}
+.modal.darkMode::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-medium);
+}
+.modal.lightMode::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-light);
+}
+
+
+
 .modalHeader {
   display: flex;
   flex-direction: row;
