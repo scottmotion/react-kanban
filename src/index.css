@@ -95,6 +95,7 @@ html {
   }
 }
 
+
 /* setup the body */
 body {
   margin: 0;
@@ -109,10 +110,51 @@ body.preload *{
   transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
 }
 
+/* body scrollbar */
+body::-webkit-scrollbar {
+  width: 1.5rem;
+}
+body.dark::-webkit-scrollbar {
+  background-color: var(--bg-secondary);
+}
+body.light::-webkit-scrollbar {
+  background-color: var(--bg-veryLightBlue);
+}
+
+body::-webkit-scrollbar-thumb {
+  border-left: .25rem solid rgba(0, 0, 0, 0);
+  border-right: .25rem solid rgba(0, 0, 0, 0);
+  border-top: .25rem solid rgba(0, 0, 0, 0);
+  border-bottom: .25rem solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  background-color: var(--scrollbar-dark);
+  border-radius: 1rem;
+}
+body.dark::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-dark);
+}
+body.light::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-light);
+}
+
+
+body::-webkit-scrollbar-button:single-button:vertical:decrement {
+  height: var( --header-height-sm);
+}
+body.dark::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-color: var(--bg-primary);
+}
+body.light::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-color: var(--bg-white);
+}
+
+
+/* UTILITY CLASSES */
 .overflow-hidden {
   overflow-y: hidden;
 }
 
+/* COLOR SCHEME */
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

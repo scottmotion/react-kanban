@@ -54,11 +54,24 @@ function App() {
     } else {
       if (theme === 'dark') {
         setTheme('light')
+        document.body.className = ('light');
       } else if (theme === 'light') {
         setTheme('dark')
+        document.body.className = ('dark');
       }
     }
   }
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.body.classList.remove('light');
+      document.body.classList.add('dark');
+    } else if (theme === 'light') {
+      document.body.classList.remove('dark');
+      document.body.className = ('light');
+    }
+
+  }, [theme])
 
   function hideSidebar() {
     setSidebarVisible(false)
