@@ -8,12 +8,23 @@
   
 .board__column-indicator {
   display: inline-block;
-  background-color: var(--bg-purple);
+  /* background-color: var(--bg-purple); */
   width: 1rem;
   aspect-ratio: 1/1;
   border-radius: 1rem;
   margin-right: .75rem;
 }
+
+.board__column-section .board__column-single--wrapper:nth-child(3n-2) .board__column-indicator {
+  background-color: var(--indicator-blue);
+}
+.board__column-section .board__column-single--wrapper:nth-child(3n-1) .board__column-indicator {
+  background-color: var(--indicator-purple);
+}
+.board__column-section .board__column-single--wrapper:nth-child(3n-3) .board__column-indicator {
+  background-color: var(--indicator-green);
+}
+
 .board__column-title {
   display: flex;
   flex-direction: row;
