@@ -7,7 +7,7 @@ export default function BoardWrapper({ children, sidebarVisible, showSidebar }) 
 
   const theme = useContext(ThemeContext);
 
-  let mainClassName = 'main board-wrapper'
+  let mainClassName = 'main board-wrapper prevent-select'
   if (sidebarVisible) {
     mainClassName += ' animate-boardThin'
   } else {

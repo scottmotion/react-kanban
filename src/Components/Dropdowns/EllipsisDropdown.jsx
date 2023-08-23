@@ -7,7 +7,7 @@ export default function EllipsisDropdown({currentItem, confirmDelete, itemType, 
 
     const [showDropdown, setShowDropdown] = useState(false)
 
-    let optionsClassName = "edit-board-menu"
+    let optionsClassName = "edit-board-menu prevent-select"
     if (showDropdown) {
       optionsClassName += " show"
     } else {

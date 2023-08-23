@@ -20,7 +20,7 @@ export default function Sidebar({ children, sidebarVisible, hideSidebar, setModa
       />
     ))
 
-  let navClassName = 'nav section sidebar'
+  let navClassName = 'nav section sidebar prevent-select'
 
   if (sidebarVisible) {
     navClassName += ' animate-sidebarOpen'

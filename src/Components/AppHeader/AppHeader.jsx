@@ -11,7 +11,7 @@ export default function AppHeader({ children, setModalOpen, currentBoard, column
   // check if there is a currentBoard before rendering child that needs currentBoard as prop
   const loading = !currentBoard;
 
-  let headerClassName = "header"
+  let headerClassName = "header prevent-select"
   if (theme === 'dark') {
     headerClassName += " dark-mode"
   } else if (theme === 'light') {
