@@ -3,6 +3,8 @@
 import { useState, useContext } from "react";
 import { ThemeContext } from "../../App";
 import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
+import { ReactComponent as BarSortIcon }  from "/src/assets/icons/icon-bars-sort.svg"
+
 
 import styles from "./Modal.module.css"
 
@@ -24,6 +26,9 @@ export default function UpdateTaskModal({ setModalOpen, columns, currentTask, ed
 
   const tempSubtaskInputs = tempSubtasks.map((subtask, index) => (
     <div className={styles.modalFormInputWrapper} key={index}>
+      {/* <div className={`${styles.sortIconDiv} ${styles.deleteBtnCircle}`}>
+        <BarSortIcon className={`${styles.sortIcon}`} />
+      </div> */}
       <label className={styles.modalFormLabel}>
         <input
           type="text"
