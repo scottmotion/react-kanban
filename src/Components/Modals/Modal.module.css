@@ -374,7 +374,7 @@ textarea:focus {
   border: none;
   color: var(--text-mediumGrey);
   background: none;
-  padding: 0;
+  padding-inline: 0.25rem;
   
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
