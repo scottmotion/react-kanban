@@ -156,7 +156,7 @@ textarea:focus {
 }
 
 .modalFormInput {
-  background-color: inherit;
+  background-color: var(--bg-darkGrey);
   border: 1px solid var(--border-dark);
   border-radius: 0.5rem;
   padding: 0.5rem;
@@ -224,8 +224,13 @@ textarea:focus {
   margin-bottom: 0.5rem;
 }
 
-.modalFormOption {
-  color: initial;
+.darkMode .modalFormSelect {
+  color: var(--text-white);
+  background-color: var(--bg-primary);
+}
+.darkMode .modalFormOption {
+  color: var(--text-white);
+  background-color: var(--bg-darkGrey);
 }
 
 .modalFormCheckboxWrapper {
