@@ -6,9 +6,9 @@ import styles from "../Modal.module.css"
 export default function SubtaskInput({subtask, index, handleChangeSubtask, handleRemoveSubtask}) {
     return (
         <div className={styles.modalFormInputWrapper}>
-            <div className={`${styles.sortIconDiv} ${styles.deleteBtnCircle}`}>
+            {/* <div className={`${styles.sortIconDiv} ${styles.deleteBtnCircle}`}>
                 <BarSortIcon className={`${styles.sortIcon}`} />
-            </div>
+            </div> */}
             <label className={styles.modalFormLabel}>
                 <input
                     type="text"
