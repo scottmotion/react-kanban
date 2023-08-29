@@ -30,7 +30,7 @@ export default function UpdateBoardModal({ setModalOpen, currentBoard, editItem,
           id={column.id}
         />
       </label>
-      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveColumn(e, index, column.id) }}>
+      <button type="button" className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveColumn(e, index, column.id) }}>
         <CrossIcon className={`${styles.deleteBtnIcon}`} />
       </button>
     </div>
@@ -144,9 +144,9 @@ export default function UpdateBoardModal({ setModalOpen, currentBoard, editItem,
               </fieldset>
               : ""
             }
-            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>+ Add New Column</button>
-            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Save</button>
-            <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={() => setModalOpen('')}>Cancel</button>
+            <button type="button" className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewColumn(e)}>+ Add New Column</button>
+            <button type="submit" className={`${styles.btn} ${styles.saveBtn}`}>Save</button>
+            <button type="button" className={`${styles.btn} ${styles.cancelBtn}`} onClick={() => setModalOpen('')}>Cancel</button>
           </form>
         </div>
       </div>
