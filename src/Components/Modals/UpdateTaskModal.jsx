@@ -6,7 +6,6 @@ import { ThemeContext } from "../../App";
 // import { ReactComponent as BarSortIcon } from "/src/assets/icons/icon-reorder.svg"
 import SubtaskInput from "./Inputs/SubtaskInput";
 
-
 import styles from "./Modal.module.css"
 
 export default function UpdateTaskModal({ setModalOpen, columns, currentTask, editItem }) {
@@ -22,8 +21,6 @@ export default function UpdateTaskModal({ setModalOpen, columns, currentTask, ed
   })
 
   const [tempSubtasks, setTempSubtasks] = useState(currentTask.subtasks)
-
-  // const [removedSubtasks, setRemovedSubtasks] = useState([])
 
   const tempSubtaskInputs = tempSubtasks.map((subtask, index) => (
     <SubtaskInput key={index} subtask={subtask} index={index} handleChangeSubtask={handleChangeSubtask} handleRemoveSubtask={handleRemoveSubtask}/>
