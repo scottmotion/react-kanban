@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { ThemeContext } from "../../App";
 import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
+import SubtaskInput from "./Inputs/SubtaskInput";
 
 import styles from "./Modal.module.css"
 
@@ -77,22 +78,23 @@ export default function AddTaskModal({ setModalOpen, columns, addTask }) {
   ))
 
   const newSubtaskInputs = newSubtasks.map((subtask, index) => (
-    <div className={styles.modalFormInputWrapper} key={index}>
-      <label className={styles.modalFormLabel}>
-        <input
-          type="text"
-          placeholder="Subtask Name"
-          className={styles.modalFormInput}
-          name="subtaskName"
-          id={index}
-          value={subtask.name}
-          onChange={(e) => handleChangeSubtask(e, index)}
-        />
-      </label>
-      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveSubtask(e, index) }}>
-        <CrossIcon className={`${styles.deleteBtnIcon}`} />
-      </button>
-    </div>
+    <SubtaskInput key={index} subtask={subtask} index={index} handleChangeSubtask={handleChangeSubtask} handleRemoveSubtask={handleRemoveSubtask}/>
+    // <div className={styles.modalFormInputWrapper} key={index}>
+    //   <label className={styles.modalFormLabel}>
+    //     <input
+    //       type="text"
+    //       placeholder="Subtask Name"
+    //       className={styles.modalFormInput}
+    //       name="subtaskName"
+    //       id={index}
+    //       value={subtask.name}
+    //       onChange={(e) => handleChangeSubtask(e, index)}
+    //     />
+    //   </label>
+    //   <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveSubtask(e, index) }}>
+    //     <CrossIcon className={`${styles.deleteBtnIcon}`} />
+    //   </button>
+    // </div>
   ))
 
   return (

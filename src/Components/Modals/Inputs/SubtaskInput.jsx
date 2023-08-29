@@ -3,7 +3,7 @@ import { ReactComponent as BarSortIcon } from "/src/assets/icons/icon-reorder.sv
 
 import styles from "../Modal.module.css"
 
-export default function SubtaskInput({subtask, index, handleChangeSubtask}) {
+export default function SubtaskInput({subtask, index, handleChangeSubtask, handleRemoveSubtask}) {
     return (
         <div className={styles.modalFormInputWrapper}>
             <div className={`${styles.sortIconDiv} ${styles.deleteBtnCircle}`}>

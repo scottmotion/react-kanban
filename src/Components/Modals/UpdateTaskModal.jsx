@@ -26,7 +26,7 @@ export default function UpdateTaskModal({ setModalOpen, columns, currentTask, ed
   // const [removedSubtasks, setRemovedSubtasks] = useState([])
 
   const tempSubtaskInputs = tempSubtasks.map((subtask, index) => (
-    <SubtaskInput key={index} subtask={subtask} index={index} handleChangeSubtask={handleChangeSubtask}/>
+    <SubtaskInput key={index} subtask={subtask} index={index} handleChangeSubtask={handleChangeSubtask} handleRemoveSubtask={handleRemoveSubtask}/>
     // <div className={styles.modalFormInputWrapper} key={index}>
     //   <div className={`${styles.sortIconDiv} ${styles.deleteBtnCircle}`}>
     //     <BarSortIcon className={`${styles.sortIcon}`} />
