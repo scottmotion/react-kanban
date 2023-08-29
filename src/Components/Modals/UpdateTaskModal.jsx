@@ -3,7 +3,7 @@
 import { useState, useContext } from "react";
 import { ThemeContext } from "../../App";
 import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
-import { ReactComponent as BarSortIcon }  from "/src/assets/icons/icon-bars-sort.svg"
+import { ReactComponent as BarSortIcon }  from "/src/assets/icons/icon-reorder.svg"
 
 
 import styles from "./Modal.module.css"
