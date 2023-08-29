@@ -2,8 +2,9 @@
 
 import { useState, useContext } from "react";
 import { ThemeContext } from "../../App";
-import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
-import { ReactComponent as BarSortIcon }  from "/src/assets/icons/icon-reorder.svg"
+// import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
+// import { ReactComponent as BarSortIcon } from "/src/assets/icons/icon-reorder.svg"
+import SubtaskInput from "./Inputs/SubtaskInput";
 
 
 import styles from "./Modal.module.css"
@@ -25,25 +26,26 @@ export default function UpdateTaskModal({ setModalOpen, columns, currentTask, ed
   // const [removedSubtasks, setRemovedSubtasks] = useState([])
 
   const tempSubtaskInputs = tempSubtasks.map((subtask, index) => (
-    <div className={styles.modalFormInputWrapper} key={index}>
-      {/* <div className={`${styles.sortIconDiv} ${styles.deleteBtnCircle}`}>
-        <BarSortIcon className={`${styles.sortIcon}`} />
-      </div> */}
-      <label className={styles.modalFormLabel}>
-        <input
-          type="text"
-          placeholder="Subtask Name"
-          className={styles.modalFormInput}
-          name="subtaskName"
-          id={index}
-          value={subtask.name}
-          onChange={(e) => handleChangeSubtask(e, index)}
-        />
-      </label>
-      <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveSubtask(e, index) }}>
-        <CrossIcon className={`${styles.deleteBtnIcon}`} />
-      </button>
-    </div>
+    <SubtaskInput key={index} subtask={subtask} index={index} handleChangeSubtask={handleChangeSubtask}/>
+    // <div className={styles.modalFormInputWrapper} key={index}>
+    //   <div className={`${styles.sortIconDiv} ${styles.deleteBtnCircle}`}>
+    //     <BarSortIcon className={`${styles.sortIcon}`} />
+    //   </div>
+    //   <label className={styles.modalFormLabel}>
+    //     <input
+    //       type="text"
+    //       placeholder="Subtask Name"
+    //       className={styles.modalFormInput}
+    //       name="subtaskName"
+    //       id={index}
+    //       value={subtask.name}
+    //       onChange={(e) => handleChangeSubtask(e, index)}
+    //     />
+    //   </label>
+    //   <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveSubtask(e, index) }}>
+    //     <CrossIcon className={`${styles.deleteBtnIcon}`} />
+    //   </button>
+    // </div>
   ))
 
   const columnOptions = columns.map((column, index) => (
