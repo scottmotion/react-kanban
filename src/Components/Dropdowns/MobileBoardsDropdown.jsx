@@ -3,7 +3,7 @@ import { ReactComponent as ChevronDownIcon } from "/src/assets/icons/icon-chevro
 
 import './MobileBoardsDropdown.css'
 
-export default function MobileBoardsDropdown({ children, boards, currentBoardId, setCurrentBoardId }) {
+export default function MobileBoardsDropdown({ children, setModalOpen, boards, currentBoardId, setCurrentBoardId }) {
 
     const [showDropdown, setShowDropdown] = useState(false)
 
@@ -60,6 +60,11 @@ export default function MobileBoardsDropdown({ children, boards, currentBoardId,
         setShowDropdown(false)
     }
 
+    function handleNewBoard() {
+        setShowDropdown(false)
+        setModalOpen("addBoard")
+    }
+
     return (
 
         <div className="boards-dropdown--wrapper" ref={dropdownWrapperRef}>
@@ -70,6 +75,9 @@ export default function MobileBoardsDropdown({ children, boards, currentBoardId,
             </button>
             <div className={optionsClassName}>
                 {boardsDropdownOptions}
+                <button className="button button--new-board">
+                    <div className="button__text--new-board" onClick={handleNewBoard}>+ New Board</div>
+                </button>
                 {children}
             </div>
         </div>

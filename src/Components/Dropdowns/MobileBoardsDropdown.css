@@ -33,16 +33,6 @@
   font-weight: var(--fw-700);
   overflow: hidden;
 }
-/* .light-mode .button__text--select-board {
-  color: var(--text-dark);
-} */
-
-
-/* @media screen and (min-width: 768px) {
-  .button__text--select-board {
-      display: initial;
-  }
-} */
 
 .button__icon--chevron-down {
   border-radius: 100%;
@@ -103,3 +93,23 @@
 .boards-dropdown--wrapper .theme-switcher {
   margin: 0;
 }
+
+.button--new-board {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-purple);
+  border: none;
+
+  background-color: inherit;
+  margin: 0;
+  white-space: nowrap;
+  padding: 0;
+  width: 100%;
+  gap: 0.5rem
+}
+.light-mode .button--select-board {
+  color: var(--text-dark);
+}
+

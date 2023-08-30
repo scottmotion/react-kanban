@@ -311,6 +311,7 @@ function App() {
             setCurrentBoardId={setCurrentBoardId}
           /> */}
           <MobileBoardsDropdown
+            setModalOpen={setModalOpen}
             boards={boards}
             currentBoardId={currentBoardId}
             setCurrentBoardId={setCurrentBoardId}
