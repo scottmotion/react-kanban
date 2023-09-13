@@ -43,8 +43,6 @@ export default function MobileBoardsDropdown({ children, setModalOpen, boards, c
     dropdownClickOutside(dropdownWrapperRef);
 
 
-
-
     useEffect(() => {
         setCurrentBoard(boards.find(board => board.id === currentBoardId) || boards[0])
     }, [currentBoardId])

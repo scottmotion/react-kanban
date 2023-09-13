@@ -46,13 +46,11 @@ export default function EllipsisDropdown({currentItem, confirmDelete, itemType, 
         } else if (itemType ==="task") {
             setShowDropdown(false)
             setModalOpen("updateTask")
-            // console.log("Update Task: ", currentItem.id)
         }
         setShowDropdown(false)
     }
 
     function handleClickDelete() {
-        // console.log("Delete Item: ", currentItem)
         if (currentItem) {
             setShowDropdown(false)
             confirmDelete(currentItem.id)

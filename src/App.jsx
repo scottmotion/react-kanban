@@ -8,7 +8,6 @@ import BoardWrapper from './Components/Board/BoardWrapper'
 import Sidebar from './Components/Sidebar/Sidebar'
 import ThemeToggle from "./Components/Sidebar/ThemeToggle"
 import Board from "./Components/Board/Board"
-import BoardsDropdown from "./Components/Dropdowns/BoardsDropdown"
 import MobileBoardsDropdown from "./Components/Dropdowns/MobileBoardsDropdown"
 import AddBoardModal from "./Components/Modals/AddBoardModal"
 import UpdateBoardModal from "./Components/Modals/UpdateBoardModal"
@@ -305,11 +304,6 @@ function App() {
           columnCount={columnCount}
           confirmDelete={confirmDeleteBoard}
         >
-          {/* <BoardsDropdown
-            boards={boards}
-            currentBoardId={currentBoardId}
-            setCurrentBoardId={setCurrentBoardId}
-          /> */}
           <MobileBoardsDropdown
             setModalOpen={setModalOpen}
             boards={boards}

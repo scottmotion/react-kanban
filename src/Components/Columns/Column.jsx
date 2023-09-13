@@ -14,7 +14,7 @@ export default function Column({ columnName, columnId, tasksCollection, setModal
     const q = query((tasksCollection), where("columnId", "==", columnId));
     useEffect(() => {
         const unsubscribe = onSnapshot(q, function (snapshot) {
-            // Sync up our local notes array with the snapshot data
+            // Sync up local notes array with the snapshot data
             const tasksArr = snapshot.docs.map(doc => ({
                 ...doc.data(),
                 id: doc.id
@@ -24,15 +24,6 @@ export default function Column({ columnName, columnId, tasksCollection, setModal
         })
         return unsubscribe
     }, [columnId])
-
-    const taskElements = tasks.map((task, index) => (
-        <TaskCard
-            key={task.id}
-            task={task}
-            setModalOpen={setModalOpen}
-            setCurrentTask={setCurrentTask}
-        />
-    ))
 
     return (
         <div className="board__column-single--wrapper" id={columnId}>
@@ -44,7 +35,14 @@ export default function Column({ columnName, columnId, tasksCollection, setModal
             </div>
 
             <div className="board__column-single">
-                {taskElements}
+                {tasks.map((task, index) => (
+                    <TaskCard
+                        key={task.id}
+                        task={task}
+                        setModalOpen={setModalOpen}
+                        setCurrentTask={setCurrentTask}
+                    />
+                ))}
             </div>
         </div>
     )

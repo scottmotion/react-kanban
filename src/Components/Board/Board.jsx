@@ -42,17 +42,6 @@ export default function Board({ setModalOpen, currentBoard, setColumns, setColum
     return unsubscribe
   }, [currentBoard.id])
 
-  const columnElements = currentColumns.map((column, index) => (
-    <Column
-      key={column.id}
-      columnName={column.name}
-      columnId={column.id}
-      tasksCollection={tasksCollection}
-      setModalOpen={setModalOpen}
-      setCurrentTask={setCurrentTask}
-    />
-  ))
-
   // check if there is are columns before rendering child that needs columns as prop
   const loading = (currentColumns.length === null);
 
@@ -60,8 +49,17 @@ export default function Board({ setModalOpen, currentBoard, setColumns, setColum
     <>
       <section className={sectionClassName}>
 
-        {columnElements}
-
+        {currentColumns.map((column, index) => (
+          <Column
+            key={column.id}
+            columnName={column.name}
+            columnId={column.id}
+            tasksCollection={tasksCollection}
+            setModalOpen={setModalOpen}
+            setCurrentTask={setCurrentTask}
+          />
+        ))}
+        
         {loading
           ? null
           : <ColumnNew setModalOpen={setModalOpen} />
