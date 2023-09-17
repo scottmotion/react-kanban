@@ -46,6 +46,7 @@ export default function UpdateTaskModal({
   });
 
   const [tempSubtasks, setTempSubtasks] = useState(currentTask.subtasks);
+  // const sortedBoards = boardsArr.sort((a, b) => b.updatedAt - a.updatedAt);
 
   const [activeId, setActiveId] = useState(null);
   const sensors = useSensors(
