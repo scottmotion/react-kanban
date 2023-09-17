@@ -24,6 +24,8 @@ export function SortableSubtaskInput(props) {
       ref={setNodeRef}
       style={style}
       subtask={props.subtask}
+      handleChangeSubtask={props.handleChangeSubtask}
+      handleRemoveSubtask={props.handleRemoveSubtask}
       attributes={attributes}
       listeners={listeners}
       isDragging={isDragging}
