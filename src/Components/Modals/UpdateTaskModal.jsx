@@ -187,7 +187,7 @@ export default function UpdateTaskModal({
                 onDragEnd={handleDragEnd}
                 modifiers={[restrictToVerticalAxis]}
               >
-                {/* <SortableContext> */}
+                {/* <SortableContext items={tempSubtasks} strategy={verticalListSortingStrategy}> */}
                 {tempSubtasks.map((subtask, index) => (
                   <SubtaskInput
                     key={index}
@@ -199,7 +199,17 @@ export default function UpdateTaskModal({
                 ))}
                 {/* </SortableContext> */}
                 {/* <DragOverlay>
-                  {activeId ? <div>DRAG OVERLAY</div> : null}
+                  {activeId ? (
+                    <SubtaskInput
+                      id={activeId}
+                      subtask={
+                        tempSubtasks[
+                          tempSubtasks.findIndex((s) => s.id === activeId)
+                        ]
+                      }
+                      isOverlay={true}
+                    />
+                  ) : null}
                 </DragOverlay> */}
               </DndContext>
             </fieldset>
