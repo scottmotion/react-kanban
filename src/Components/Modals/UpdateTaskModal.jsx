@@ -3,6 +3,28 @@
 import { useState, useContext } from "react";
 import { ThemeContext } from "../../App";
 
+import {
+  DndContext,
+  DragOverlay,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+
+import {
+  restrictToVerticalAxis,
+  restrictToParentElement,
+} from "@dnd-kit/modifiers";
+
 import SubtaskInput from "./Inputs/SubtaskInput";
 
 import styles from "./Modal.module.css";
@@ -24,6 +46,33 @@ export default function UpdateTaskModal({
   });
 
   const [tempSubtasks, setTempSubtasks] = useState(currentTask.subtasks);
+
+  const [activeId, setActiveId] = useState(null);
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  function handleDragStart(event) {
+    const { active } = event;
+    console.log("Drag Start: active: ", active);
+    setActiveId(active.id.toString());
+  }
+
+  function handleDragEnd(event) {
+    const { active, over } = event;
+    console.log("Drag End: active: ", active, " over: ", over);
+    // if (over !== null && active.id !== over.id) {
+    //   setTempSubtasks((tempSubtasks) => {
+    //     const oldIndex = tempSubtasks.findIndex(s => s.id === active.id);
+    //     const newIndex = tempSubtasks.findIndex(s => s.id === over.id);
+    //     return arrayMove(tempSubtasks, oldIndex, newIndex);
+    //   });
+    // }
+    setActiveId(null);
+  }
 
   // const tempSubtaskInputs = tempSubtasks.map((subtask, index) => (
   //   <SubtaskInput
@@ -131,15 +180,28 @@ export default function UpdateTaskModal({
 
             <fieldset className={styles.modalFormFieldset}>
               <legend className={styles.modalFormLegend}>Subtasks</legend>
-              {tempSubtasks.map((subtask, index) => (
-                <SubtaskInput
-                  key={index}
-                  subtask={subtask}
-                  index={index}
-                  handleChangeSubtask={handleChangeSubtask}
-                  handleRemoveSubtask={handleRemoveSubtask}
-                />
-              ))}
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragStart={handleDragStart}
+                onDragEnd={handleDragEnd}
+                modifiers={[restrictToVerticalAxis]}
+              >
+                {/* <SortableContext> */}
+                {tempSubtasks.map((subtask, index) => (
+                  <SubtaskInput
+                    key={index}
+                    subtask={subtask}
+                    index={index}
+                    handleChangeSubtask={handleChangeSubtask}
+                    handleRemoveSubtask={handleRemoveSubtask}
+                  />
+                ))}
+                {/* </SortableContext> */}
+                {/* <DragOverlay>
+                  {activeId ? <div>DRAG OVERLAY</div> : null}
+                </DragOverlay> */}
+              </DndContext>
             </fieldset>
 
             <button
