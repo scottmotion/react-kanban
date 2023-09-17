@@ -1,32 +1,33 @@
 import { useState, useContext } from "react";
 import { ThemeContext } from "../../App";
-import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg"
+import { ReactComponent as CrossIcon } from "/src/assets/icons/icon-cross.svg";
 import SubtaskInput from "./Inputs/SubtaskInput";
 
-import styles from "./Modal.module.css"
+import styles from "./Modal.module.css";
 
 export default function AddTaskModal({ setModalOpen, columns, addTask }) {
-
   const theme = useContext(ThemeContext);
-  const themeClass = (theme === 'dark') ? styles.darkMode : styles.lightMode;
+  const themeClass = theme === "dark" ? styles.darkMode : styles.lightMode;
 
   const [newTask, setNewTask] = useState({
-    name: '',
-    description: '',
+    name: "",
+    description: "",
     columnId: columns[0].id,
-  })
+  });
 
-  const [newSubtasks, setNewSubtasks] = useState([{
-    name: '',
-    isCompleted: false
-  }])
+  const [newSubtasks, setNewSubtasks] = useState([
+    {
+      name: "",
+      isCompleted: false,
+    },
+  ]);
 
   function handleChange(event) {
-    const { name, value } = event.target
-    setNewTask(prevNewTask => ({
+    const { name, value } = event.target;
+    setNewTask((prevNewTask) => ({
       ...prevNewTask,
-      [name]: value
-    }))
+      [name]: value,
+    }));
   }
 
   function handleNewSubtask(event) {
@@ -34,77 +35,72 @@ export default function AddTaskModal({ setModalOpen, columns, addTask }) {
     setNewSubtasks([
       ...newSubtasks,
       {
-        name: '',
-        isCompleted: false
-      }
+        name: "",
+        isCompleted: false,
+      },
     ]);
   }
 
   function handleChangeSubtask(event, subtaskIndex) {
-    const subtaskValue = event.target.value
-    const subtaskId = subtaskIndex
+    const subtaskValue = event.target.value;
+    const subtaskId = subtaskIndex;
     const tempSubtask = {
       name: subtaskValue,
-      isCompleted: false
-    }
+      isCompleted: false,
+    };
 
-    setNewSubtasks(newSubtasks.map((s, index) => {
-      if (index === subtaskId) {
-        return tempSubtask;
-      } else {
-        return s;
-      }
-    }));
+    setNewSubtasks(
+      newSubtasks.map((s, index) => {
+        if (index === subtaskId) {
+          return tempSubtask;
+        } else {
+          return s;
+        }
+      })
+    );
   }
 
   function handleRemoveSubtask(event, subtaskIndex) {
     event.preventDefault();
-    setNewSubtasks(
-      newSubtasks.filter((s, index) =>
-        index !== subtaskIndex
-      )
-    );
+    setNewSubtasks(newSubtasks.filter((s, index) => index !== subtaskIndex));
   }
 
-  const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
+  const handleSubmit = (event) => {
+    // TODO: validate form to ensure path and data are set
     event.preventDefault();
     if (newTask.name) {
-      addTask(newTask, newSubtasks)
+      addTask(newTask, newSubtasks);
     }
-  }
+  };
 
-  const columnOptions = columns.map((column, index) => (
-    <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
-  ))
+  // const columnOptions = columns.map((column, index) => (
+  //   <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
+  // ))
 
-  const newSubtaskInputs = newSubtasks.map((subtask, index) => (
-    <SubtaskInput key={index} subtask={subtask} index={index} handleChangeSubtask={handleChangeSubtask} handleRemoveSubtask={handleRemoveSubtask}/>
-    // <div className={styles.modalFormInputWrapper} key={index}>
-    //   <label className={styles.modalFormLabel}>
-    //     <input
-    //       type="text"
-    //       placeholder="Subtask Name"
-    //       className={styles.modalFormInput}
-    //       name="subtaskName"
-    //       id={index}
-    //       value={subtask.name}
-    //       onChange={(e) => handleChangeSubtask(e, index)}
-    //     />
-    //   </label>
-    //   <button className={`${styles.btn} ${styles.deleteBtnCircle}`} onClick={(e) => { handleRemoveSubtask(e, index) }}>
-    //     <CrossIcon className={`${styles.deleteBtnIcon}`} />
-    //   </button>
-    // </div>
-  ))
+  // const newSubtaskInputs = newSubtasks.map((subtask, index) => (
+  //   <SubtaskInput
+  //     key={index}
+  //     subtask={subtask}
+  //     index={index}
+  //     handleChangeSubtask={handleChangeSubtask}
+  //     handleRemoveSubtask={handleRemoveSubtask}
+  //   />
+  // ));
 
   return (
     <>
-      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => setModalOpen("")} />
+      <div
+        className={`${styles.darkBG} ${themeClass}`}
+        onClick={() => setModalOpen("")}
+      />
       <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Add New Task</div>
         <div className={styles.modalContent}>
-          <form className={styles.modalForm} onSubmit={handleSubmit} autoComplete="off">
-
+          <form
+            className={styles.modalForm}
+            onSubmit={handleSubmit}
+            autoComplete="off"
+          >
             <label className={styles.modalFormLabel}>
               Task Name
               <input
@@ -130,10 +126,23 @@ export default function AddTaskModal({ setModalOpen, columns, addTask }) {
 
             <fieldset className={styles.modalFormFieldset}>
               <legend className={styles.modalFormLegend}>Subtasks</legend>
-              {newSubtaskInputs}
+              {newSubtasks.map((subtask, index) => (
+                <SubtaskInput
+                  key={index}
+                  subtask={subtask}
+                  index={index}
+                  handleChangeSubtask={handleChangeSubtask}
+                  handleRemoveSubtask={handleRemoveSubtask}
+                />
+              ))}
             </fieldset>
 
-            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewSubtask(e)}>+ Add New Subtask</button>
+            <button
+              className={`${styles.btn} ${styles.addBtn}`}
+              onClick={(e) => handleNewSubtask(e)}
+            >
+              + Add New Subtask
+            </button>
 
             <label className={styles.modalFormLabel}>
               Column
@@ -143,15 +152,30 @@ export default function AddTaskModal({ setModalOpen, columns, addTask }) {
                 value={newTask.columnId}
                 onChange={handleChange}
               >
-                {columnOptions}
+                {columns.map((column, index) => (
+                  <option
+                    className={styles.modalFormOption}
+                    key={index}
+                    value={column.id}
+                  >
+                    {column.name}
+                  </option>
+                ))}
               </select>
             </label>
 
-            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Create Task</button>
-            <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={() => setModalOpen('')}>Cancel</button>
+            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">
+              Create Task
+            </button>
+            <button
+              className={`${styles.btn} ${styles.cancelBtn}`}
+              onClick={() => setModalOpen("")}
+            >
+              Cancel
+            </button>
           </form>
         </div>
       </div>
     </>
-  )
+  );
 }
