@@ -5,42 +5,48 @@ import { ThemeContext } from "../../App";
 
 import SubtaskInput from "./Inputs/SubtaskInput";
 
-import styles from "./Modal.module.css"
+import styles from "./Modal.module.css";
 
-export default function UpdateTaskModal({ setModalOpen, columns, currentTask, editItem }) {
-
+export default function UpdateTaskModal({
+  setModalOpen,
+  columns,
+  currentTask,
+  editItem,
+}) {
   const theme = useContext(ThemeContext);
-  const themeClass = (theme === 'dark') ? styles.darkMode : styles.lightMode;
+  const themeClass = theme === "dark" ? styles.darkMode : styles.lightMode;
 
   const [tempTask, setTempTask] = useState({
     name: currentTask.name,
     id: currentTask.id,
     description: currentTask.description,
-    columnId: currentTask.columnId
-  })
+    columnId: currentTask.columnId,
+  });
 
-  const [tempSubtasks, setTempSubtasks] = useState(currentTask.subtasks)
+  const [tempSubtasks, setTempSubtasks] = useState(currentTask.subtasks);
 
-  const tempSubtaskInputs = tempSubtasks.map((subtask, index) => (
-    <SubtaskInput
-      key={index}
-      subtask={subtask}
-      index={index}
-      handleChangeSubtask={handleChangeSubtask}
-      handleRemoveSubtask={handleRemoveSubtask}
-    />
-  ))
+  // const tempSubtaskInputs = tempSubtasks.map((subtask, index) => (
+  //   <SubtaskInput
+  //     key={index}
+  //     subtask={subtask}
+  //     index={index}
+  //     handleChangeSubtask={handleChangeSubtask}
+  //     handleRemoveSubtask={handleRemoveSubtask}
+  //   />
+  // ));
 
-  const columnOptions = columns.map((column, index) => (
-    <option className={styles.modalFormOption} key={index} value={column.id}>{column.name}</option>
-  ))
+  // const columnOptions = columns.map((column, index) => (
+  //   <option className={styles.modalFormOption} key={index} value={column.id}>
+  //     {column.name}
+  //   </option>
+  // ));
 
   function handleChange(event) {
-    const { name, value } = event.target
-    setTempTask(prevTempTask => ({
+    const { name, value } = event.target;
+    setTempTask((prevTempTask) => ({
       ...prevTempTask,
-      [name]: value
-    }))
+      [name]: value,
+    }));
   }
 
   function handleNewSubtask(event) {
@@ -48,53 +54,58 @@ export default function UpdateTaskModal({ setModalOpen, columns, currentTask, ed
     setTempSubtasks([
       ...tempSubtasks,
       {
-        name: '',
-        isCompleted: false
-      }
+        name: "",
+        isCompleted: false,
+      },
     ]);
   }
 
   function handleChangeSubtask(event, subtaskIndex) {
-    const subtaskValue = event.target.value
-    const subtaskId = subtaskIndex
+    const subtaskValue = event.target.value;
+    const subtaskId = subtaskIndex;
     const tempSubtask = {
-      name: subtaskValue
-    }
+      name: subtaskValue,
+    };
 
-    setTempSubtasks(tempSubtasks.map((s, index) => {
-      if (index === subtaskId) {
-        return ({ ...s, ...tempSubtask });
-      } else {
-        return s;
-      }
-    }));
+    setTempSubtasks(
+      tempSubtasks.map((s, index) => {
+        if (index === subtaskId) {
+          return { ...s, ...tempSubtask };
+        } else {
+          return s;
+        }
+      })
+    );
   }
 
   function handleRemoveSubtask(event, subtaskIndex) {
     event.preventDefault();
-    setTempSubtasks(
-      tempSubtasks.filter((s, index) =>
-        index !== subtaskIndex
-      )
-    );
+    setTempSubtasks(tempSubtasks.filter((s, index) => index !== subtaskIndex));
   }
 
-  const handleSubmit = (event) => { // TODO: validate form to ensure path and data are set
+  const handleSubmit = (event) => {
+    // TODO: validate form to ensure path and data are set
     event.preventDefault();
-    let tempData = { ...tempTask, subtasks: tempSubtasks }
+    let tempData = { ...tempTask, subtasks: tempSubtasks };
     if (tempTask.name) {
-      editItem(tempData)
+      editItem(tempData);
     }
-  }
+  };
 
   return (
     <>
-      <div className={`${styles.darkBG} ${themeClass}`} onClick={() => setModalOpen("")} />
+      <div
+        className={`${styles.darkBG} ${themeClass}`}
+        onClick={() => setModalOpen("")}
+      />
       <div className={`${styles.modal} ${themeClass}`}>
         <div className={styles.modalHeading}>Edit Task</div>
         <div className={styles.modalContent}>
-          <form className={styles.modalForm} onSubmit={handleSubmit} autoComplete="off">
-
+          <form
+            className={styles.modalForm}
+            onSubmit={handleSubmit}
+            autoComplete="off"
+          >
             <label className={styles.modalFormLabel}>
               Task Name
               <input
@@ -120,10 +131,23 @@ export default function UpdateTaskModal({ setModalOpen, columns, currentTask, ed
 
             <fieldset className={styles.modalFormFieldset}>
               <legend className={styles.modalFormLegend}>Subtasks</legend>
-              {tempSubtaskInputs}
+              {tempSubtasks.map((subtask, index) => (
+                <SubtaskInput
+                  key={index}
+                  subtask={subtask}
+                  index={index}
+                  handleChangeSubtask={handleChangeSubtask}
+                  handleRemoveSubtask={handleRemoveSubtask}
+                />
+              ))}
             </fieldset>
 
-            <button className={`${styles.btn} ${styles.addBtn}`} onClick={(e) => handleNewSubtask(e)}>+ Add New Subtask</button>
+            <button
+              className={`${styles.btn} ${styles.addBtn}`}
+              onClick={(e) => handleNewSubtask(e)}
+            >
+              + Add New Subtask
+            </button>
 
             <label className={styles.modalFormLabel}>
               Column
@@ -133,15 +157,30 @@ export default function UpdateTaskModal({ setModalOpen, columns, currentTask, ed
                 value={tempTask.columnId}
                 onChange={handleChange}
               >
-                {columnOptions}
+                {columns.map((column, index) => (
+                  <option
+                    className={styles.modalFormOption}
+                    key={index}
+                    value={column.id}
+                  >
+                    {column.name}
+                  </option>
+                ))}
               </select>
             </label>
 
-            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">Save</button>
-            <button className={`${styles.btn} ${styles.cancelBtn}`} onClick={() => setModalOpen('')}>Cancel</button>
+            <button className={`${styles.btn} ${styles.saveBtn}`} type="submit">
+              Save
+            </button>
+            <button
+              className={`${styles.btn} ${styles.cancelBtn}`}
+              onClick={() => setModalOpen("")}
+            >
+              Cancel
+            </button>
           </form>
         </div>
       </div>
     </>
-  )
+  );
 }
