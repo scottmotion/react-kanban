@@ -27,6 +27,9 @@ import {
 
 import SubtaskInput from "./Inputs/SubtaskInput";
 
+import { SortableSubtaskInput } from "./Inputs/SortableSubtaskInput";
+import { SubtaskInput2 } from "./Inputs/SubtaskInput2";
+
 import styles from "./Modal.module.css";
 
 export default function UpdateTaskModal({
@@ -188,30 +191,36 @@ export default function UpdateTaskModal({
                 onDragEnd={handleDragEnd}
                 modifiers={[restrictToVerticalAxis]}
               >
-                {/* <SortableContext items={tempSubtasks} strategy={verticalListSortingStrategy}> */}
-                {tempSubtasks.map((subtask, index) => (
-                  <SubtaskInput
-                    key={index}
-                    subtask={subtask}
-                    index={index}
-                    handleChangeSubtask={handleChangeSubtask}
-                    handleRemoveSubtask={handleRemoveSubtask}
-                  />
-                ))}
-                {/* </SortableContext> */}
-                {/* <DragOverlay>
+                <SortableContext
+                  items={tempSubtasks}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {tempSubtasks.map((subtask, index) => (
+                    <SortableSubtaskInput
+                      key={index}
+                      id={index}
+                      subtask={subtask}
+                      index={index}
+                      handleChangeSubtask={handleChangeSubtask}
+                      handleRemoveSubtask={handleRemoveSubtask}
+                    />
+                  ))}
+                </SortableContext>
+                <DragOverlay>
                   {activeId ? (
-                    <SubtaskInput
+                    <SubtaskInput2
                       id={activeId}
                       subtask={
                         tempSubtasks[
-                          tempSubtasks.findIndex((s) => s.id === activeId)
+                          tempSubtasks[0]
+
+                          // tempSubtasks.findIndex((s) => s.id === activeId)
                         ]
                       }
                       isOverlay={true}
                     />
                   ) : null}
-                </DragOverlay> */}
+                </DragOverlay>
               </DndContext>
             </fieldset>
 
