@@ -1,7 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-import SubtaskInput2 from "./SubtaskInput2";
+import { SubtaskInput2 } from "./SubtaskInput2";
 
 export function SortableSubtaskInput(props) {
   const {
@@ -21,6 +21,7 @@ export function SortableSubtaskInput(props) {
   return (
     <SubtaskInput2
       id={props.id}
+      index={props.index}
       ref={setNodeRef}
       style={style}
       subtask={props.subtask}
