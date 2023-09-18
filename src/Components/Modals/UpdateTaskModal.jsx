@@ -206,7 +206,7 @@ export default function UpdateTaskModal({
                     />
                   ))}
                 </SortableContext>
-                <DragOverlay>
+                <DragOverlay modifiers={[restrictToParentElement]}>
                   {activeId ? (
                     <SubtaskInput2
                       id={activeId}
