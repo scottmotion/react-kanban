@@ -10,6 +10,7 @@ export const SubtaskInput2 = forwardRef(({ ...props }, ref) => {
       ref={ref}
       {...props.attributes}
       {...props.listeners}
+      style={props.style}
     >
       <div className={`${styles.sortIconDiv} ${styles.deleteBtnCircle}`}>
         <BarSortIcon className={`${styles.sortIcon}`} />
