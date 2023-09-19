@@ -211,11 +211,11 @@ export default function UpdateTaskModal({
                     <SubtaskInput2
                       id={activeId}
                       subtask={
-                        tempSubtasks[
-                          tempSubtasks[0]
+                        // tempSubtasks[
+                        tempSubtasks[0]
 
-                          // tempSubtasks.findIndex((s) => s.id === activeId)
-                        ]
+                        // tempSubtasks.findIndex((s) => s.id === activeId)
+                        // ]
                       }
                       isOverlay={true}
                     />
