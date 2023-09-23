@@ -5,14 +5,12 @@ import styles from "../Modal.module.css";
 
 export const SubtaskInput2 = forwardRef(({ ...props }, ref) => {
   return (
-    <div
-      className={styles.modalFormInputWrapper}
-      ref={ref}
-      {...props.attributes}
-      {...props.listeners}
-      style={props.style}
-    >
-      <div className={`${styles.sortIconDiv} ${styles.deleteBtnCircle}`}>
+    <div className={styles.modalFormInputWrapper} ref={ref} style={props.style}>
+      <div
+        {...props.attributes}
+        {...props.listeners}
+        className={`${styles.sortIconDiv} ${styles.deleteBtnCircle}`}
+      >
         <BarSortIcon className={`${styles.sortIcon}`} />
       </div>
       <label className={styles.modalFormLabel}>
